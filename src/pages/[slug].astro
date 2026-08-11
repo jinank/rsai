@@ -9,8 +9,11 @@ const allApps = getApps();
 const counts = getVoteCounts();
 const related = allApps.filter((item) => item.slug !== app.slug).sort((a, b) => Number(b.category === app.category) - Number(a.category === app.category)).slice(0, 3);
 const verdict = verdictCopy[app.verdict];
+const isPromptLocked = app.verdict === 'yes' || app.verdict === 'kinda';
 const title = `How Do You Build a ${app.name} Style Product? | Rethinksoft`;
-const description = `${verdict.label}. Copy an agent ready product prompt and explore proven open source codebases to build, customize, and launch your own version.`;
+const description = isPromptLocked
+  ? `${verdict.label}. Preview the product blueprint and unlock the premium agent prompt to build, customize, and launch your own version.`
+  : `${verdict.label}. Copy an agent ready product prompt and explore proven open source codebases to build, customize, and launch your own version.`;
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const url = `${siteUrl}/${app.slug}`;
 const faqs = [
@@ -42,13 +45,25 @@ const jsonLd = [
 
   <div class="container detail-grid">
     <article>
-      <section class="block reveal" id="prompt"><div class="block-head"><div><p class="eyebrow">Your product starting point</p><h2>AGENT BUILD PROMPT</h2></div><p>READY FOR AGENTIC CODING</p></div>
-        <div class="code-wrap"><div class="code-toolbar"><span class="dots"><i></i><i></i><i></i></span><span>{app.slug}-product.prompt</span><span>Launch specification</span></div><pre id="build-prompt">{app.prompt}</pre></div>
-        <div class="agent-buttons">
-          <button class="copy-button" type="button" data-agent="claude" data-prompt={app.prompt}>⌁ COPY FOR CLAUDE CODE</button>
-          <button class="copy-button" type="button" data-agent="codex" data-prompt={app.prompt}>⌁ COPY FOR CODEX</button>
-          <button class="copy-button" type="button" data-agent="cursor" data-prompt={app.prompt}>⌁ COPY FOR CURSOR</button>
-        </div>
+      <section class="block reveal" id="prompt"><div class="block-head"><div><p class="eyebrow">Your product starting point</p><h2>AGENT BUILD PROMPT</h2></div><p>{isPromptLocked ? 'PREMIUM PROMPT LOCKED' : 'READY FOR AGENTIC CODING'}</p></div>
+        {isPromptLocked ? (
+          <div class="prompt-lock">
+            <div class="prompt-lock-icon" aria-hidden="true">⌁</div>
+            <p class="eyebrow">Premium access</p>
+            <h3>Unlock the complete {verdict.short.toLowerCase()} prompt.</h3>
+            <p>The full build specification and agent specific copy controls are reserved for premium members. Choose a plan to get launch access.</p>
+            <a class="button" href="/#pricing">VIEW PRICING ↗</a>
+          </div>
+        ) : (
+          <>
+            <div class="code-wrap"><div class="code-toolbar"><span class="dots"><i></i><i></i><i></i></span><span>{app.slug}-product.prompt</span><span>Launch specification</span></div><pre id="build-prompt">{app.prompt}</pre></div>
+            <div class="agent-buttons">
+              <button class="copy-button" type="button" data-agent="claude" data-prompt={app.prompt}>⌁ COPY FOR CLAUDE CODE</button>
+              <button class="copy-button" type="button" data-agent="codex" data-prompt={app.prompt}>⌁ COPY FOR CODEX</button>
+              <button class="copy-button" type="button" data-agent="cursor" data-prompt={app.prompt}>⌁ COPY FOR CURSOR</button>
+            </div>
+          </>
+        )}
       </section>
 
       <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Plan for the hard parts</p><h2>WHAT STILL NEEDS WORK</h2></div></div><ul class="loss-list">{app.whatYouLose.map((loss) => <li>{loss}</li>)}</ul></section>

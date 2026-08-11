@@ -51,7 +51,7 @@ const tape = [...ranked, ...ranked];
             <span class="app-id"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" loading="lazy" onerror="this.style.visibility='hidden'" /><a href={`/${app.slug}`}>{app.name}</a></span>
             <span class="category">{categoryEmoji[app.category]} {app.category}</span>
             <span class="price">${app.priceMonthly}/mo</span>
-            <span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span>
+            <span class:list={["verdict", `verdict-${app.verdict}`, { locked: app.verdict !== 'no' }]}>{app.verdict === 'no' ? verdictCopy[app.verdict].short : `LOCKED · ${verdictCopy[app.verdict].short}`}</span>
             <span class="votes">{counts[app.slug] || 0}</span>
             <a class="demo-button" href={`https://${app.domain}`} target="_blank" rel="noopener" aria-label={`View ${app.name} demo`}><span class="demo-wide">VIEW DEMO</span><span class="demo-short">DEMO</span> ↗</a>
           </div>
