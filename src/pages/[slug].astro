@@ -32,6 +32,7 @@ const jsonLd = [
 ];
 ---
 <BaseLayout {title} {description} image={`/og/${app.slug}.png`} {jsonLd}>
+  <div class="detail-page">
   <div class="container crumbs"><a href="/">HOME</a> / <a href="/directory">{app.category.toUpperCase()}</a> / <span>{app.name.toUpperCase()}</span></div>
   <section class="detail-hero">
     <div class="container">
@@ -75,5 +76,6 @@ const jsonLd = [
     <aside>
       <div class="side-card"><p class="eyebrow">Built by the community</p><h3>DID YOU BUILD IT?</h3><p>Count your launch when you have a working version that someone else can use.</p><button class="button vote-button" type="button" data-vote={app.slug}>▲ I BUILT THIS · <span>{counts[app.slug] || 0}</span></button><button class="button secondary share-button" type="button" data-share data-url={url} data-text={`I found a ready to use ${app.name} product blueprint on Rethinksoft. ${verdict.label}.`}>𝕏 SHARE THE BLUEPRINT</button><p class="form-note" data-vote-note aria-live="polite">ONE BUILD PER NETWORK.</p></div>
     </aside>
+  </div>
   </div>
 </BaseLayout>
