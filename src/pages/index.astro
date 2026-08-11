@@ -43,17 +43,18 @@ const tape = [...ranked, ...ranked];
       <p>Ranked by builders who turned a blueprint into working software. Pick an idea, inspect the source, and start building.</p>
     </div>
     <div class="table-shell">
-      <div class="list-header"><span>RANK</span><span>PRODUCT IDEA</span><span>CATEGORY</span><span>MARKET PRICE</span><span>SCOPE</span><span>BUILT</span></div>
+      <div class="list-header"><span>RANK</span><span>PRODUCT IDEA</span><span>CATEGORY</span><span>MARKET PRICE</span><span>SCOPE</span><span>BUILT</span><span>DEMO</span></div>
       <div id="app-list">
         {ranked.map((app, index) => (
-          <a class="app-row" href={`/${app.slug}`} data-name={`${app.name} ${app.domain}`.toLowerCase()} data-category={app.category.toLowerCase()}>
+          <div class="app-row" data-name={`${app.name} ${app.domain}`.toLowerCase()} data-category={app.category.toLowerCase()}>
             <span class="rank">{String(index + 1).padStart(2, '0')}</span>
-            <span class="app-id"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" loading="lazy" onerror="this.style.visibility='hidden'" />{app.name}</span>
+            <span class="app-id"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" loading="lazy" onerror="this.style.visibility='hidden'" /><a href={`/${app.slug}`}>{app.name}</a></span>
             <span class="category">{categoryEmoji[app.category]} {app.category}</span>
             <span class="price">${app.priceMonthly}/mo</span>
             <span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span>
             <span class="votes">{counts[app.slug] || 0}</span>
-          </a>
+            <a class="demo-button" href={`https://${app.domain}`} target="_blank" rel="noopener" aria-label={`View ${app.name} demo`}><span class="demo-wide">VIEW DEMO</span><span class="demo-short">DEMO</span> ↗</a>
+          </div>
         ))}
       </div>
       <div class="empty-state" id="empty-state">No matching products found.</div>
