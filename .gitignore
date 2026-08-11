@@ -1,6 +1,7 @@
 node_modules/
 dist/
 .astro/
+.vercel/
 data/site.db
 data/site.db-shm
 data/site.db-wal

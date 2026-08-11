@@ -2,7 +2,8 @@ import Database from 'better-sqlite3';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const dbPath = path.resolve(process.env.DATABASE_PATH || './data/site.db');
+const defaultDbPath = process.env.VERCEL ? path.join('/tmp', 'rethinksoft', 'site.db') : './data/site.db';
+const dbPath = path.resolve(process.env.DATABASE_PATH || defaultDbPath);
 fs.mkdirSync(path.dirname(dbPath), { recursive: true });
 
 const db = new Database(dbPath);

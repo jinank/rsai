@@ -7,10 +7,12 @@
     "dev": "astro dev",
     "build": "node scripts/generate-og.mjs && astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "verify:vercel-output": "node -e \"const fs=require('node:fs');const config=JSON.parse(fs.readFileSync('.vercel/output/config.json','utf8'));const root=config.routes.some((route)=>route.src==='^/$'&&route.dest==='_render');const fn=fs.existsSync('.vercel/output/functions/_render.func/.vc-config.json');if(!root||!fn)throw new Error('Vercel render route is missing');console.log('Vercel root route and render function verified.');\""
   },
   "dependencies": {
     "@astrojs/node": "latest",
+    "@astrojs/vercel": "^11.0.5",
     "@fontsource/jetbrains-mono": "latest",
     "@fontsource/space-grotesk": "latest",
     "@resvg/resvg-js": "latest",
