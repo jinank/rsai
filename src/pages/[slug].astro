@@ -26,13 +26,13 @@ const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((item) => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })) },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
-    { '@type': 'ListItem', position: 2, name: app.category, item: `${siteUrl}/#death-list` },
+    { '@type': 'ListItem', position: 2, name: app.category, item: `${siteUrl}/directory` },
     { '@type': 'ListItem', position: 3, name: app.name, item: url },
   ] },
 ];
 ---
 <BaseLayout {title} {description} image={`/og/${app.slug}.png`} {jsonLd}>
-  <div class="container crumbs"><a href="/">HOME</a> / <a href="/#death-list">{app.category.toUpperCase()}</a> / <span>{app.name.toUpperCase()}</span></div>
+  <div class="container crumbs"><a href="/">HOME</a> / <a href="/directory">{app.category.toUpperCase()}</a> / <span>{app.name.toUpperCase()}</span></div>
   <section class="detail-hero">
     <div class="container">
       <div class="detail-top">

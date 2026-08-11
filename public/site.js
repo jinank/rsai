@@ -26,18 +26,43 @@
   const search = document.querySelector('#app-search');
   const rows = [...document.querySelectorAll('.app-row')];
   const chips = [...document.querySelectorAll('.chip')];
+  const scopeChips = [...document.querySelectorAll('.scope-chip')];
+  const sort = document.querySelector('#directory-sort');
+  const list = document.querySelector('#app-list');
   let category = 'all';
+  let scope = 'all';
   const filter = () => {
     const query = (search?.value || '').trim().toLowerCase();
     let visible = 0;
-    rows.forEach((row) => {
+    const orderedRows = list ? [...list.querySelectorAll('.app-row')] : rows;
+    orderedRows.forEach((row) => {
       const matchesText = !query || row.dataset.name.includes(query) || row.dataset.category.includes(query);
       const matchesCategory = category === 'all' || row.dataset.category === category;
-      row.hidden = !(matchesText && matchesCategory);
-      if (!row.hidden) visible++;
+      const matchesScope = scope === 'all' || row.dataset.scope === scope;
+      row.hidden = !(matchesText && matchesCategory && matchesScope);
+      if (!row.hidden) {
+        visible++;
+        const rank = row.querySelector('.rank');
+        if (rank) rank.textContent = String(visible).padStart(2, '0');
+      }
     });
     const empty = document.querySelector('#empty-state');
     if (empty) empty.style.display = visible ? 'none' : 'block';
+    const count = document.querySelector('#result-count');
+    if (count) count.textContent = String(visible);
+  };
+  const sortRows = () => {
+    if (!sort || !list) return;
+    const scopeOrder = { yes: 0, kinda: 1, no: 2 };
+    const sorted = [...rows].sort((a, b) => {
+      if (sort.value === 'name') return a.dataset.name.localeCompare(b.dataset.name);
+      if (sort.value === 'price-low') return Number(a.dataset.price) - Number(b.dataset.price);
+      if (sort.value === 'price-high') return Number(b.dataset.price) - Number(a.dataset.price);
+      if (sort.value === 'scope') return scopeOrder[a.dataset.scope] - scopeOrder[b.dataset.scope] || a.dataset.name.localeCompare(b.dataset.name);
+      return Number(b.dataset.votes) - Number(a.dataset.votes) || Number(a.dataset.order) - Number(b.dataset.order);
+    });
+    sorted.forEach((row) => list.appendChild(row));
+    filter();
   };
   search?.addEventListener('input', filter);
   chips.forEach((chip) => chip.addEventListener('click', () => {
@@ -45,6 +70,12 @@
     chips.forEach((item) => item.classList.toggle('active', item === chip));
     filter();
   }));
+  scopeChips.forEach((chip) => chip.addEventListener('click', () => {
+    scope = chip.dataset.scope;
+    scopeChips.forEach((item) => item.classList.toggle('active', item === chip));
+    filter();
+  }));
+  sort?.addEventListener('change', sortRows);
   document.addEventListener('keydown', (event) => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && search) { event.preventDefault(); search.focus(); }
     if (event.key === 'Escape' && document.activeElement === search) { search.value = ''; search.blur(); filter(); }

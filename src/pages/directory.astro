@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { categoryEmoji, getApps, verdictCopy } from '../lib/apps';
+import { getVoteCounts } from '../lib/db';
+
+const apps = getApps();
+const counts = getVoteCounts();
+const ranked = apps.sort((a, b) => (counts[b.slug] || 0) - (counts[a.slug] || 0) || a.name.localeCompare(b.name));
+const categories = [...new Set(apps.map((app) => app.category))].sort();
+const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+const title = 'Software Product Directory | Rethinksoft';
+const description = 'Search, filter, and compare ready to use software product blueprints, premium agent prompts, and open source codebases.';
+const jsonLd = [
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Rethinksoft Product Launch Directory', itemListElement: ranked.map((app, index) => ({ '@type': 'ListItem', position: index + 1, url: `${siteUrl}/${app.slug}`, name: app.name })) },
+  { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: siteUrl },
+    { '@type': 'ListItem', position: 2, name: 'Directory', item: `${siteUrl}/directory` },
+  ] },
+];
+---
+<BaseLayout {title} {description} image="/og/home.png" {jsonLd}>
+  <section class="directory-hero">
+    <div class="container">
+      <p class="eyebrow">Product launch directory</p>
+      <h1>Find software<br />worth <em>building.</em></h1>
+      <p>Search every product blueprint, compare market signals, and filter by category or build scope.</p>
+      <div class="search-shell directory-search">
+        <label class="sr-only" for="app-search">Search product blueprints</label>
+        <input class="hero-search" id="app-search" type="search" placeholder="Search products, categories, workflows, or domains" autocomplete="off" />
+        <span class="search-key">⌘ K</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="directory-main container">
+    <div class="directory-toolbar">
+      <div><p class="eyebrow">Browse the library</p><h2>All product blueprints</h2></div>
+      <label class="sort-control" for="directory-sort"><span>Sort by</span><select id="directory-sort">
+        <option value="popular">Most built</option>
+        <option value="name">Name A to Z</option>
+        <option value="price-low">Market price low to high</option>
+        <option value="price-high">Market price high to low</option>
+        <option value="scope">Build scope</option>
+      </select></label>
+    </div>
+
+    <div class="directory-filters" aria-label="Directory filters">
+      <div class="filter-group"><span>Category</span><div class="chips">
+        <button class="chip active" type="button" data-category="all">ALL</button>
+        {categories.map((category) => <button class="chip" type="button" data-category={category.toLowerCase()}>{categoryEmoji[category] || '◈'} {category.toUpperCase()}</button>)}
+      </div></div>
+      <div class="filter-group"><span>Build scope</span><div class="chips scope-chips">
+        <button class="scope-chip active" type="button" data-scope="all">ALL LEVELS</button>
+        <button class="scope-chip" type="button" data-scope="yes">🔒 STARTER</button>
+        <button class="scope-chip" type="button" data-scope="kinda">🔒 ADVANCED</button>
+        <button class="scope-chip" type="button" data-scope="no">EXPERT</button>
+      </div></div>
+    </div>
+
+    <div class="directory-results-line"><p><strong id="result-count">{ranked.length}</strong> blueprints found</p><a href="/#waitlist">Suggest a product ↗</a></div>
+
+    <div class="table-shell directory-table">
+      <div class="list-header"><span>RANK</span><span>PRODUCT IDEA</span><span>CATEGORY</span><span>MARKET PRICE</span><span>SCOPE</span><span>BUILT</span><span>DEMO</span></div>
+      <div id="app-list">
+        {ranked.map((app, index) => (
+          <div class="app-row" data-name={`${app.name} ${app.domain}`.toLowerCase()} data-category={app.category.toLowerCase()} data-scope={app.verdict} data-price={app.priceMonthly} data-votes={counts[app.slug] || 0} data-order={index}>
+            <span class="rank">{String(index + 1).padStart(2, '0')}</span>
+            <span class="app-id"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" loading="lazy" onerror="this.style.visibility='hidden'" /><a href={`/${app.slug}`}>{app.name}</a></span>
+            <span class="category">{categoryEmoji[app.category]} {app.category}</span>
+            <span class="price">${app.priceMonthly}/mo</span>
+            <span class="scope-cell">{app.verdict !== 'no' && <span class="table-lock-icon" role="img" aria-label="Premium prompt locked">🔒</span>}<span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span>
+            <span class="votes">{counts[app.slug] || 0}</span>
+            <a class="demo-button" href={`https://${app.domain}`} target="_blank" rel="noopener" aria-label={`View ${app.name} demo`}><span class="demo-wide">VIEW DEMO</span><span class="demo-short">DEMO</span> ↗</a>
+          </div>
+        ))}
+      </div>
+      <div class="empty-state" id="empty-state">No blueprints match those filters.</div>
+    </div>
+  </section>
+</BaseLayout>
