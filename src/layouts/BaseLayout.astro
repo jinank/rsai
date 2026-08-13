@@ -8,14 +8,16 @@ import '@fontsource/manrope/700.css';
 import '../styles/global.css';
 import '../styles/redesign.css';
 import '../styles/detail-gojiberry.css';
+import '../styles/home-gojiberry.css';
 
 interface Props {
   title: string;
   description: string;
   image?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  pageClass?: string;
 }
-const { title, description, image = '/og/home.png', jsonLd } = Astro.props;
+const { title, description, image = '/og/home.png', jsonLd, pageClass } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(image, Astro.site);
 ---
@@ -40,7 +42,7 @@ const imageUrl = new URL(image, Astro.site);
     <title>{title}</title>
     {jsonLd && <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
-  <body>
+  <body class={pageClass}>
     <header class="site-header">
       <a class="brand" href="/" aria-label="Rethinksoft home"><span class="brand-mark">R</span> Rethinksoft</a>
       <nav aria-label="Primary navigation">
