@@ -39,3 +39,15 @@ h3{font-weight:600;letter-spacing:-.025em}
 .hero-lede{font:500 18px/1.6 'Manrope',sans-serif!important}
 .directory-hero h1,.store-hero h1,.creator-hero h1,.checkout-copy h1,.demo-heading h1{font-size:clamp(50px,6.8vw,82px);letter-spacing:-.045em}
 .eyebrow,.list-header,.list-header *,.rank,.category,.price,.votes,.verdict,.demo-button,.search-key,.ticker-label,.code-toolbar,.code-toolbar *,.copy-button,.form-note,.checkout-label,.back-link,.demo-window-bar,.demo-window-bar *,pre,code{font-family:'JetBrains Mono',monospace!important;letter-spacing:.03em}
+
+/* Larger, more deliberate navigation */
+.site-header{height:84px;padding:0 max(28px,calc((100vw - 1120px)/2));border-bottom:1px solid #d8dbd2;background:rgba(251,251,248,.96);box-shadow:0 8px 30px rgba(24,29,20,.035)}
+.site-header>.brand{gap:11px;font-size:20px;font-weight:700;letter-spacing:-.035em}
+.site-header>.brand .brand-mark{width:36px;height:36px;border-radius:9px;background:var(--ink);font-size:16px}
+.site-header>nav{gap:3px;padding:5px;border:1px solid #dedfd8;border-radius:9px;background:#f1f2ed}
+.site-header nav>a:not(.nav-cta){position:relative;padding:10px 14px;border-radius:5px;color:#50564d;font-size:13px;font-weight:600;line-height:1}
+.site-header nav>a:not(.nav-cta)::after{content:'';position:absolute;right:14px;bottom:6px;left:14px;height:1px;background:var(--lime-dark);transform:scaleX(0);transform-origin:left;transition:transform .2s ease}
+.site-header nav>a:not(.nav-cta):hover{background:#fff;color:var(--ink)}
+.site-header nav>a:not(.nav-cta):hover::after{transform:scaleX(1)}
+.site-header .nav-cta{min-height:38px;margin-left:4px;padding:0 17px;border-radius:5px;font-size:12px;font-weight:700;letter-spacing:-.01em}
+@media(max-width:900px){.site-header{height:74px;padding-inline:16px}.site-header>.brand{font-size:18px}.site-header>.brand .brand-mark{width:32px;height:32px;font-size:14px}.site-header>nav{padding:0;border:0;background:transparent}.site-header .nav-cta{min-height:40px;margin:0;padding-inline:15px;font-size:11px}}
