@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getNews } from '../lib/news';
 
 const items = getNews();
-const featured = items.find((item) => item.featured) || items[0];
 const categories = [...new Set(items.map((item) => item.category))].sort();
 const title = 'Latest AI Tools and Builder News | Rethinksoft';
 const description = 'A curated feed of new AI products, coding agents, open source tools, and practical releases worth knowing about.';
@@ -13,10 +12,9 @@ const jsonLd = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'L
 <BaseLayout {title} {description} {jsonLd} pageClass="resource-page news-page">
   <section class="resource-hero news-hero"><div class="container"><p class="eyebrow">The builder signal</p><h1>Useful tools.<br />No noisy <em>feed.</em></h1><p>Fresh AI products, open source releases, and builder tools selected for people who make software.</p></div></section>
   <div class="container resource-main" data-resource-directory>
-    <a class="news-featured" href={featured.url} target="_blank" rel="noopener" data-resource-item data-search={`${featured.title} ${featured.summary} ${featured.category} ${featured.source}`.toLowerCase()} data-categories={featured.category.toLowerCase()}><div><span class="news-kicker">Featured · {featured.category}</span><h2>{featured.title}</h2><p>{featured.summary}</p><strong>Read at {featured.source} ↗</strong></div><time datetime={featured.date}>{dateLabel(featured.date)}</time></a>
-    <div class="resource-toolbar news-toolbar"><label><span>Search the news</span><input type="search" placeholder="Search tools, companies, or categories" data-resource-search /></label><p><strong data-resource-count>{items.length}</strong> stories</p></div>
+    <div class="resource-toolbar"><label><span>Search the news</span><input type="search" placeholder="Search tools, companies, or categories" data-resource-search /></label><p><strong data-resource-count>{items.length}</strong> stories</p></div>
     <div class="resource-chips" aria-label="News categories"><button class="active" type="button" data-resource-category="all">All</button>{categories.map((category) => <button type="button" data-resource-category={category.toLowerCase()}>{category}</button>)}</div>
-    <div class="news-grid" data-resource-list>{items.filter((item) => item !== featured).map((item) => <article class="news-card" data-resource-item data-search={`${item.title} ${item.summary} ${item.category} ${item.source}`.toLowerCase()} data-categories={item.category.toLowerCase()}><div class="news-card-meta"><span>{item.category}</span><time datetime={item.date}>{dateLabel(item.date)}</time></div><h2>{item.title}</h2><p>{item.summary}</p><a href={item.url} target="_blank" rel="noopener">Read at {item.source} ↗</a></article>)}</div>
+    <div class="news-grid" data-resource-list>{items.map((item) => <article class="news-card" data-resource-item data-search={`${item.title} ${item.summary} ${item.category} ${item.source}`.toLowerCase()} data-categories={item.category.toLowerCase()}><div class="news-card-meta"><span>{item.category}</span><time datetime={item.date}>{dateLabel(item.date)}</time></div><h2>{item.title}</h2><p>{item.summary}</p><a href={item.url} target="_blank" rel="noopener">Read at {item.source} ↗</a></article>)}</div>
     <p class="resource-empty" data-resource-empty hidden>No stories match those filters.</p>
     <aside class="news-note"><strong>How we curate</strong><p>We link to original product pages and primary announcements whenever possible. Inclusion is editorial, not sponsored.</p></aside>
   </div>
