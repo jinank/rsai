@@ -39,8 +39,6 @@ const tape = [...ranked, ...ranked];
     <div class="trust-row"><span>Built for independent founders</span><b>{featuredKits.length} founding launch kits</b><b>{apps.length} researched markets</b><b>Commercial use</b></div>
   </section>
 
-  <section class="section container launch-kits-home reveal"><div class="section-head"><div><p class="eyebrow">Five founding releases</p><h2>Buy the complete starting point.</h2></div><p>Each one-time launch kit combines the product build, business direction, and launch materials in one focused package.</p></div><div class="kit-grid">{featuredKits.slice(0, 3).map((app, index) => <KitCard {app} featured={index === 0} />)}</div><div class="section-cta"><a class="button secondary" href="/kits">VIEW ALL LAUNCH KITS</a></div></section>
-
   <section class="section container reveal" id="death-list">
     <div class="section-head">
       <div><p class="eyebrow">The free discovery engine</p><h2>Research your next market.</h2></div>
@@ -64,6 +62,8 @@ const tape = [...ranked, ...ranked];
       <div class="empty-state" id="empty-state">No matching products found.</div>
     </div>
   </section>
+
+  <section class="section container launch-kits-home reveal"><div class="section-head"><div><p class="eyebrow">Five founding releases</p><h2>Buy the complete starting point.</h2></div><p>Each one-time launch kit combines the product build, business direction, and launch materials in one focused package.</p></div><div class="kit-grid">{featuredKits.slice(0, 3).map((app, index) => <KitCard {app} featured={index === 0} />)}</div><div class="section-cta"><a class="button secondary" href="/kits">VIEW ALL LAUNCH KITS</a></div></section>
 
   <section class="blue-stage" aria-label="Rethinksoft product launch library">
     <div class="stage-grid" aria-hidden="true"></div>
