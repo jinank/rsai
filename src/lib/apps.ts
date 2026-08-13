@@ -14,6 +14,17 @@ export type AppEntry = {
   priorArt: PriorArt[];
   prompt: string;
   notes: string;
+  kitPrice?: number;
+  buildTime?: string;
+  targetBuyer?: string;
+  featured?: boolean;
+  deliverables?: string[];
+};
+
+export const kitFallbacks = {
+  buildTime: '7 to 14 days',
+  targetBuyer: 'Independent founders and product studios',
+  deliverables: ['Agent build specification', 'Open source foundation guide', 'Launch and positioning checklist'],
 };
 
 const appsDir = path.resolve(process.cwd(), 'data/apps');

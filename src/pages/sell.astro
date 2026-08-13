@@ -1,0 +1,8 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const title = 'Sell Your Software Launch Kit | Rethinksoft';
+const description = 'Submit a working software product, starter codebase, or launch kit for consideration in the curated Rethinksoft marketplace.';
+---
+<BaseLayout {title} {description}>
+  <section class="creator-hero"><div class="container creator-grid"><div><p class="eyebrow">For product builders</p><h1>Turn your working<br />software into a <em>product.</em></h1><p>Submit a polished starter, codebase, or independently built SaaS. We curate the strongest products, package them as launch kits, and prepare them for buyers.</p><div class="creator-terms"><span><b>Curated</b> quality over volume</span><span><b>You own it</b> keep your intellectual property</span><span><b>Revenue share</b> published before launch</span></div></div><form class="creator-form" data-creator-form><p class="eyebrow">Submit your product</p><input class="hp" name="company" tabindex="-1" autocomplete="off" /><label>Email<input name="email" type="email" placeholder="builder@studio.com" required /></label><label>Product name<input name="productName" type="text" placeholder="Your product" required maxlength="80" /></label><label>Product or demo URL<input name="productUrl" type="url" placeholder="https://" required /></label><label>What makes it worth buying?<textarea name="notes" rows="5" placeholder="Describe the buyer, problem, working features, and what is included."></textarea></label><button class="button" type="submit">SUBMIT FOR REVIEW</button><p class="form-note" aria-live="polite">Every submission is reviewed before it appears in the library.</p></form></div></section>
+</BaseLayout>

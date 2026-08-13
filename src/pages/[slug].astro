@@ -46,6 +46,7 @@ const jsonLd = [
 
   <div class="container detail-grid">
     <article>
+      {app.featured && <section class="block kit-includes reveal"><div class="block-head"><div><p class="eyebrow">The complete starting point</p><h2>WHAT THE LAUNCH KIT INCLUDES</h2></div><p>${app.kitPrice} ONE TIME</p></div><div class="deliverable-grid">{app.deliverables?.map((item, index) => <div><span>{String(index + 1).padStart(2, '0')}</span><p>{item}</p></div>)}</div><div class="inline-actions"><a class="button" href={`/buy/${app.slug}`}>GET THE LAUNCH KIT</a><a class="button secondary" href={`/demos/${app.slug}`}>OPEN LIVE PREVIEW ↗</a></div></section>}
       <section class="block reveal" id="prompt"><div class="block-head"><div><p class="eyebrow">Your product starting point</p><h2>AGENT BUILD PROMPT</h2></div><p>{isPromptLocked ? 'PREMIUM PROMPT LOCKED' : 'READY FOR AGENTIC CODING'}</p></div>
         {isPromptLocked ? (
           <div class="prompt-lock">
@@ -74,6 +75,7 @@ const jsonLd = [
       <section class="block faq reveal"><div class="block-head"><div><p class="eyebrow">Before you launch</p><h2>FAQ</h2></div></div>{faqs.map((item) => <details><summary>{item.q}</summary><p>{item.a}</p></details>)}</section>
     </article>
     <aside>
+      {app.featured && <div class="side-card kit-side-card"><p class="eyebrow">Complete launch kit</p><div class="side-price"><strong>${app.kitPrice}</strong><span>ONE TIME</span></div><p>Build specification, source map, positioning, launch copy, and growth plan.</p><a class="button" href={`/buy/${app.slug}`}>GET FOUNDING ACCESS</a><a class="side-demo-link" href={`/demos/${app.slug}`}>Explore the live preview ↗</a></div>}
       <div class="side-card"><p class="eyebrow">Built by the community</p><h3>DID YOU BUILD IT?</h3><p>Count your launch when you have a working version that someone else can use.</p><button class="button vote-button" type="button" data-vote={app.slug}>▲ I BUILT THIS · <span>{counts[app.slug] || 0}</span></button><button class="button secondary share-button" type="button" data-share data-url={url} data-text={`I found a ready to use ${app.name} product blueprint on Rethinksoft. ${verdict.label}.`}>𝕏 SHARE THE BLUEPRINT</button><p class="form-note" data-vote-note aria-live="polite">ONE BUILD PER NETWORK.</p></div>
     </aside>
   </div>

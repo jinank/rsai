@@ -5,7 +5,7 @@ import vercel from '@astrojs/vercel';
 const isVercelBuild = Boolean(process.env.VERCEL);
 
 export default defineConfig({
-  site: process.env.SITE_URL || 'https://rethinksoft.app',
+  site: process.env.SITE_URL || 'https://rsai.vercel.app',
   output: 'server',
   adapter: isVercelBuild ? vercel() : node({ mode: 'standalone' }),
 });

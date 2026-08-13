@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { categoryEmoji, getApp } from '../../lib/apps';
+const app = getApp(Astro.params.slug || '');
+if (!app?.featured) return Astro.redirect('/kits');
+const title = `${app.name} Product Preview | Rethinksoft`;
+const description = `Explore the interactive product direction included in the ${app.name} launch kit.`;
+const sampleItems: Record<string, string[]> = {
+  Scheduling: ['Discovery call', 'Strategy session', 'Client onboarding'],
+  Marketing: ['Primary offer', 'Latest case study', 'Book a consultation'],
+  Forms: ['Contact details', 'Project goals', 'Budget and timeline'],
+  Social: ['Product announcement', 'Customer story', 'Weekly insight'],
+  Projects: ['Research', 'Build', 'Ready to launch'],
+};
+const items = sampleItems[app.category] || ['Research', 'Build', 'Launch'];
+---
+<BaseLayout {title} {description}>
+  <section class="demo-page"><div class="container"><div class="demo-heading"><div><a class="back-link" href={`/buy/${app.slug}`}>← {app.name.toUpperCase()} KIT</a><p class="eyebrow">Interactive product direction</p><h1>{app.name}, rebuilt<br />for a <em>focused niche.</em></h1></div><p>This preview demonstrates the product experience and visual direction. The launch kit provides the specification and source map needed to build the complete application.</p></div>
+    <div class="demo-window" data-demo-window><div class="demo-window-bar"><span class="dots"><i></i><i></i><i></i></span><b>{categoryEmoji[app.category]} {app.name} Studio</b><span>LIVE PREVIEW</span></div><div class="demo-shell"><aside><strong>{app.name} Studio</strong><a class="active" href="#">Overview</a><a href="#">Customers</a><a href="#">Analytics</a><a href="#">Settings</a></aside><main><div class="demo-main-head"><div><small>{app.category.toUpperCase()} WORKSPACE</small><h2>Ready to launch</h2></div><button type="button" data-demo-add>+ ADD ITEM</button></div><div class="demo-stats"><span><b>24</b> active</span><span><b>68%</b> conversion</span><span><b>142</b> this month</span></div><div class="demo-items" data-demo-items>{items.map((item, index) => <button type="button"><i>{String(index + 1).padStart(2, '0')}</i><span><b>{item}</b><small>Updated today</small></span><em>{index === 2 ? 'DRAFT' : 'LIVE'}</em></button>)}</div></main></div></div><div class="demo-cta"><div><p class="eyebrow">Build the complete version</p><h2>Make this product yours.</h2></div><a class="button" href={`/buy/${app.slug}`}>GET THE ${app.name.toUpperCase()} KIT</a></div>
+  </div></section>
+</BaseLayout>

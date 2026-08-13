@@ -116,6 +116,48 @@
     finally { button.disabled = false; button.textContent = 'JOIN QUEUE ↗'; }
   });
 
+  document.querySelector('[data-interest]')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const button = form.querySelector('button');
+    const note = form.querySelector('.form-note');
+    const original = button.textContent;
+    button.disabled = true; button.textContent = 'RESERVING...';
+    try {
+      const response = await fetch('/api/interest', { method: 'POST', body: new FormData(form) });
+      const data = await response.json();
+      note.textContent = data.message || data.error;
+      if (response.ok) form.querySelector('input[type=email]').value = '';
+    } catch { note.textContent = 'COULD NOT RESERVE ACCESS. TRY AGAIN.'; }
+    finally { button.disabled = false; button.textContent = original; }
+  });
+
+  document.querySelector('[data-creator-form]')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const button = form.querySelector('button');
+    const note = form.querySelector('.form-note');
+    const original = button.textContent;
+    button.disabled = true; button.textContent = 'SUBMITTING...';
+    try {
+      const response = await fetch('/api/submit-product', { method: 'POST', body: new FormData(form) });
+      const data = await response.json();
+      note.textContent = data.message || data.error;
+      if (response.ok) form.reset();
+    } catch { note.textContent = 'COULD NOT SUBMIT. TRY AGAIN.'; }
+    finally { button.disabled = false; button.textContent = original; }
+  });
+
+  document.querySelector('[data-demo-add]')?.addEventListener('click', (event) => {
+    const list = document.querySelector('[data-demo-items]');
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.innerHTML = `<i>${String(list.children.length + 1).padStart(2, '0')}</i><span><b>New product item</b><small>Added just now</small></span><em>DRAFT</em>`;
+    list.appendChild(item);
+    event.currentTarget.textContent = '✓ ITEM ADDED';
+    setTimeout(() => { event.currentTarget.textContent = '+ ADD ITEM'; }, 1400);
+  });
+
   const agentPrefixes = {
     claude: 'Use Claude Code in the current repository. Inspect the workspace first, choose sensible defaults without asking unnecessary questions, implement the complete app, run it, test the critical flows, and fix any failures.\n\n',
     codex: 'Work autonomously in the current workspace. Build the complete product described below, preserve existing work, use server-rendered defaults where practical, run checks and tests, and continue until the core flows work.\n\n',

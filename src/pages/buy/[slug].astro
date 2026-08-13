@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getApp, kitFallbacks } from '../../lib/apps';
+const app = getApp(Astro.params.slug || '');
+if (!app?.featured) return Astro.redirect('/kits');
+const title = `Get the ${app.name} Launch Kit | Rethinksoft`;
+const description = `Reserve the complete ${app.name} launch kit for $${app.kitPrice}, including the build prompt, source map, positioning, and launch assets.`;
+const checkoutUrl = process.env[`CHECKOUT_${app.slug.replace(/-/g, '_').toUpperCase()}_URL`];
+---
+<BaseLayout {title} {description}>
+  <section class="checkout-page"><div class="container checkout-grid">
+    <div class="checkout-copy"><a class="back-link" href="/kits">← ALL LAUNCH KITS</a><p class="eyebrow">Founding release</p><h1>Own the {app.name}<br />launch kit.</h1><p>{app.notes}</p><div class="checkout-audience"><span>BEST FOR</span><strong>{app.targetBuyer || kitFallbacks.targetBuyer}</strong></div><ul class="checkout-list">{(app.deliverables || kitFallbacks.deliverables).map((item) => <li>{item}</li>)}</ul></div>
+    <aside class="checkout-card"><span class="checkout-label">ONE TIME PURCHASE</span><div class="checkout-price"><strong>${app.kitPrice}</strong><span>USD</span></div><p>Lifetime access to this release and its launch materials.</p><div class="checkout-row"><span>Estimated build</span><b>{app.buildTime}</b></div><div class="checkout-row"><span>License</span><b>Commercial use</b></div>{checkoutUrl ? <div class="interest-form"><a class="button" href={checkoutUrl} rel="noopener">CONTINUE TO SECURE CHECKOUT</a><p class="form-note">Payment and delivery are completed through secure checkout.</p></div> : <form class="interest-form" data-interest><input class="hp" name="company" tabindex="-1" autocomplete="off" /><input type="hidden" name="slug" value={app.slug} /><label for="buyer-email">Reserve founding access</label><input id="buyer-email" name="email" type="email" placeholder="you@company.com" required /><button class="button" type="submit">RESERVE FOR ${app.kitPrice}</button><p class="form-note" aria-live="polite">No charge today. Secure checkout opens with the founding release.</p></form>}</aside>
+  </div></section>
+</BaseLayout>
