@@ -1,11 +1,11 @@
 .home-page{--coral:#ff725c;--coral-deep:#ed543f;--peach:#fff0e9;--peach-soft:#fff8f4;--warm-line:#eadfd9;--ink:#171512;--muted:#706964;--lime:var(--coral);--lime-dark:var(--coral-deep);--spectral:linear-gradient(120deg,#ff5f49 0%,#ff8268 52%,#ffb18f 100%);background:#fff;color:var(--ink)}
 .home-page::before{height:820px;background:radial-gradient(circle at 13% 8%,rgba(255,166,128,.27),transparent 27%),radial-gradient(circle at 86% 12%,rgba(255,107,84,.22),transparent 28%),radial-gradient(circle at 50% 27%,rgba(255,213,193,.34),transparent 35%)}
-.home-page .site-header{border-bottom-color:rgba(225,207,198,.72);background:rgba(255,250,247,.84);backdrop-filter:blur(18px)}
-.home-page .site-header>.brand .brand-mark{background:var(--coral);color:#fff}
-.home-page .site-header>nav{border-color:#eaded8;background:rgba(255,255,255,.78)}
-.home-page .site-header nav>a:not(.nav-cta):hover{background:var(--peach)}
-.home-page .site-header nav>a:not(.nav-cta)::after{background:var(--coral)}
-.home-page .site-header .nav-cta{border-color:var(--coral);background:var(--coral);color:#fff!important}
+.home-page .site-header{border-bottom-color:#d8dbd2;background:rgba(251,251,248,.96);backdrop-filter:blur(12px)}
+.home-page .site-header>.brand .brand-mark{background:var(--ink);color:#fff}
+.home-page .site-header>nav{border-color:#dedfd8;background:#f1f2ed}
+.home-page .site-header nav>a:not(.nav-cta):hover{background:#fff}
+.home-page .site-header nav>a:not(.nav-cta)::after{background:var(--ink)}
+.home-page .site-header .nav-cta{border-color:var(--ink);background:var(--ink);color:#fff!important}
 .home-page .hero{width:min(1180px,calc(100% - 32px));margin-top:16px;padding:86px 54px 68px;border-radius:30px;background:radial-gradient(circle at 15% 10%,rgba(255,255,255,.94),transparent 31%),radial-gradient(circle at 88% 18%,rgba(255,128,98,.3),transparent 28%),linear-gradient(145deg,#fffaf7 0%,#fff1e9 55%,#ffe3d7 100%);overflow:hidden}
 .home-page .hero::before{display:block!important;width:260px;height:260px;left:auto;right:-68px;top:-64px;filter:none;opacity:.6;transform:none;background:repeating-linear-gradient(135deg,transparent 0 18px,rgba(255,103,78,.1) 18px 19px),repeating-linear-gradient(45deg,transparent 0 18px,rgba(255,103,78,.08) 18px 19px);animation:none}
 .home-page .hero>.eyebrow{color:var(--coral-deep)}.home-page .hero>.eyebrow::before{background:var(--coral)}
