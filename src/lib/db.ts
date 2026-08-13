@@ -34,11 +34,27 @@ db.exec(`
     email TEXT NOT NULL COLLATE NOCASE,
     product_name TEXT NOT NULL,
     product_url TEXT NOT NULL,
+    public_profile_url TEXT NOT NULL DEFAULT '',
+    replacement_name TEXT NOT NULL DEFAULT '',
+    repository_url TEXT NOT NULL DEFAULT '',
+    demo_access TEXT NOT NULL DEFAULT '',
+    preferred_price TEXT NOT NULL DEFAULT '',
     notes TEXT NOT NULL DEFAULT '',
     created_at INTEGER NOT NULL DEFAULT (unixepoch()),
     UNIQUE(email, product_url)
   );
 `);
+
+const submissionColumns = new Set((db.prepare('PRAGMA table_info(creator_submissions)').all() as { name: string }[]).map((column) => column.name));
+for (const [name, definition] of Object.entries({
+  public_profile_url: "TEXT NOT NULL DEFAULT ''",
+  replacement_name: "TEXT NOT NULL DEFAULT ''",
+  repository_url: "TEXT NOT NULL DEFAULT ''",
+  demo_access: "TEXT NOT NULL DEFAULT ''",
+  preferred_price: "TEXT NOT NULL DEFAULT ''",
+})) {
+  if (!submissionColumns.has(name)) db.exec(`ALTER TABLE creator_submissions ADD COLUMN ${name} ${definition}`);
+}
 db.pragma('optimize');
 
 export function getVoteCounts(): Record<string, number> {
@@ -62,7 +78,10 @@ export function addKitInterest(email: string, appSlug: string) {
   return result.changes > 0;
 }
 
-export function addCreatorSubmission(email: string, productName: string, productUrl: string, notes: string) {
-  const result = db.prepare('INSERT OR IGNORE INTO creator_submissions (email, product_name, product_url, notes) VALUES (?, ?, ?, ?)').run(email.trim().toLowerCase(), productName.trim(), productUrl.trim(), notes.trim());
+export function addCreatorSubmission(submission: { email: string; productName: string; productUrl: string; publicProfileUrl: string; replacementName: string; repositoryUrl: string; demoAccess: string; preferredPrice: string; notes: string }) {
+  const result = db.prepare(`INSERT OR IGNORE INTO creator_submissions
+    (email, product_name, product_url, public_profile_url, replacement_name, repository_url, demo_access, preferred_price, notes)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+    .run(submission.email.trim().toLowerCase(), submission.productName.trim(), submission.productUrl.trim(), submission.publicProfileUrl.trim(), submission.replacementName.trim(), submission.repositoryUrl.trim(), submission.demoAccess.trim(), submission.preferredPrice.trim(), submission.notes.trim());
   return result.changes > 0;
 }

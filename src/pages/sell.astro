@@ -1,8 +1,42 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-const title = 'Sell Your Software Launch Kit | Rethinksoft';
-const description = 'Submit a working software product, starter codebase, or launch kit for consideration in the curated Rethinksoft marketplace.';
+const title = 'Submit a Working Software Product | Rethinksoft';
+const description = 'Privately submit a live, independently built software product for Rethinksoft to audit, package, market, and sell on your behalf.';
 ---
 <BaseLayout {title} {description}>
-  <section class="creator-hero"><div class="container creator-grid"><div><p class="eyebrow">For product builders</p><h1>Turn your working<br />software into a <em>product.</em></h1><p>Submit a polished starter, codebase, or independently built SaaS. We curate the strongest products, package them as launch kits, and prepare them for buyers.</p><div class="creator-terms"><span><b>Curated</b> quality over volume</span><span><b>You own it</b> keep your intellectual property</span><span><b>Revenue share</b> published before launch</span></div></div><form class="creator-form" data-creator-form><p class="eyebrow">Submit your product</p><input class="hp" name="company" tabindex="-1" autocomplete="off" /><label>Email<input name="email" type="email" placeholder="builder@studio.com" required /></label><label>Product name<input name="productName" type="text" placeholder="Your product" required maxlength="80" /></label><label>Product or demo URL<input name="productUrl" type="url" placeholder="https://" required /></label><label>What makes it worth buying?<textarea name="notes" rows="5" placeholder="Describe the buyer, problem, working features, and what is included."></textarea></label><button class="button" type="submit">SUBMIT FOR REVIEW</button><p class="form-note" aria-live="polite">Every submission is reviewed before it appears in the library.</p></form></div></section>
+  <section class="creator-hero">
+    <div class="container creator-grid">
+      <div>
+        <p class="eyebrow">Private product submissions</p>
+        <h1>You build it.<br />We <em>sell it.</em></h1>
+        <p>Built a working alternative to popular software? Send it to Rethinksoft privately. We review the creator, audit the live product, package the offer, create the listing, handle buyers, and sell it through our curated catalog.</p>
+        <div class="managed-notice"><strong>No seller accounts. No self-publishing.</strong><p>Submitting a product never creates a public profile or listing. Nothing goes live until Rethinksoft approves the product and agrees commercial terms with you.</p></div>
+        <div class="creator-terms">
+          <span><b>01 Submit</b> public identity and live product</span>
+          <span><b>02 Audit</b> functionality, ownership, and delivery</span>
+          <span><b>03 Package</b> positioning, pricing, and listing</span>
+          <span><b>04 Sell</b> Rethinksoft manages buyers and fulfillment</span>
+        </div>
+        <div class="submission-rules"><p class="eyebrow">Required before review</p><ul><li>A public X, LinkedIn, GitHub, or established creator identity</li><li>A live HTTPS product that our team can test</li><li>Proof that you own or can commercially license the source</li><li>Clear disclosure of open source dependencies and limitations</li></ul></div>
+      </div>
+
+      <form class="creator-form" data-creator-form>
+        <div><p class="eyebrow">Request a private review</p><h2>Tell us what you built.</h2><p>Rethinksoft will contact you directly if the product fits the catalog.</p></div>
+        <input class="hp" name="company" tabindex="-1" autocomplete="off" />
+        <label>Your email<input name="email" type="email" placeholder="builder@studio.com" required /></label>
+        <label>Public persona URL<input name="publicProfileUrl" type="url" placeholder="https://x.com/you or https://github.com/you" required /></label>
+        <label>Product name<input name="productName" type="text" placeholder="Your product" required maxlength="80" /></label>
+        <label>What does it replace?<input name="replacementName" type="text" placeholder="Calendly, Typeform, Linktree" required maxlength="80" /></label>
+        <label>Live product URL<input name="productUrl" type="url" placeholder="https://your-live-product.com" required /></label>
+        <label>Repository URL or access instructions<input name="repositoryUrl" type="text" placeholder="Repository URL or how we can request private access" required maxlength="300" /></label>
+        <label>Demo access<textarea name="demoAccess" rows="3" placeholder="Open demo URL, test account details, or how we can request access." required></textarea></label>
+        <label>Preferred sale price<input name="preferredPrice" type="text" placeholder="$99, $299, or open to recommendation" maxlength="80" /></label>
+        <label>What is included and what are the known limitations?<textarea name="notes" rows="5" placeholder="Describe the buyer, core workflows, source delivery, setup, support, dependencies, and anything that does not work yet." required></textarea></label>
+        <label class="submission-check"><input name="ownershipConfirmed" type="checkbox" value="yes" required /><span>I confirm that I own the submitted work or have the rights required to sell and license it.</span></label>
+        <label class="submission-check"><input name="liveConfirmed" type="checkbox" value="yes" required /><span>I confirm that the submitted website is live and Rethinksoft may test and audit it.</span></label>
+        <button class="button" type="submit">REQUEST PRIVATE REVIEW</button>
+        <p class="form-note" aria-live="polite">Submission does not guarantee acceptance. We review every product manually.</p>
+      </form>
+    </div>
+  </section>
 </BaseLayout>
