@@ -50,4 +50,5 @@ h3{font-weight:600;letter-spacing:-.025em}
 .site-header nav>a:not(.nav-cta):hover{background:#fff;color:var(--ink)}
 .site-header nav>a:not(.nav-cta):hover::after{transform:scaleX(1)}
 .site-header .nav-cta{min-height:38px;margin-left:4px;padding:0 17px;border-radius:5px;font-size:12px;font-weight:700;letter-spacing:-.01em}
+.hero h1 em::after{display:none!important;content:none!important}
 @media(max-width:900px){.site-header{height:74px;padding-inline:16px}.site-header>.brand{font-size:18px}.site-header>.brand .brand-mark{width:32px;height:32px;font-size:14px}.site-header>nav{padding:0;border:0;background:transparent}.site-header .nav-cta{min-height:40px;margin:0;padding-inline:15px;font-size:11px}}
