@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getApps } from '../lib/apps';
+
+const apps = getApps();
+const repoMap = new Map<string, { title: string; url: string; categories: Set<string>; products: Set<string> }>();
+for (const app of apps) {
+  for (const repo of app.priorArt) {
+    const current = repoMap.get(repo.url) || { title: repo.title, url: repo.url, categories: new Set<string>(), products: new Set<string>() };
+    current.categories.add(app.category);
+    current.products.add(app.name);
+    repoMap.set(repo.url, current);
+  }
+}
+const repos = [...repoMap.values()].sort((a, b) => a.title.localeCompare(b.title));
+const categories = [...new Set(repos.flatMap((repo) => [...repo.categories]))].sort();
+const title = 'Open Source Software Repository Library | Rethinksoft';
+const description = 'Browse every open source GitHub repository referenced across Rethinksoft product blueprints, organized by category and product idea.';
+const jsonLd = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Open Source Software Repository Library', itemListElement: repos.map((repo, index) => ({ '@type': 'ListItem', position: index + 1, name: repo.title, url: repo.url })) };
+---
+<BaseLayout {title} {description} {jsonLd} pageClass="resource-page">
+  <section class="resource-hero"><div class="container"><p class="eyebrow">Open source foundations</p><h1>Start with code<br />that already <em>works.</em></h1><p>Every GitHub repository referenced across our product blueprints, collected in one searchable library.</p><div class="resource-stat"><strong>{repos.length}</strong><span>CURATED REPOSITORIES</span></div></div></section>
+  <div class="container resource-main" data-resource-directory>
+    <div class="resource-toolbar"><label><span>Search repositories</span><input type="search" placeholder="Search by repository, product, or category" data-resource-search /></label><p><strong data-resource-count>{repos.length}</strong> repositories</p></div>
+    <div class="resource-chips" aria-label="Repository categories"><button class="active" type="button" data-resource-category="all">All</button>{categories.map((category) => <button type="button" data-resource-category={category.toLowerCase()}>{category}</button>)}</div>
+    <div class="repo-grid" data-resource-list>{repos.map((repo, index) => {
+      const path = new URL(repo.url).pathname.split('/').filter(Boolean);
+      const handle = path.slice(0, 2).join('/');
+      const search = `${repo.title} ${handle} ${[...repo.categories].join(' ')} ${[...repo.products].join(' ')}`.toLowerCase();
+      return <article class="repo-card" data-resource-item data-search={search} data-categories={[...repo.categories].join('|').toLowerCase()}><div class="repo-index">{String(index + 1).padStart(2, '0')}</div><div><p class="repo-owner">github.com/{handle}</p><h2>{repo.title}</h2><p>Open source foundation for {[...repo.products].join(', ')} style products.</p></div><div class="repo-tags">{[...repo.categories].map((category) => <span>{category}</span>)}</div><a href={repo.url} target="_blank" rel="noopener">View repository ↗</a></article>;
+    })}</div>
+    <p class="resource-empty" data-resource-empty hidden>No repositories match those filters.</p>
+  </div>
+  <script is:inline>
+    (() => {
+      const root = document.querySelector('[data-resource-directory]');
+      if (!root) return;
+      const search = root.querySelector('[data-resource-search]');
+      const items = [...root.querySelectorAll('[data-resource-item]')];
+      const buttons = [...root.querySelectorAll('[data-resource-category]')];
+      const count = root.querySelector('[data-resource-count]');
+      const empty = root.querySelector('[data-resource-empty]');
+      let category = 'all';
+      const filter = () => {
+        const query = search.value.trim().toLowerCase();
+        let visible = 0;
+        items.forEach((item) => {
+          const categories = item.dataset.categories.split('|');
+          const show = (!query || item.dataset.search.includes(query)) && (category === 'all' || categories.includes(category));
+          item.hidden = !show;
+          if (show) visible += 1;
+        });
+        count.textContent = String(visible);
+        empty.hidden = visible !== 0;
+      };
+      search.addEventListener('input', filter);
+      buttons.forEach((button) => button.addEventListener('click', () => { category = button.dataset.resourceCategory; buttons.forEach((item) => item.classList.toggle('active', item === button)); filter(); }));
+    })();
+  </script>
+</BaseLayout>
