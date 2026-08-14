@@ -11,6 +11,7 @@ import '../styles/detail-gojiberry.css';
 import '../styles/home-gojiberry.css';
 import '../styles/resources.css';
 import '../styles/responsive.css';
+import '../styles/palette.css';
 
 interface Props {
   title: string;
@@ -51,7 +52,6 @@ const imageUrl = new URL(image, Astro.site);
         <a href="/kits">Launch kits</a>
         <a href="/directory">Directory</a>
         <a href="/open-source">Open source</a>
-        <a href="/news">News</a>
         <a href="/sell">Submit a product</a>
       </nav>
     </header>
@@ -59,7 +59,7 @@ const imageUrl = new URL(image, Astro.site);
     <footer class="site-footer reveal">
       <div class="footer-grid">
         <div><a class="brand" href="/"><span class="brand-mark">R</span> Rethinksoft</a><p>Launch ready software kits<br />for products you can own and sell.</p></div>
-        <div><p class="eyebrow">Explore</p><a href="/kits">Browse launch kits ↗</a><a href="/open-source">Open source library ↗</a><a href="/news">Latest builder news ↗</a></div>
+        <div><p class="eyebrow">Explore</p><a href="/kits">Browse launch kits ↗</a><a href="/directory">Product directory ↗</a><a href="/open-source">Open source library ↗</a></div>
         <div><p class="eyebrow">Privacy</p><p>First-party aggregate analytics only.<br />Built for independent teams.</p></div>
       </div>
       <div class="footer-line"><span>© 2026 Rethinksoft</span><span><i></i> All systems operational</span></div>
