@@ -133,22 +133,6 @@
     finally { button.disabled = false; button.textContent = 'JOIN QUEUE ↗'; }
   });
 
-  document.querySelector('[data-interest]')?.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const button = form.querySelector('button');
-    const note = form.querySelector('.form-note');
-    const original = button.textContent;
-    button.disabled = true; button.textContent = 'RESERVING...';
-    try {
-      const response = await fetch('/api/interest', { method: 'POST', body: new FormData(form) });
-      const data = await response.json();
-      note.textContent = data.message || data.error;
-      if (response.ok) form.querySelector('input[type=email]').value = '';
-    } catch { note.textContent = 'COULD NOT RESERVE ACCESS. TRY AGAIN.'; }
-    finally { button.disabled = false; button.textContent = original; }
-  });
-
   document.querySelector('[data-creator-form]')?.addEventListener('submit', async (event) => {
     event.preventDefault();
     const form = event.currentTarget;

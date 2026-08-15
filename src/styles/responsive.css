@@ -103,7 +103,7 @@ input,select,textarea,button{max-width:100%}
   .detail-page .metric-box{width:100%;max-width:none}
   .detail-page .block{padding:20px}
   .detail-page .side-card{padding:22px}
-  .inline-actions,.kit-actions,.hero-actions{flex-wrap:wrap}
+  .inline-actions,.hero-actions{flex-wrap:wrap}
   .inline-actions .button{flex:1 1 190px}
 
   .checkout-page,.demo-page{padding:48px 0 70px}
@@ -143,9 +143,7 @@ input,select,textarea,button{max-width:100%}
   .metric{border-right:0;border-bottom:1px solid var(--line)}
   .metric:last-child{border-bottom:0}
   .agent-buttons{grid-template-columns:1fr}
-  .prompt-lock .button,.inline-actions .button,.kit-actions .button{width:100%}
-  .kit-actions{align-items:flex-start}
-  .kit-actions>a:last-child{padding:10px 0}
+  .prompt-lock .button,.inline-actions .button{width:100%}
   .checkout-price strong{font-size:52px}
   .demo-main-head{align-items:flex-start}
   .demo-main-head h2{font-size:25px}
@@ -155,7 +153,7 @@ input,select,textarea,button{max-width:100%}
 }
 
 @media(hover:none){
-  .app-row:hover,.kit-card:hover,.repo-card:hover,.news-card:hover,.decision-card:hover,.how-card:hover,.pricing-card:hover{transform:none}
+  .app-row:hover,.repo-card:hover,.news-card:hover,.decision-card:hover,.how-card:hover,.pricing-card:hover{transform:none}
 }
 
 @media(prefers-reduced-motion:reduce){

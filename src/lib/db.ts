@@ -22,13 +22,6 @@ db.exec(`
     email TEXT NOT NULL COLLATE NOCASE UNIQUE,
     created_at INTEGER NOT NULL DEFAULT (unixepoch())
   );
-  CREATE TABLE IF NOT EXISTS kit_interests (
-    id INTEGER PRIMARY KEY,
-    email TEXT NOT NULL COLLATE NOCASE,
-    app_slug TEXT NOT NULL,
-    created_at INTEGER NOT NULL DEFAULT (unixepoch()),
-    UNIQUE(email, app_slug)
-  );
   CREATE TABLE IF NOT EXISTS creator_submissions (
     id INTEGER PRIMARY KEY,
     email TEXT NOT NULL COLLATE NOCASE,
@@ -70,11 +63,6 @@ export function addVote(appSlug: string, ipHash: string) {
 
 export function addWaitlistEmail(email: string) {
   const result = db.prepare('INSERT OR IGNORE INTO waitlist (email) VALUES (?)').run(email.trim().toLowerCase());
-  return result.changes > 0;
-}
-
-export function addKitInterest(email: string, appSlug: string) {
-  const result = db.prepare('INSERT OR IGNORE INTO kit_interests (email, app_slug) VALUES (?, ?)').run(email.trim().toLowerCase(), appSlug);
   return result.changes > 0;
 }
 
