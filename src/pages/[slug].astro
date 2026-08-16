@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductMark from '../components/ProductMark.astro';
 import { categoryEmoji, getApp, getApps, verdictCopy } from '../lib/apps';
 import { getVoteCounts } from '../lib/db';
 
@@ -34,7 +35,7 @@ const jsonLd = [
   <section class="detail-hero">
     <div class="container">
       <div class="detail-top">
-        <div><div class="detail-brand"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" /><div><p class="eyebrow">Product blueprint #{String(allApps.findIndex((item) => item.slug === app.slug) + 1).padStart(3, '0')}</p><span>{app.domain} · ${app.priceMonthly}/month market reference</span></div></div><h1>{app.name}</h1></div>
+        <div><div class="detail-brand"><ProductMark name={app.name} domain={app.domain} loading="eager" /><div><p class="eyebrow">Product blueprint #{String(allApps.findIndex((item) => item.slug === app.slug) + 1).padStart(3, '0')}</p><span>{app.domain} · ${app.priceMonthly}/month market reference</span></div></div><h1>{app.name}</h1></div>
         <div class="verdict-display"><p class="eyebrow">Recommended build scope</p><div class:list={["verdict-big", app.verdict]}>{verdict.kicker}</div></div>
       </div>
       <div class="detail-summary"><p>{app.notes}</p><div class="metric-box"><div class="metric"><strong>${app.priceMonthly}</strong><span>MARKET PRICE</span></div><div class="metric"><strong>{counts[app.slug] || 0}</strong><span>BUILDER LAUNCHES</span></div></div></div>
@@ -55,7 +56,7 @@ const jsonLd = [
       <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Plan for the hard parts</p><h2>WHAT STILL NEEDS WORK</h2></div></div><ul class="loss-list">{app.whatYouLose.map((loss) => <li>{loss}</li>)}</ul></section>
       <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Scope it intelligently</p><h2>BUILD STRATEGY</h2></div></div><p class="notes">{app.notes}</p></section>
       <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Start with proven code</p><h2>OPEN SOURCE CODEBASES</h2></div></div><div class="prior-links">{app.priorArt.map((item) => <a href={item.url} target="_blank" rel="noopener"><span>{item.title}</span><span>EXPLORE SOURCE ↗</span></a>)}</div></section>
-      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Find another opportunity</p><h2>Related blueprints</h2></div></div><div class="related-grid">{related.map((item) => <a class="related" href={`/${item.slug}`}><img class="favicon" src={`https://${item.domain}/favicon.ico`} alt="" /><h3>{item.name}</h3><p>{categoryEmoji[item.category]} {item.category} · ${item.priceMonthly}/mo market</p><span class:list={["verdict", `verdict-${item.verdict}`]}>{verdictCopy[item.verdict].short}</span></a>)}</div></section>
+      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Find another opportunity</p><h2>Related blueprints</h2></div></div><div class="related-grid">{related.map((item) => <a class="related" href={`/${item.slug}`}><ProductMark name={item.name} domain={item.domain} /><h3>{item.name}</h3><p>{categoryEmoji[item.category]} {item.category} · ${item.priceMonthly}/mo market</p><span class:list={["verdict", `verdict-${item.verdict}`]}>{verdictCopy[item.verdict].short}</span></a>)}</div></section>
       <section class="block faq reveal"><div class="block-head"><div><p class="eyebrow">Before you launch</p><h2>FAQ</h2></div></div>{faqs.map((item) => <details><summary>{item.q}</summary><p>{item.a}</p></details>)}</section>
     </article>
     <aside>

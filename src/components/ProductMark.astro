@@ -1,0 +1,16 @@
+---
+interface Props {
+  name: string;
+  domain: string;
+  loading?: 'eager' | 'lazy';
+}
+
+const { name, domain, loading = 'lazy' } = Astro.props;
+const initial = name.trim().charAt(0).toUpperCase();
+const faviconUrl = `https://www.google.com/s2/favicons?domain=${encodeURIComponent(domain)}&sz=64`;
+---
+<span class="favicon product-mark" aria-hidden="true">
+  <span class="product-mark-fallback">{initial}</span>
+  <img src={faviconUrl} alt="" {loading} referrerpolicy="no-referrer" onerror="this.parentElement.classList.add('is-fallback')" />
+</span>
+
