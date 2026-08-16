@@ -15,7 +15,7 @@ const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
   { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Agent Prompts and Open Source Product Codebases', itemListElement: ranked.map((app, index) => ({ '@type': 'ListItem', position: index + 1, url: `${siteUrl}/${app.slug}`, name: app.name })) },
-  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Rethinksoft', url: siteUrl, logo: `${siteUrl}/favicon.svg` },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Rethinksoft', url: siteUrl, logo: `${siteUrl}/rethinksoft-logo.png` },
 ];
 const tape = [...ranked, ...ranked];
 ---
@@ -64,7 +64,7 @@ const tape = [...ranked, ...ranked];
     <div class="stage-orbit orbit-one" aria-hidden="true"></div>
     <div class="stage-orbit orbit-two" aria-hidden="true"></div>
     <div class="stage-card stage-left"><small>Knowledge base</small><strong>PROMPT</strong><span>Ready for your agent</span></div>
-    <div class="stage-core"><span class="brand-mark">R</span><b>Rethinksoft</b><small class="stage-mantra" aria-label="Build. Own. Sell."><span>Build</span><span>Own</span><span>Sell</span></small></div>
+    <div class="stage-core"><span class="brand-mark logo-mark"><img src="/rethinksoft-logo.png" alt="" /></span><b>Rethinksoft</b><small class="stage-mantra" aria-label="Build. Own. Sell."><span>Build</span><span>Own</span><span>Sell</span></small></div>
     <div class="stage-card stage-right"><small>Project boards</small><strong>SOURCE</strong><span>Open codebase</span></div>
   </section>
 
