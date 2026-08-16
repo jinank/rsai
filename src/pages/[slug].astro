@@ -44,7 +44,7 @@ const jsonLd = [
 
   <div class="container detail-grid">
     <article>
-      <section class="block reveal" id="prompt"><div class="block-head"><div><p class="eyebrow">Your product starting point</p><h2>AGENT BUILD PROMPT</h2></div><p>FREE AND READY TO COPY</p></div>
+      <section class="block reveal" id="prompt"><div class="block-head"><div><p class="eyebrow">Your product starting point</p><h2>Agent build prompt</h2></div><p>Free and ready to copy</p></div>
         <div class="code-wrap"><div class="code-toolbar"><span class="dots"><i></i><i></i><i></i></span><span>{app.slug}-product.prompt</span><span>Launch specification</span></div><pre id="build-prompt">{app.prompt}</pre></div>
         <div class="agent-buttons">
           <button class="copy-button" type="button" data-agent="claude" data-prompt={app.prompt}>⌁ COPY FOR CLAUDE CODE</button>
@@ -53,14 +53,14 @@ const jsonLd = [
         </div>
       </section>
 
-      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Plan for the hard parts</p><h2>WHAT STILL NEEDS WORK</h2></div></div><ul class="loss-list">{app.whatYouLose.map((loss) => <li>{loss}</li>)}</ul></section>
-      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Scope it intelligently</p><h2>BUILD STRATEGY</h2></div></div><p class="notes">{app.notes}</p></section>
-      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Start with proven code</p><h2>OPEN SOURCE CODEBASES</h2></div></div><div class="prior-links">{app.priorArt.map((item) => <a href={item.url} target="_blank" rel="noopener"><span>{item.title}</span><span>EXPLORE SOURCE ↗</span></a>)}</div></section>
+      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Plan for the hard parts</p><h2>What still needs work</h2></div></div><ul class="loss-list">{app.whatYouLose.map((loss) => <li>{loss}</li>)}</ul></section>
+      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Scope it intelligently</p><h2>Build strategy</h2></div></div><p class="notes">{app.notes}</p></section>
+      <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Start with proven code</p><h2>Open source codebases</h2></div></div><div class="prior-links">{app.priorArt.map((item) => <a href={item.url} target="_blank" rel="noopener"><span>{item.title}</span><span>Explore source ↗</span></a>)}</div></section>
       <section class="block reveal"><div class="block-head"><div><p class="eyebrow">Find another opportunity</p><h2>Related blueprints</h2></div></div><div class="related-grid">{related.map((item) => <a class="related" href={`/${item.slug}`}><ProductMark name={item.name} domain={item.domain} /><h3>{item.name}</h3><p>{categoryEmoji[item.category]} {item.category} · ${item.priceMonthly}/mo market</p><span class:list={["verdict", `verdict-${item.verdict}`]}>{verdictCopy[item.verdict].short}</span></a>)}</div></section>
       <section class="block faq reveal"><div class="block-head"><div><p class="eyebrow">Before you launch</p><h2>FAQ</h2></div></div>{faqs.map((item) => <details><summary>{item.q}</summary><p>{item.a}</p></details>)}</section>
     </article>
     <aside>
-      <div class="side-card"><p class="eyebrow">Built by the community</p><h3>DID YOU BUILD IT?</h3><p>Count your launch when you have a working version that someone else can use.</p><button class="button vote-button" type="button" data-vote={app.slug}>▲ I BUILT THIS · <span>{counts[app.slug] || 0}</span></button><a class="button secondary share-button" href={`/showcase#submit-build`}>LIST YOUR PRODUCT</a><button class="button secondary share-button" type="button" data-share data-url={url} data-text={`I found a ready to use ${app.name} product blueprint on Rethinksoft. ${verdict.label}.`}>𝕏 SHARE THE BLUEPRINT</button><p class="form-note" data-vote-note aria-live="polite">ONE BUILD PER NETWORK.</p></div>
+      <div class="side-card"><p class="eyebrow">Built by the community</p><h3>Did you build it?</h3><p>Count your launch when you have a working version that someone else can use.</p><button class="button vote-button" type="button" data-vote={app.slug}>▲ I BUILT THIS · <span>{counts[app.slug] || 0}</span></button><a class="button secondary share-button" href={`/showcase#submit-build`}>LIST YOUR PRODUCT</a><button class="button secondary share-button" type="button" data-share data-url={url} data-text={`I found a ready to use ${app.name} product blueprint on Rethinksoft. ${verdict.label}.`}>𝕏 SHARE THE BLUEPRINT</button><p class="form-note" data-vote-note aria-live="polite">ONE BUILD PER NETWORK.</p></div>
     </aside>
   </div>
   </div>
