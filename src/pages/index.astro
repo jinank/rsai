@@ -49,7 +49,7 @@ const tape = [...ranked, ...ranked];
             <span class="app-id"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" loading="lazy" onerror="this.style.visibility='hidden'" /><a href={`/${app.slug}`}>{app.name}</a></span>
             <span class="category">{categoryEmoji[app.category]} {app.category}</span>
             <span class="price">${app.priceMonthly}/mo</span>
-            <span class="scope-cell">{app.verdict !== 'no' && <span class="table-lock-icon" role="img" aria-label="Premium prompt locked">🔒</span>}<span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span>
+            <span class="scope-cell"><span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span>
             <span class="votes">{counts[app.slug] || 0}</span>
             <a class="demo-button" href={`https://${app.domain}`} target="_blank" rel="noopener" aria-label={`View ${app.name} demo`}><span class="demo-wide">VIEW DEMO</span><span class="demo-short">DEMO</span> ↗</a>
           </div>
@@ -98,15 +98,15 @@ const tape = [...ranked, ...ranked];
 
   <section class="pricing-section section container reveal" id="pricing">
     <div class="section-head centered-head">
-      <div><p class="eyebrow">Choose your access</p><h2>Build more products every month.</h2></div>
-      <p>Unlock premium prompts, launch support, and the tools needed to find customers.</p>
+      <div><p class="eyebrow">Optional growth support</p><h2>Get help launching what you build.</h2></div>
+      <p>Every build prompt is free. Plans add launch support, hosting, and customer acquisition tools.</p>
     </div>
     <div class="pricing-grid">
       <article class="pricing-card">
         <div class="pricing-top"><p class="pricing-name">Beginner</p><span>For your first focused products</span></div>
         <div class="pricing-price"><strong>$99</strong><span>/ month</span></div>
         <ul>
-          <li><b>5</b> premium prompt accesses each month</li>
+          <li><b>All</b> build prompts included free</li>
           <li>SEO and AEO support</li>
           <li>30 days of social content generation and posting</li>
           <li>1 custom domain and hosting access</li>
@@ -118,7 +118,7 @@ const tape = [...ranked, ...ranked];
         <div class="pricing-top"><p class="pricing-name">Intermediate</p><span>For builders shipping consistently</span></div>
         <div class="pricing-price"><strong>$199</strong><span>/ month</span></div>
         <ul>
-          <li><b>15</b> premium prompt accesses each month</li>
+          <li><b>All</b> build prompts included free</li>
           <li>SEO and AEO support</li>
           <li>60 days of social content generation and posting</li>
           <li>1 custom domain and hosting access</li>
@@ -129,7 +129,7 @@ const tape = [...ranked, ...ranked];
         <div class="pricing-top"><p class="pricing-name">Expert</p><span>For high volume product builders</span></div>
         <div class="pricing-price"><strong>$299</strong><span>/ month</span></div>
         <ul>
-          <li><b>30</b> premium prompt accesses each month</li>
+          <li><b>All</b> build prompts included free</li>
           <li>SEO and AEO support</li>
           <li>60 days of social content generation and posting</li>
           <li>1 custom domain and hosting access</li>

@@ -9,7 +9,7 @@ const ranked = apps.sort((a, b) => (counts[b.slug] || 0) - (counts[a.slug] || 0)
 const categories = [...new Set(apps.map((app) => app.category))].sort();
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const title = 'Software Product Directory | Rethinksoft';
-const description = 'Search, filter, and compare ready to use software product blueprints, premium agent prompts, and open source codebases.';
+const description = 'Search, filter, and compare ready to use software product blueprints, free agent prompts, and open source codebases.';
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Rethinksoft Product Launch Directory', itemListElement: ranked.map((app, index) => ({ '@type': 'ListItem', position: index + 1, url: `${siteUrl}/${app.slug}`, name: app.name })) },
   { '@context': 'https://schema.org', '@type': 'BreadcrumbList', itemListElement: [
@@ -51,8 +51,8 @@ const jsonLd = [
       </div></div>
       <div class="filter-group"><span>Build scope</span><div class="chips scope-chips">
         <button class="scope-chip active" type="button" data-scope="all">ALL LEVELS</button>
-        <button class="scope-chip" type="button" data-scope="yes">🔒 STARTER</button>
-        <button class="scope-chip" type="button" data-scope="kinda">🔒 ADVANCED</button>
+        <button class="scope-chip" type="button" data-scope="yes">STARTER</button>
+        <button class="scope-chip" type="button" data-scope="kinda">ADVANCED</button>
         <button class="scope-chip" type="button" data-scope="no">EXPERT</button>
       </div></div>
     </div>
@@ -68,7 +68,7 @@ const jsonLd = [
             <span class="app-id"><img class="favicon" src={`https://${app.domain}/favicon.ico`} alt="" loading="lazy" onerror="this.style.visibility='hidden'" /><a href={`/${app.slug}`}>{app.name}</a></span>
             <span class="category">{categoryEmoji[app.category]} {app.category}</span>
             <span class="price">${app.priceMonthly}/mo</span>
-            <span class="scope-cell">{app.verdict !== 'no' && <span class="table-lock-icon" role="img" aria-label="Premium prompt locked">🔒</span>}<span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span>
+            <span class="scope-cell"><span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span>
             <span class="votes">{counts[app.slug] || 0}</span>
             <a class="demo-button" href={`https://${app.domain}`} target="_blank" rel="noopener" aria-label={`View ${app.name} demo`}><span class="demo-wide">VIEW DEMO</span><span class="demo-short">DEMO</span> ↗</a>
           </div>
