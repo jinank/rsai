@@ -25,7 +25,7 @@
 
   if (!reducedMotion) {
     document.documentElement.classList.add('motion-ready');
-    document.querySelectorAll('.blue-stage, .decision-card, .how-card').forEach((surface) => {
+    document.querySelectorAll('.decision-card, .how-card').forEach((surface) => {
       surface.addEventListener('pointermove', (event) => {
         const rect = surface.getBoundingClientRect();
         surface.style.setProperty('--mx', `${(event.clientX - rect.left) / rect.width * 100}%`);
