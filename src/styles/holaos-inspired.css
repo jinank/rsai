@@ -79,7 +79,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.055em}
 .stage-core{border:1px solid rgba(46,37,28,.12);border-radius:30px;background:rgba(255,255,255,.94);box-shadow:0 26px 65px rgba(68,37,9,.2)}
 .stage-card{border-color:rgba(44,35,27,.12);border-radius:13px;background:rgba(255,255,255,.9);box-shadow:0 18px 50px rgba(65,35,8,.13)}
 .stage-card strong{color:var(--hola-orange)}
-.ticker{width:min(1040px,calc(100% - 72px));margin:0 auto;border:1px solid #ddd8d0;border-radius:14px;background:#fff;box-shadow:0 20px 55px rgba(65,35,8,.12)}
+.ticker{width:min(1040px,calc(100% - 72px));margin:64px auto 0;border:1px solid #ddd8d0;border-radius:14px;background:#fff;box-shadow:0 20px 55px rgba(65,35,8,.12)}
 .ticker-label{background:var(--hola-ink);color:#fff}
 .odometer{color:var(--hola-ink)}
 .tape{background:#faf8f4}
@@ -211,7 +211,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.055em}
   .section-head{margin-bottom:32px}
   .section-head h2{font-size:clamp(36px,11vw,50px)}
   .blue-stage{min-height:350px;border-radius:20px}
-  .ticker{width:calc(100% - 48px)}
+  .ticker{width:calc(100% - 48px);margin-top:44px}
   .decision-section{padding-top:108px}
   .decision-card,.decision-card.featured,.how-card,.how-card:nth-child(2),.pricing-card,.pricing-card.featured{border-radius:15px}
   .wait-card{border-radius:18px}
