@@ -60,7 +60,7 @@ const jsonLd = [
       <section class="block faq reveal"><div class="block-head"><div><p class="eyebrow">Before you launch</p><h2>FAQ</h2></div></div>{faqs.map((item) => <details><summary>{item.q}</summary><p>{item.a}</p></details>)}</section>
     </article>
     <aside>
-      <div class="side-card"><p class="eyebrow">Built by the community</p><h3>DID YOU BUILD IT?</h3><p>Count your launch when you have a working version that someone else can use.</p><button class="button vote-button" type="button" data-vote={app.slug}>▲ I BUILT THIS · <span>{counts[app.slug] || 0}</span></button><button class="button secondary share-button" type="button" data-share data-url={url} data-text={`I found a ready to use ${app.name} product blueprint on Rethinksoft. ${verdict.label}.`}>𝕏 SHARE THE BLUEPRINT</button><p class="form-note" data-vote-note aria-live="polite">ONE BUILD PER NETWORK.</p></div>
+      <div class="side-card"><p class="eyebrow">Built by the community</p><h3>DID YOU BUILD IT?</h3><p>Count your launch when you have a working version that someone else can use.</p><button class="button vote-button" type="button" data-vote={app.slug}>▲ I BUILT THIS · <span>{counts[app.slug] || 0}</span></button><a class="button secondary share-button" href={`/showcase#submit-build`}>LIST YOUR PRODUCT</a><button class="button secondary share-button" type="button" data-share data-url={url} data-text={`I found a ready to use ${app.name} product blueprint on Rethinksoft. ${verdict.label}.`}>𝕏 SHARE THE BLUEPRINT</button><p class="form-note" data-vote-note aria-live="polite">ONE BUILD PER NETWORK.</p></div>
     </aside>
   </div>
   </div>

@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductMark from '../components/ProductMark.astro';
+import { categoryEmoji, getApps } from '../lib/apps';
+import { getCommunityProducts } from '../lib/db';
+
+const apps = getApps();
+const products = getCommunityProducts();
+const appBySlug = new Map(apps.map((app) => [app.slug, app]));
+const submitted = Astro.url.searchParams.get('submitted') === '1';
+const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+const title = 'Community Built Software Products | Rethinksoft';
+const description = 'Explore live software products built from Rethinksoft blueprints or submit your own product to the community showcase.';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Community built software products',
+  itemListElement: products.map((product, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: product.productName,
+    url: product.productUrl,
+  })),
+};
+const productDomain = (url: string) => {
+  try { return new URL(url).hostname; }
+  catch { return 'rethinksoft.com'; }
+};
+---
+<BaseLayout {title} {description} image="/og/home.png" {jsonLd} pageClass="community-page">
+  <section class="community-hero">
+    <div class="container">
+      <p class="eyebrow">Built by independent founders</p>
+      <h1>See what the community<br />has <em>shipped.</em></h1>
+      <p>Real, live products built from ideas in the Rethinksoft library. Explore what others made, then list your own build without creating an account.</p>
+      <a class="button" href="#submit-build">LIST YOUR PRODUCT</a>
+    </div>
+  </section>
+
+  <section class="community-main section container" id="community-products">
+    {submitted && <div class="community-success" role="status"><strong>Your product is listed.</strong><span>It is now part of the Rethinksoft community showcase.</span></div>}
+    <div class="section-head">
+      <div><p class="eyebrow">Community products</p><h2>Built from the blueprints.</h2></div>
+      <p>{products.length ? `${products.length} live ${products.length === 1 ? 'product' : 'products'} submitted by builders.` : 'The first community products will appear here.'}</p>
+    </div>
+
+    {products.length ? (
+      <div class="community-grid">
+        {products.map((product) => {
+          const blueprint = appBySlug.get(product.blueprintSlug);
+          return <article class="community-card" id={`product-${product.id}`}>
+            <div class="community-card-top">
+              <ProductMark name={product.productName} domain={productDomain(product.productUrl)} />
+              <span>LIVE PRODUCT</span>
+            </div>
+            <h2>{product.productName}</h2>
+            <p>{product.tagline}</p>
+            <div class="community-blueprint"><span>BUILT FROM</span><a href={`/${product.blueprintSlug}`}>{blueprint ? `${categoryEmoji[blueprint.category]} ${blueprint.name}` : product.blueprintSlug}</a></div>
+            <div class="community-builder"><span>BY</span><a href={product.publicProfileUrl} target="_blank" rel="noopener">{product.builderName} ↗</a></div>
+            <div class="community-actions">
+              <a class="button" href={product.productUrl} target="_blank" rel="noopener">VIEW LIVE PRODUCT ↗</a>
+              {product.repositoryUrl && <a class="button secondary" href={product.repositoryUrl} target="_blank" rel="noopener">SOURCE ↗</a>}
+            </div>
+          </article>;
+        })}
+      </div>
+    ) : (
+      <div class="community-empty"><strong>No community products yet.</strong><p>Build from any blueprint, launch it on a live URL, and become the first listing.</p><a href="#submit-build">Submit the first product ↘</a></div>
+    )}
+  </section>
+
+  <section class="community-submit" id="submit-build">
+    <div class="container community-submit-grid">
+      <div>
+        <p class="eyebrow">List what you built</p>
+        <h2>Turn your launch into proof.</h2>
+        <p>Select the Rethinksoft blueprint you started from and submit a live product. Your public builder name, persona link, product link, and description will appear in the showcase.</p>
+        <div class="managed-notice"><strong>Community showcase today. Marketplace later.</strong><p>Listings are not offered for sale yet. If you are interested in selling later, tell us in the form and Rethinksoft can contact you when the curated marketplace opens.</p></div>
+        <div class="creator-terms">
+          <span><b>01 Choose</b> the blueprint you built from</span>
+          <span><b>02 Prove</b> your public identity and live product</span>
+          <span><b>03 List</b> the build in the community showcase</span>
+          <span><b>04 Prepare</b> for a future curated marketplace</span>
+        </div>
+      </div>
+
+      <form class="community-form" data-community-form>
+        <div><p class="eyebrow">Public product listing</p><h2>Submit your build.</h2><p>No account required. Your email stays private.</p></div>
+        <input class="hp" name="company" tabindex="-1" autocomplete="off" />
+        <label>Rethinksoft blueprint<select name="blueprintSlug" required><option value="">Choose a product idea</option>{apps.map((app) => <option value={app.slug}>{app.name} · {app.category}</option>)}</select></label>
+        <label>Product name<input name="productName" type="text" placeholder="Your live product" required maxlength="80" /></label>
+        <label>One line description<textarea name="tagline" rows="3" placeholder="What it does and who it is for" required minlength="10" maxlength="180"></textarea></label>
+        <label>Your public builder name<input name="builderName" type="text" placeholder="Name shown on the listing" required maxlength="60" /></label>
+        <label>Public persona URL<input name="publicProfileUrl" type="url" placeholder="https://x.com/you or https://github.com/you" required /></label>
+        <label>Live product URL<input name="productUrl" type="url" placeholder="https://your-product.com" required /></label>
+        <label>Public repository URL <span>optional</span><input name="repositoryUrl" type="url" placeholder="https://github.com/you/product" /></label>
+        <label>Private contact email<input name="contactEmail" type="email" placeholder="builder@studio.com" required /></label>
+        <label class="submission-check"><input name="ownershipConfirmed" type="checkbox" value="yes" required /><span>I confirm that I own this product or have the rights required to publish it.</span></label>
+        <label class="submission-check"><input name="liveConfirmed" type="checkbox" value="yes" required /><span>I confirm that the product is live and visitors can test the working experience.</span></label>
+        <label class="submission-check"><input name="marketplaceInterest" type="checkbox" value="yes" /><span>I am interested in letting Rethinksoft review this product for a future curated marketplace.</span></label>
+        <button class="button" type="submit">LIST MY PRODUCT</button>
+        <p class="form-note" aria-live="polite">Listings that are misleading, unavailable, or unrelated to the selected blueprint may be removed.</p>
+      </form>
+    </div>
+  </section>
+</BaseLayout>
+

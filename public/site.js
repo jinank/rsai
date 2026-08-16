@@ -149,6 +149,22 @@
     finally { button.disabled = false; button.textContent = original; }
   });
 
+  document.querySelector('[data-community-form]')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const button = form.querySelector('button');
+    const note = form.querySelector('.form-note');
+    const original = button.textContent;
+    button.disabled = true; button.textContent = 'LISTING PRODUCT...';
+    try {
+      const response = await fetch('/api/community-products', { method: 'POST', body: new FormData(form) });
+      const data = await response.json();
+      note.textContent = data.message || data.error;
+      if (response.ok) window.location.assign('/showcase?submitted=1#community-products');
+    } catch { note.textContent = 'COULD NOT LIST THE PRODUCT. TRY AGAIN.'; }
+    finally { button.disabled = false; button.textContent = original; }
+  });
+
   document.querySelector('[data-demo-add]')?.addEventListener('click', (event) => {
     const list = document.querySelector('[data-demo-items]');
     const item = document.createElement('button');
