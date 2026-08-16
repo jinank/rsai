@@ -25,13 +25,13 @@ h1,h2,h3{font-weight:500;letter-spacing:-.055em}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.11em}
 .eyebrow::before{width:14px;height:1px}
 
-.site-header{position:relative;width:min(980px,calc(100% - 32px));height:58px;margin:12px auto 0;padding:0 20px;border:1px solid #e7e2dc;border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 8px 28px rgba(44,31,18,.05);backdrop-filter:blur(20px)}
-.site-header>.brand{font-size:20px;font-weight:700;letter-spacing:-.045em}
+.site-header{position:relative;width:min(900px,calc(100% - 32px));height:52px;margin:10px auto 0;padding:0 16px;border:1px solid #e7e2dc;border-radius:999px;background:rgba(255,255,255,.92);box-shadow:0 8px 28px rgba(44,31,18,.05);backdrop-filter:blur(20px)}
+.site-header>.brand{font-size:18px;font-weight:700;letter-spacing:-.045em}
 .brand-wordmark{display:inline-flex;align-items:baseline;color:var(--hola-ink);font-family:'Manrope',sans-serif;font-size:inherit;font-weight:750;letter-spacing:-.065em;line-height:1}
 .brand-wordmark em{color:var(--hola-orange);font-style:normal;font-weight:500;letter-spacing:-.055em}
 .stage-core .stage-wordmark{font-size:20px;letter-spacing:-.065em}
-.site-header>nav{gap:24px;padding:0;border:0;background:transparent}
-.site-header nav>a:not(.nav-cta){min-height:auto;padding:8px 0;color:#514c47;font-size:12px;font-weight:500;letter-spacing:-.01em}
+.site-header>nav{gap:20px;padding:0;border:0;background:transparent}
+.site-header nav>a:not(.nav-cta){min-height:auto;padding:7px 0;color:#514c47;font-size:11px;font-weight:500;letter-spacing:-.01em}
 .site-header nav>a:not(.nav-cta)::after{bottom:2px;right:0;left:0;height:1px;background:var(--hola-orange)}
 .product-mark{position:relative;display:grid;place-items:center;overflow:hidden;color:var(--hola-orange);font:700 14px/1 'Manrope',sans-serif}
 .product-mark>*{grid-area:1/1}
@@ -188,7 +188,7 @@ h1,h2,h3{font-weight:500;letter-spacing:-.055em}
 .button,.detail-page .side-card .button{border-radius:999px}
 
 @media(max-width:960px){
-  .site-header{width:calc(100% - 16px);min-height:58px;margin:8px auto 0;padding:8px 14px;border-radius:18px}
+  .site-header{width:calc(100% - 16px);min-height:52px;margin:8px auto 0;padding:6px 12px;border-radius:16px}
   .nav-toggle{border-radius:50%;background:#f8f5f0}
   .site-header>nav{border-radius:14px;background:#fff}
   .home-page .hero{min-height:620px;padding:82px 18px 126px}
