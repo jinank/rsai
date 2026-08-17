@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FreeToolCard from '../components/FreeToolCard.astro';
+import { freeTools, toolCategories } from '../lib/freeTools';
+
+const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+const availableCount = freeTools.filter((item) => item.status === 'available').length;
+const title = 'Free AI and Builder Tools | Rethinksoft';
+const description = 'Useful free and free-to-start tools for audits, lead research, social content, websites, and video creation.';
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Rethinksoft Free Tools',
+  itemListElement: freeTools.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    url: item.url || `${siteUrl}/tools#${item.slug}`,
+  })),
+};
+---
+<BaseLayout {title} {description} image="/og/home.png" {jsonLd} pageClass="tools-page">
+  <section class="tools-hero">
+    <div class="container">
+      <p class="eyebrow">Useful without another subscription</p>
+      <h1>Free tools for people<br />who <em>build.</em></h1>
+      <p>Audits, research, content, websites, and video tools selected or created to help independent founders move faster.</p>
+      <div class="tools-stats"><span><strong>{availableCount}</strong> available now</span><span><strong>{freeTools.length - availableCount}</strong> being built</span><span><strong>{freeTools.length}</strong> tools in the library</span></div>
+    </div>
+  </section>
+
+  <section class="tools-library section container">
+    <div class="section-head">
+      <div><p class="eyebrow">The free tools library</p><h2>Find something useful.</h2></div>
+      <p>Available tools open immediately. Upcoming Rethinksoft tools are clearly marked so you always know what is ready.</p>
+    </div>
+    <div class="tools-toolbar">
+      <label class="tools-search"><span class="sr-only">Search free tools</span><input type="search" data-tools-search placeholder="Search audits, content, websites, or data" autocomplete="off" /></label>
+      <div class="tool-chips" aria-label="Filter tools by category">
+        <button class="tool-chip active" type="button" data-tool-category="all">ALL</button>
+        {toolCategories.map((category) => <button class="tool-chip" type="button" data-tool-category={category.toLowerCase()}>{category.toUpperCase()}</button>)}
+      </div>
+    </div>
+    <div class="free-tools-grid" data-tools-grid>
+      {freeTools.map((item) => <div class="free-tool-slot" id={item.slug} data-tool-slot><FreeToolCard {item} /></div>)}
+    </div>
+    <div class="tools-empty" data-tools-empty>No tools match that search.</div>
+  </section>
+
+  <section class="tools-principles">
+    <div class="container">
+      <div><p class="eyebrow">What free means here</p><h2>No bait and switch.</h2></div>
+      <div class="tools-principle-grid">
+        <article><strong>Rethinksoft tools</strong><p>Our upcoming utilities will have a useful free experience with no account required where practical.</p></article>
+        <article><strong>Third-party tools</strong><p>External services may use free credits or monthly limits. We state those limits instead of pretending they are unlimited.</p></article>
+        <article><strong>Your privacy</strong><p>Rethinksoft does not add tracking to outbound links. Review each provider’s terms before sharing sensitive data.</p></article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

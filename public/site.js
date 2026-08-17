@@ -100,6 +100,30 @@
   const params = new URLSearchParams(location.search);
   if (search && params.get('q')) { search.value = params.get('q'); filter(); }
 
+  const toolsSearch = document.querySelector('[data-tools-search]');
+  const toolCards = [...document.querySelectorAll('[data-tools-grid] [data-tool-card]')];
+  const toolChips = [...document.querySelectorAll('[data-tool-category]')];
+  let toolCategory = 'all';
+  const filterTools = () => {
+    const query = (toolsSearch?.value || '').trim().toLowerCase();
+    let visible = 0;
+    toolCards.forEach((card) => {
+      const matchesText = !query || card.dataset.name.includes(query);
+      const matchesCategory = toolCategory === 'all' || card.dataset.category === toolCategory;
+      const slot = card.closest('[data-tool-slot]');
+      slot.hidden = !(matchesText && matchesCategory);
+      if (!slot.hidden) visible++;
+    });
+    const empty = document.querySelector('[data-tools-empty]');
+    if (empty) empty.hidden = visible > 0;
+  };
+  toolsSearch?.addEventListener('input', filterTools);
+  toolChips.forEach((chip) => chip.addEventListener('click', () => {
+    toolCategory = chip.dataset.toolCategory;
+    toolChips.forEach((item) => item.classList.toggle('active', item === chip));
+    filterTools();
+  }));
+
   const odometer = document.querySelector('.odometer');
   if (odometer && !reducedMotion) {
     const target = Number(odometer.dataset.value || 0);

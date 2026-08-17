@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProductMark from '../components/ProductMark.astro';
+import FreeToolCard from '../components/FreeToolCard.astro';
 import { categoryEmoji, getApps, verdictCopy } from '../lib/apps';
 import { getVoteCounts } from '../lib/db';
+import { freeTools } from '../lib/freeTools';
 
 const apps = getApps();
 const counts = getVoteCounts();
@@ -10,6 +12,7 @@ const ranked = apps.sort((a, b) => (counts[b.slug] || 0) - (counts[a.slug] || 0)
 const buildPaths = ranked.reduce((sum, app) => sum + (1 + app.priorArt.length) * 3, 0);
 const launches = ranked.reduce((sum, app) => sum + (counts[app.slug] || 0), 0);
 const categories = [...new Set(apps.map((app) => app.category))].sort();
+const homepageTools = [...freeTools.filter((item) => item.status === 'available'), ...freeTools.filter((item) => item.status === 'coming')].slice(0, 4);
 const title = 'Rethinksoft | Launch Ready Software Businesses';
 const description = 'Ready to use agent prompts and open source foundations for software products you can build, own, and sell.';
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
@@ -86,6 +89,17 @@ const tape = [...ranked, ...ranked];
         <article class="how-card"><div class="how-visual visual-build"><i></i><i></i><i></i><b>→</b></div><small>03 / LAUNCH</small><h3>Make it worth paying for.</h3><p>Choose a niche, add your advantage, validate the hard parts, and ship a product that is distinctly yours.</p></article>
       </div>
     </div>
+  </section>
+
+  <section class="home-tools section container reveal">
+    <div class="section-head">
+      <div><p class="eyebrow">Useful without another subscription</p><h2>Free tools for builders.</h2></div>
+      <p>Start with practical tools for research, audits, content, websites, and video creation.</p>
+    </div>
+    <div class="free-tools-grid home-tools-grid">
+      {homepageTools.map((item) => <FreeToolCard {item} compact />)}
+    </div>
+    <a class="tools-view-all" href="/tools">EXPLORE ALL FREE TOOLS ↗</a>
   </section>
 
   <section class="pricing-section section container reveal" id="pricing">

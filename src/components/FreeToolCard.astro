@@ -1,0 +1,24 @@
+---
+import type { FreeTool } from '../lib/freeTools';
+
+interface Props {
+  item: FreeTool;
+  compact?: boolean;
+}
+
+const { item, compact = false } = Astro.props;
+---
+<article class:list={['free-tool-card', compact && 'compact']} data-tool-card data-name={`${item.name} ${item.description} ${item.provider}`.toLowerCase()} data-category={item.category.toLowerCase()}>
+  <div class="free-tool-top">
+    <span class="free-tool-icon" aria-hidden="true">{item.icon}</span>
+    <span class:list={['free-tool-status', item.status]}>{item.status === 'available' ? 'AVAILABLE NOW' : 'COMING SOON'}</span>
+  </div>
+  <p class="free-tool-category">{item.category} · {item.provider}</p>
+  <h3>{item.name}</h3>
+  <p>{item.description}</p>
+  <div class="free-tool-bottom">
+    <span>{item.freeNote}</span>
+    {item.url ? <a href={item.url} target="_blank" rel="noopener">OPEN FREE TOOL ↗</a> : <a href="/#waitlist">GET LAUNCH UPDATE ↗</a>}
+  </div>
+</article>
+
