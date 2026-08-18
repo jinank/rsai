@@ -5,154 +5,98 @@ import FreeToolCard from '../components/FreeToolCard.astro';
 import { categoryEmoji, getApps, verdictCopy } from '../lib/apps';
 import { getVoteCounts } from '../lib/db';
 import { freeTools } from '../lib/freeTools';
+import { launchBusinesses } from '../lib/businesses';
 
 const apps = getApps();
 const counts = getVoteCounts();
 const ranked = apps.sort((a, b) => (counts[b.slug] || 0) - (counts[a.slug] || 0) || b.priceMonthly - a.priceMonthly);
-const buildPaths = ranked.reduce((sum, app) => sum + (1 + app.priorArt.length) * 3, 0);
-const launches = ranked.reduce((sum, app) => sum + (counts[app.slug] || 0), 0);
 const categories = [...new Set(apps.map((app) => app.category))].sort();
 const homepageTools = [...freeTools.filter((item) => item.status === 'available'), ...freeTools.filter((item) => item.status === 'coming')].slice(0, 4);
-const title = 'Rethinksoft | Launch Ready Software Businesses';
-const description = 'Ready to use agent prompts and open source foundations for software products you can build, own, and sell.';
+const title = 'Rethinksoft | Start Your Software Business Today';
+const description = 'Choose a launch-ready software business, make it yours, connect payments, and start selling. Host with Rethinksoft or own the complete source code.';
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
-  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Agent Prompts and Open Source Product Codebases', itemListElement: ranked.map((app, index) => ({ '@type': 'ListItem', position: index + 1, url: `${siteUrl}/${app.slug}`, name: app.name })) },
+  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Launch-ready software businesses', itemListElement: launchBusinesses.map((business, index) => ({ '@type': 'ListItem', position: index + 1, url: `${siteUrl}/#${business.slug}`, name: business.name })) },
   { '@context': 'https://schema.org', '@type': 'Organization', name: 'Rethinksoft', url: siteUrl },
 ];
-const tape = [...ranked, ...ranked];
 ---
-<BaseLayout {title} {description} image="/og/home.png" {jsonLd} pageClass="home-page">
-  <section class="hero container">
-    <h1><em>Build, Own, Sell</em> software<br />people will <em>pay for.</em></h1>
-    <p class="hero-lede">Build faster with proven source code and a clear launch plan.</p>
-    <div class="search-shell">
-      <label class="sr-only" for="app-search">Search apps</label>
-      <input class="hero-search" id="app-search" type="search" placeholder="Search product ideas, codebases, or categories" autocomplete="off" />
-      <span class="search-key">⌘ K</span>
-    </div>
-    <div class="chips" aria-label="Filter by category">
-      <button class="chip active" type="button" data-category="all">✳ ALL</button>
-      {categories.map((category) => <button class="chip" type="button" data-category={category.toLowerCase()}>{categoryEmoji[category] || '◈'} {category.toUpperCase()}</button>)}
-    </div>
-    <div class="trust-row"><span>Built for independent founders</span><b>100+ ready to use prompts</b><b>{apps.length} researched markets</b><b>Open source foundations</b></div>
-  </section>
-
-  <section class="section container reveal" id="death-list">
-    <div class="section-head">
-      <div><p class="eyebrow">The free discovery engine</p><h2>Research your next market.</h2></div>
-      <p>Compare product ideas, market references, build scope, source foundations, and the builders already shipping.</p>
-    </div>
-    <div class="table-shell">
-      <div class="list-header"><span>RANK</span><span>PRODUCT IDEA</span><span>CATEGORY</span><span>MARKET PRICE</span><span>SCOPE</span><span>BUILT</span><span>DEMO</span></div>
-      <div id="app-list">
-        {ranked.map((app, index) => (
-          <div class="app-row" data-name={`${app.name} ${app.domain}`.toLowerCase()} data-category={app.category.toLowerCase()}>
-            <span class="rank">{String(index + 1).padStart(2, '0')}</span>
-            <span class="app-id"><ProductMark name={app.name} domain={app.domain} /><a href={`/${app.slug}`}>{app.name}</a></span>
-            <span class="category">{categoryEmoji[app.category]} {app.category}</span>
-            <span class="price">${app.priceMonthly}/mo</span>
-            <span class="scope-cell"><span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span>
-            <span class="votes">{counts[app.slug] || 0}</span>
-            <a class="demo-button" href={`https://${app.domain}`} target="_blank" rel="noopener" aria-label={`View ${app.name} demo`}><span class="demo-wide">VIEW DEMO</span><span class="demo-short">DEMO</span> ↗</a>
-          </div>
-        ))}
-      </div>
-      <div class="empty-state" id="empty-state">No matching products found.</div>
+<BaseLayout {title} {description} image="/og/home.png" {jsonLd} pageClass="home-page business-home">
+  <section class="hero business-hero">
+    <div class="container business-hero-inner">
+      <p class="eyebrow">Software businesses, ready to make yours</p>
+      <h1>Pick it. Own it.<br /><em>Start selling.</em></h1>
+      <p class="hero-lede">Choose a launch-ready software product. Add your brand and domain. Connect payments. Go live without months of building.</p>
+      <div class="hero-actions"><a class="button business-primary" href="#businesses">EXPLORE BUSINESSES</a><a class="business-text-link" href="#ownership">SEE WHAT YOU OWN ↘</a></div>
+      <div class="journey-rail" aria-label="Rethinksoft launch journey">{['Pick', 'Own', 'Launch', 'Sell', 'Grow'].map((step, index) => <span><b>{String(index + 1).padStart(2, '0')}</b>{step}</span>)}</div>
     </div>
   </section>
 
-  <section class="ticker" aria-label={`${buildPaths} ready to use software build paths`}>
-    <div class="ticker-top">
-      <div class="ticker-label">READY TO USE PRODUCT BUILD PATHS</div>
-      <div class="odometer-wrap"><strong class="odometer" data-value={buildPaths}>{buildPaths.toLocaleString('en-US')}</strong><span>+</span><small>PROMPTS AND CODE<br />{launches} BUILDER LAUNCHES</small></div>
-    </div>
-    <div class="tape" aria-hidden="true"><div class="tape-track">{tape.map((app) => <span>{app.name.toUpperCase()} <b>PROMPT + SOURCE</b> · {app.category.toUpperCase()}</span>)}</div></div>
-  </section>
-
-  <section class="decision-section section container reveal">
-    <div class="section-head centered-head"><div><p class="eyebrow">Everything you need to launch</p><h2>Go from idea to owned product.</h2></div><p>Start with a focused specification, proven source code, and an honest view of what still needs work.</p></div>
-    <div class="decision-grid">
-      <article class="decision-card featured"><span class="card-index">01</span><div class="mini-verdict"><i>IDEA</i><i>BUILD</i><i>SELL</i></div><h3>Proven product ideas</h3><p>Start from software categories with clear demand, familiar workflows, and real commercial potential.</p></article>
-      <article class="decision-card"><span class="card-index">02</span><div class="mini-code"><i></i><i></i><i></i><i></i></div><h3>Agent ready prompts</h3><p>Copy a focused product specification directly into Claude Code, Codex, or Cursor.</p></article>
-      <article class="decision-card"><span class="card-index">03</span><div class="mini-loss"><i>↗</i><span>Fork</span><i>↗</i><span>Customize</span><i>↗</i><span>Launch</span></div><h3>Open source foundations</h3><p>Study or fork proven codebases so you can move faster without starting from an empty repository.</p></article>
+  <section class="section container business-catalog reveal" id="businesses">
+    <div class="section-head"><div><p class="eyebrow">The founding collection</p><h2>Five businesses.<br />One clear starting point.</h2></div><p>Each product is a complete commercial application, not a design template. Pick the audience you understand and make the business distinctly yours.</p></div>
+    <div class="business-grid">
+      {launchBusinesses.map((business, index) => (
+        <article class="business-card" id={business.slug}>
+          <div class="business-card-top"><span class="business-icon">{business.icon}</span><span class="business-number">0{index + 1}</span></div>
+          <p class="business-audience">{business.audience}</p><h3>{business.name}</h3><p>{business.description}</p>
+          <div class="business-economics"><span>Your customer could pay</span><strong>{business.customerPrice}</strong></div>
+          <ul>{business.includes.map((item) => <li>{item}</li>)}</ul>
+          <div class="business-card-actions"><a href="#waitlist">REQUEST EARLY ACCESS</a><span>FROM ${business.licensePrice}</span></div>
+        </article>
+      ))}
     </div>
   </section>
 
-  <section class="how-section section" id="how-it-works">
+  <section class="ownership-section section" id="ownership">
     <div class="container reveal">
-      <div class="section-head"><div><p class="eyebrow">A practical launch path</p><h2>How it works.</h2></div><p>From proven product idea to software you can customize, own, and sell.</p></div>
-      <div class="how-grid">
-        <article class="how-card"><div class="how-visual visual-search"><span>⌕</span><i></i><i></i><i></i></div><small>01 / DISCOVER</small><h3>Choose a product idea.</h3><p>Search by category, workflow, or market and open a blueprint that fits your skills and audience.</p></article>
-        <article class="how-card"><div class="how-visual visual-decide"><span>PROMPT</span><span>SOURCE</span><span>PLAN</span></div><small>02 / START</small><h3>Pick your foundation.</h3><p>Copy the agent prompt or study the linked open source codebases to understand the product deeply.</p></article>
-        <article class="how-card"><div class="how-visual visual-build"><i></i><i></i><i></i><b>→</b></div><small>03 / LAUNCH</small><h3>Make it worth paying for.</h3><p>Choose a niche, add your advantage, validate the hard parts, and ship a product that is distinctly yours.</p></article>
+      <div class="section-head centered-head"><div><p class="eyebrow">One product, two paths</p><h2>Host it or own every line.</h2></div><p>Choose convenience today without giving up ownership tomorrow.</p></div>
+      <div class="ownership-grid">
+        <article class="ownership-card cloud"><span class="ownership-label">RETHINK CLOUD</span><h3>We launch and run it.</h3><p>Add your brand, domain, and connected Stripe account. We handle deployment, updates, monitoring, and backups.</p><ul><li>Fast managed launch</li><li>Custom domain</li><li>Updates and backups</li><li>Connected payments</li></ul><strong>From $29/month</strong></article>
+        <article class="ownership-card code"><span class="ownership-label">SOURCE CODE</span><h3>You take it anywhere.</h3><p>Download the complete application with commercial-use rights. Modify it, self-host it, and keep full control.</p><ul><li>Complete source code</li><li>Commercial license</li><li>Setup documentation</li><li>No hidden revenue tracking</li></ul><strong>From $199 one time</strong></article>
       </div>
     </div>
   </section>
 
-  <section class="home-tools section container reveal">
-    <div class="section-head">
-      <div><p class="eyebrow">Useful without another subscription</p><h2>Free tools for builders.</h2></div>
-      <p>Start with practical tools for research, audits, content, websites, and video creation.</p>
+  <section class="section container lifecycle reveal" id="how-it-works">
+    <div class="section-head"><div><p class="eyebrow">The Rethinksoft lifecycle</p><h2>From choice to customers.</h2></div><p>The product is already built. Your job is to choose a market, shape the offer, launch, and learn.</p></div>
+    <div class="lifecycle-grid">
+      <article><span>01</span><h3>Pick</h3><p>Choose a software business and audience you understand.</p></article>
+      <article><span>02</span><h3>Own</h3><p>Add your name, brand, colors, pricing, and positioning.</p></article>
+      <article><span>03</span><h3>Launch</h3><p>Use Rethink Cloud or deploy the source code yourself.</p></article>
+      <article><span>04</span><h3>Sell</h3><p>Connect payments and start accepting real customers.</p></article>
+      <article><span>05</span><h3>Grow</h3><p>Add SEO, content, outreach, and paid acquisition when ready.</p></article>
     </div>
-    <div class="free-tools-grid home-tools-grid">
-      {homepageTools.map((item) => <FreeToolCard {item} compact />)}
-    </div>
-    <a class="tools-view-all" href="/tools">EXPLORE ALL FREE TOOLS ↗</a>
   </section>
 
-  <section class="pricing-section section container reveal" id="pricing">
-    <div class="section-head centered-head">
-      <div><p class="eyebrow">Optional growth support</p><h2>Get help launching what you build.</h2></div>
-      <p>Every build prompt is free. Plans add launch support, hosting, and customer acquisition tools.</p>
+  <section class="section container reveal" id="directory-preview">
+    <div class="section-head"><div><p class="eyebrow">Research the opportunity</p><h2>Explore proven software markets.</h2></div><p>Compare familiar products, pricing, scope, and open source foundations before choosing what to sell.</p></div>
+    <div class="search-shell market-search"><label class="sr-only" for="app-search">Search software markets</label><input class="hero-search" id="app-search" type="search" placeholder="Search markets, products, or categories" autocomplete="off" /></div>
+    <div class="chips" aria-label="Filter by category"><button class="chip active" type="button" data-category="all">ALL</button>{categories.map((category) => <button class="chip" type="button" data-category={category.toLowerCase()}>{categoryEmoji[category] || '◈'} {category.toUpperCase()}</button>)}</div>
+    <div class="table-shell market-table">
+      <div class="list-header"><span>RANK</span><span>MARKET</span><span>CATEGORY</span><span>REFERENCE</span><span>SCOPE</span><span>BUILT</span><span>DETAILS</span></div>
+      <div id="app-list">{ranked.map((app, index) => (
+        <div class="app-row" data-name={`${app.name} ${app.domain}`.toLowerCase()} data-category={app.category.toLowerCase()}>
+          <span class="rank">{String(index + 1).padStart(2, '0')}</span><span class="app-id"><ProductMark name={app.name} domain={app.domain} /><a href={`/${app.slug}`}>{app.name}</a></span><span class="category">{categoryEmoji[app.category]} {app.category}</span><span class="price">${app.priceMonthly}/mo</span><span class="scope-cell"><span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span><span class="votes">{counts[app.slug] || 0}</span><a class="demo-button" href={`/${app.slug}`} aria-label={`Explore ${app.name}`}>EXPLORE ↗</a>
+        </div>
+      ))}</div>
+      <div class="empty-state" id="empty-state">No matching markets found.</div>
     </div>
-    <div class="pricing-grid">
-      <article class="pricing-card">
-        <div class="pricing-top"><p class="pricing-name">Beginner</p><span>For your first focused products</span></div>
-        <div class="pricing-price"><strong>$99</strong><span>/ month</span></div>
-        <ul>
-          <li><b>All</b> build prompts included free</li>
-          <li>SEO and AEO support</li>
-          <li>30 days of social content generation and posting</li>
-          <li>1 custom domain and hosting access</li>
-        </ul>
-        <a class="pricing-cta" href="#waitlist">Join Beginner</a>
-      </article>
-      <article class="pricing-card featured">
-        <div class="popular-label">MOST POPULAR</div>
-        <div class="pricing-top"><p class="pricing-name">Intermediate</p><span>For builders shipping consistently</span></div>
-        <div class="pricing-price"><strong>$199</strong><span>/ month</span></div>
-        <ul>
-          <li><b>All</b> build prompts included free</li>
-          <li>SEO and AEO support</li>
-          <li>60 days of social content generation and posting</li>
-          <li>1 custom domain and hosting access</li>
-        </ul>
-        <a class="pricing-cta" href="#waitlist">Join Intermediate</a>
-      </article>
-      <article class="pricing-card">
-        <div class="pricing-top"><p class="pricing-name">Expert</p><span>For high volume product builders</span></div>
-        <div class="pricing-price"><strong>$299</strong><span>/ month</span></div>
-        <ul>
-          <li><b>All</b> build prompts included free</li>
-          <li>SEO and AEO support</li>
-          <li>60 days of social content generation and posting</li>
-          <li>1 custom domain and hosting access</li>
-        </ul>
-        <a class="pricing-cta" href="#waitlist">Join Expert</a>
-      </article>
-    </div>
-    <p class="pricing-note">Join the waitlist for early access.</p>
+    <a class="tools-view-all" href="/directory">VIEW THE FULL DIRECTORY ↗</a>
   </section>
 
-  <section class="waitlist reveal" id="waitlist">
-    <div class="container wait-card">
-      <div><p class="eyebrow">Get the next blueprint</p><h2>What should we<br />build next?</h2></div>
-      <div><p>Join the quiet list for new prompts, codebase research, and practical launch ideas. No campaigns. No sales funnel. Just useful build material.</p>
-        <form class="wait-form" id="waitlist-form"><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" /><label class="sr-only" for="email">Email address</label><input id="email" name="email" type="email" placeholder="builder@localhost" required /><button class="button" type="submit">JOIN QUEUE ↗</button></form>
-        <p class="form-note" id="waitlist-note" aria-live="polite">One email when a new product blueprint is published.</p>
+  <section class="pricing-section business-pricing section" id="pricing">
+    <div class="container reveal">
+      <div class="section-head centered-head"><div><p class="eyebrow">Simple, transparent economics</p><h2>Own the software. Pay for what helps.</h2></div><p>No subscription required to retain source code you already purchased.</p></div>
+      <div class="revenue-grid">
+        <article><span>01</span><p class="pricing-name">Software License</p><div class="pricing-price"><strong>$199</strong><span>one time, from</span></div><p>Complete source code, commercial-use rights, documentation, and self-hosting freedom.</p><a href="#waitlist">BROWSE FOUNDING PRODUCTS ↗</a></article>
+        <article class="featured"><span>02</span><p class="pricing-name">Rethink Cloud</p><div class="pricing-price"><strong>$29</strong><span>/ month, from</span></div><p>Managed hosting, deployment, updates, backups, monitoring, and domain support.</p><a href="#waitlist">JOIN EARLY ACCESS ↗</a></article>
+        <article><span>03</span><p class="pricing-name">Rethink Growth</p><div class="pricing-price"><strong>$299</strong><span>/ month, from</span></div><p>SEO, AEO, content, social, outreach, lead generation, and acquisition support.</p><a href="#waitlist">TALK ABOUT GROWTH ↗</a></article>
       </div>
+      <p class="pricing-note">Cloud commerce fees will be disclosed clearly. Self-hosted products have no hidden transaction tracking.</p>
     </div>
   </section>
+
+  <section class="home-tools section container reveal"><div class="section-head"><div><p class="eyebrow">Useful before you buy</p><h2>Free tools for builders.</h2></div><p>Research, audit, create, and validate your next business with practical tools.</p></div><div class="free-tools-grid home-tools-grid">{homepageTools.map((item) => <FreeToolCard {item} compact />)}</div><a class="tools-view-all" href="/tools">EXPLORE ALL FREE TOOLS ↗</a></section>
+
+  <section class="waitlist reveal" id="waitlist"><div class="container wait-card"><div><p class="eyebrow">Founding access</p><h2>Which business<br />would you launch?</h2></div><div><p>Join the founding list. Tell us which product you want and whether you prefer managed hosting or complete source-code ownership.</p><form class="wait-form" id="waitlist-form"><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" /><label class="sr-only" for="email">Email address</label><input id="email" name="email" type="email" placeholder="founder@yourcompany.com" required /><button class="button" type="submit">REQUEST ACCESS ↗</button></form><p class="form-note" id="waitlist-note" aria-live="polite">No spam. One useful update when founding products are ready.</p></div></div></section>
 </BaseLayout>

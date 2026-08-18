@@ -1,18 +1,17 @@
-Build me a directory site called "Rethinksoft" with 100+ ready to use product build paths that combine AI agent prompts and proven open source codebases. The goal is to help founders choose a software idea, build their own focused version, customize it for a niche, and sell it.
+Build Rethinksoft, a marketplace of launch-ready software businesses. The core promise is: Pick it. Own it. Start selling.
 
-Stack: Astro (server output, node adapter) + better-sqlite3. No client framework: vanilla JS for interactions. Dev-tool aesthetic: JetBrains Mono + Space Grotesk, CRT-black dark mode (default) and a paper light mode, phosphor green as the only loud color.
+Customers browse complete commercial applications such as an AI Resume Builder, AI Interview Coach, AI Content Studio, AI Lead Finder, and Niche Job Board. Every founding product includes a public website, web application, admin panel, authentication, database, payments, documentation, and deployment path.
 
-Each product blueprint is one JSON file in data/apps/: slug, name, domain, category, priceMonthly as a market reference, verdict as build complexity, whatYouLose as the hard parts still to solve, priorArt as open source codebases, prompt, and notes.
+Offer two ownership paths. Rethink Cloud lets customers add their brand, domain, pricing, and connected Stripe account while Rethinksoft manages hosting, deployment, updates, monitoring, and backups. Source Code gives customers the complete application, commercial-use rights, documentation, and freedom to modify and self-host it. Never add hidden revenue tracking to downloaded code.
 
-Homepage: hero search that live filters, category chips with emoji, and a product launch library ranked by "I built this" counts. Each row includes the familiar product reference, category, market price, build scope, and launch count. Add a loud stock style ticker showing the number of agent prompt and open source build paths with rolling digits and a scrolling tape of product ideas.
+Structure the customer journey as Pick, Own, Launch, Sell, Grow. Use Stripe Connect for managed commerce instead of asking customers to paste secret Stripe keys. Clearly disclose any cloud transaction fee.
 
-Blueprint pages at /:slug: recommended build scope, an agent ready product prompt with copy buttons for Claude Code, Codex, and Cursor, hard parts to solve, open source codebase links, three related ideas, a SQLite backed and IP rate limited "I built this" action, share on X, and a four question FAQ. Make it clear that builders must review open source licenses and create their own branding and product advantage before selling.
+Use hybrid pricing. Sell software licenses for $199 to $499 one time. Offer optional Rethink Cloud from $29 per month and Rethink Growth from $299 per month. Growth services can include SEO, AEO, content, social media, outreach, lead generation, and paid acquisition.
 
-Server-render everything. Add question-format titles, canonical URLs, JSON-LD for WebSite, SearchAction, ItemList, FAQPage, BreadcrumbList, and Organization; sitemap.xml, robots.txt, and per-page OG images generated at build time with satori and resvg.
+Keep the existing free research layer: product-market directory, public agent prompts, open source foundations, community builds, and useful free tools. Treat those resources as the discovery engine that leads founders toward a launch-ready business.
 
-Add a SQLite waitlist with honeypot and dedupe. Link to this prompt in the footer. Use tasteful micro-animations and respect prefers-reduced-motion. MIT license. Public repo. No accounts, payments, or third-party tracking.
-Add three optional growth support pricing cards that lead into the waitlist. Every build prompt is public and free. Paid plans cover SEO, AEO, social content generation and posting, one custom domain, and hosting access.
-Render every product prompt and its Claude Code, Codex, and Cursor copy controls directly on the product page with no account or payment required.
-Add a dedicated server-rendered directory page with every listing, instant text search, category and build scope filters, live result counts, and sorting by popularity, name, market price, or build scope. Keep all interactions in vanilla JavaScript.
-Add a community builds page where founders can select a Rethinksoft blueprint and publicly list a live product they created. Require a live HTTPS product, public persona, ownership confirmation, and private contact email. Store listings in SQLite, prevent duplicate URLs, add a honeypot and IP based daily rate limit, and do not create seller accounts. Include an optional private marketplace interest flag so the catalog can later evolve into a curated buy and sell marketplace.
-Add a dedicated Free Tools page and homepage preview for useful founder tools. Include LinkedIn Audit, SEO Audit, Google Maps Data AI, Auto Social Post Generator, Website Generator, AI Website Clone, and Descript Video Editor. Clearly separate available third-party free tiers from upcoming Rethinksoft tools, provide instant search and category filters, and never describe a limited free plan as unlimited.
+Stack: Astro server output with the Node adapter and better-sqlite3. Use server-rendered HTML and vanilla JavaScript, with no client framework. Keep the warm white, orange, and ink visual system, simple Manrope typography, responsive layouts, accessible interactions, tasteful motion, and prefers-reduced-motion support.
+
+Store each researched market as JSON in data/apps. Keep SQLite-backed waitlist, community submissions, dedupe, honeypots, and IP rate limits. Include canonical URLs, sitemap.xml, robots.txt, JSON-LD, and build-time Open Graph images using satori and resvg.
+
+MIT license. Public repository. No accounts until the product requires them. No third-party tracking. Make software entrepreneurship accessible to more people without pretending that launching a business is effortless.
