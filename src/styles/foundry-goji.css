@@ -33,9 +33,6 @@
 .foundry-home .site-header>.brand{font-size:17px}
 .foundry-home .site-header>nav{position:static;left:auto;margin-left:auto;gap:23px;transform:none}
 .foundry-home .site-header nav>a:not(.nav-cta){padding:8px 0;color:#625b56;font-size:10px;font-weight:600}
-.foundry-home .site-header nav>a:nth-last-child(2){min-height:42px;margin-left:9px;padding:0 17px;border:1px solid rgba(96,66,52,.12);border-radius:0;background:rgba(255,255,255,.52);color:var(--goji-ink);font-size:10px}
-.foundry-home .site-header nav>a:nth-last-child(2)::after{right:7px;bottom:5px;left:7px;background:var(--goji-orange)}
-.foundry-home .site-header nav>a:nth-last-child(2):hover{border-color:rgba(96,66,52,.22);background:#fff}
 .foundry-home .site-header nav>a:last-child{display:flex;min-height:44px;padding:0 18px 0 0!important;align-items:center;overflow:hidden;border:1px solid #cfc4bd;border-radius:0;background:#fff;color:var(--goji-ink);font-size:11px;font-weight:650;gap:15px;box-shadow:0 7px 18px rgba(77,43,26,.05)}
 .foundry-home .site-header nav>a:last-child::before{display:grid;width:44px;align-self:stretch;place-items:center;background:#ff5f57;color:#fff;content:'→';font-size:19px;box-shadow:inset 0 0 0 1px rgba(111,26,19,.12)}
 .foundry-home .site-header nav>a:last-child::after{display:none}
@@ -92,7 +89,7 @@
 @media(max-width:800px){
   .foundry-home .site-header{display:grid;width:calc(100% - 20px);height:auto;min-height:54px;margin-top:8px;padding:8px 10px;border:1px solid rgba(74,48,36,.1);border-radius:8px}
   .foundry-home .site-header>.brand{font-size:17px}.foundry-home .site-header>nav{margin-left:0;gap:2px}.foundry-home .site-header nav>a:not(.nav-cta){font-size:13px}
-  .foundry-home .site-header nav>a:nth-last-child(2){width:100%;min-height:42px;margin:3px 0 0;padding-inline:13px}.foundry-home .site-header nav>a:last-child{width:100%;min-height:44px;margin-top:3px;font-size:12px}.foundry-home .site-header nav>a:last-child::before{width:44px}
+  .foundry-home .site-header nav>a:last-child{width:100%;min-height:44px;margin-top:3px;font-size:12px}.foundry-home .site-header nav>a:last-child::before{width:44px}
   .foundry-hero{padding-top:114px}.foundry-hero-inner{padding-top:38px}.foundry-hero h1{font-size:clamp(42px,10.8vw,54px)}.foundry-lede{font-size:16px}.foundry-actions{width:min(100%,360px);align-items:stretch;flex-direction:column}.foundry-primary,.foundry-secondary{width:100%}
   .foundry-preview{width:min(94vw,690px);margin-top:42px}.foundry-proof{margin-top:34px}
   .foundry-home .section{padding-block:68px}.foundry-section-head{margin-bottom:34px;gap:25px}.foundry-steps article{min-height:235px}.committee-layout,.score-layout,.fit-layout,.pilot-banner,.apply-layout{gap:34px}.agent-grid article{min-height:150px}.score-card{padding:20px}.capital-roadmap article{min-height:260px}.fit-list article{min-height:96px}.pilot-banner{padding:28px}.foundry-faq summary{min-height:68px}.foundry-apply{padding:70px 0}
