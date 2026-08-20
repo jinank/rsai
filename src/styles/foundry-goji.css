@@ -40,7 +40,11 @@
 
 .foundry-hero{padding-top:124px}
 .foundry-hero-inner{padding-top:40px}
-.foundry-kicker{margin-bottom:19px;padding:7px 11px;font-size:8px}
+.foundry-kicker{position:relative;margin-bottom:19px;padding:10px 18px;border:0;border-radius:0;background:rgba(255,255,255,.22);color:var(--goji-ink);box-shadow:none;font-size:10px;letter-spacing:0;text-transform:none;gap:10px}
+.foundry-kicker::before,.foundry-kicker::after{position:absolute;top:50%;width:8px;height:40px;border-top:1.5px solid #28211e;border-bottom:1.5px solid #28211e;content:'';transform:translateY(-50%)}
+.foundry-kicker::before{left:-3px;border-left:1.5px solid #28211e}.foundry-kicker::after{right:-3px;border-right:1.5px solid #28211e}
+.foundry-kicker .foundry-kicker-mark{display:grid;width:25px;height:25px;flex:0 0 25px;place-items:center;border-radius:0;background:var(--goji-orange);color:#fff;box-shadow:none;font-family:'Manrope',sans-serif;font-size:14px;font-weight:600;letter-spacing:0}
+.foundry-kicker .foundry-kicker-copy{width:auto;height:auto;border-radius:0;background:transparent;box-shadow:none}.foundry-kicker strong{color:var(--goji-orange);font-weight:500}
 .foundry-hero h1{max-width:860px;font-size:clamp(52px,6.65vw,84px);line-height:.96}
 .foundry-lede{max-width:620px;margin-top:20px;font-size:14px;line-height:1.62}
 .foundry-actions{margin-top:24px;gap:8px}
@@ -91,4 +95,4 @@
   .foundry-home .section{padding-block:68px}.foundry-section-head{margin-bottom:34px;gap:25px}.foundry-steps article{min-height:235px}.committee-layout,.score-layout,.fit-layout,.pilot-banner,.apply-layout{gap:34px}.agent-grid article{min-height:150px}.score-card{padding:20px}.capital-roadmap article{min-height:260px}.fit-list article{min-height:96px}.pilot-banner{padding:28px}.foundry-faq summary{min-height:68px}.foundry-apply{padding:70px 0}
   .foundry-apply-form input[type=email]{border-radius:5px}.foundry-apply-form button{border-radius:5px}
 }
-@media(max-width:520px){.foundry-home h2{font-size:38px}.foundry-hero h1{font-size:44px}.preview-body{padding:15px}.foundry-primary,.foundry-secondary{min-height:43px}.capital-roadmap article{min-height:245px}.pilot-banner{padding:24px}.foundry-apply-form button{min-width:0}}
+@media(max-width:520px){.foundry-home h2{font-size:38px}.foundry-hero h1{font-size:44px}.foundry-kicker{max-width:calc(100vw - 44px);padding-inline:13px;font-size:9px;line-height:1.4;text-align:left}.preview-body{padding:15px}.foundry-primary,.foundry-secondary{min-height:43px}.capital-roadmap article{min-height:245px}.pilot-banner{padding:24px}.foundry-apply-form button{min-width:0}}
