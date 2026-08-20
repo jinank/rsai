@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const cloudDeals = [
+  { name: 'AWS', company: 'Amazon Web Services', value: '$10,000', mark: 'AWS' },
+  { name: 'Azure', company: 'Microsoft Azure', value: '$10,000', mark: 'AZ' },
+];
+
+const aiDeals = [
+  { name: 'OpenAI', company: 'AI API credits', value: '$1,000', mark: 'AI' },
+  { name: 'Anthropic', company: 'AI API credits', value: '$500', mark: 'AN' },
+];
+
+const tools = ['Vapi','Roboflow','AgentMail','Bolna AI','Firecrawl','Sync','Respan','Tavus','Coinbase','Blaxel','Deepgram','Supabase','Greptile','Langfuse','Gumloop','Browser Use'];
+
+const faqs = [
+  ['How do I qualify?', 'RS Deals is being designed for verified technical founders, accepted Foundry companies, students in approved programs, and selected Rethinksoft partners.'],
+  ['How long does access last?', 'Access periods vary by partner. Most offers are time limited and may require periodic eligibility verification.'],
+  ['How do I activate my deals?', 'Eligible members will receive a private activation path for each approved offer. Partner terms and identity checks may apply.'],
+  ['What deals are available?', 'The initial stack focuses on cloud infrastructure, AI APIs, developer tooling, data, automation, and product operations.'],
+  ['Want to add your tool?', 'Technology companies can apply to become an RS Deals partner and propose a founder benefit.'],
+  ['Have other questions?', 'Contact Rethinksoft through the partner page and tell us what you are building or which benefit you need.'],
+];
+
+const title = 'RS Deals | Founder Credits and Startup Benefits';
+const description = 'RS Deals brings cloud credits, AI API benefits, and startup tools together for eligible Rethinksoft founders and partners.';
+---
+<BaseLayout {title} {description} pageClass="hub-page deals-page">
+  <section class="hub-hero deals-hero"><div class="container">
+    <p class="eyebrow">RS Deals</p>
+    <h1>The AI stack for<br /><em>ambitious founders.</em></h1>
+    <p>Cloud credits, AI APIs, and serious startup tools collected in one focused benefits program for the Rethinksoft community.</p>
+    <div class="deals-value"><strong>$25K+</strong><span>Potential partner value</span></div>
+  </div></section>
+
+  <main class="deals-main container">
+    <nav class="deals-index" aria-label="Deals page sections"><a href="#included">What is included</a><a href="#tools">AI devtools</a><a href="#faq">FAQ</a><a href="/partner">For partners</a></nav>
+
+    <section class="deals-intro reveal"><div><p class="hub-label">RS AI STACK</p><h2>Over $25,000 in potential founder benefits.</h2></div><div><p>Rethinksoft is assembling a practical benefits stack for founders building AI-native software companies.</p><p class="deals-note">Applications open soon. Every offer remains subject to partner approval, eligibility, availability, and final program terms.</p></div></section>
+
+    <section class="deals-section" id="included">
+      <div class="deals-section-head"><div><p class="hub-label">01 / WHAT IS INCLUDED</p><h2>Infrastructure first.</h2></div><p>High-impact credits that can extend runway while you validate, launch, and learn.</p></div>
+      <div class="deals-group"><div class="deals-group-title"><span>Cloud credits</span><small>FOUNDATION</small></div><div class="deals-card-grid">{cloudDeals.map((deal) => <article class="deal-card reveal"><div class="deal-mark">{deal.mark}</div><p>{deal.company}</p><h3>{deal.name}</h3><strong>{deal.value}</strong><small>PROGRAM TARGET</small></article>)}</div></div>
+      <div class="deals-group"><div class="deals-group-title"><span>AI API credits</span><small>INTELLIGENCE</small></div><div class="deals-card-grid">{aiDeals.map((deal) => <article class="deal-card reveal"><div class="deal-mark">{deal.mark}</div><p>{deal.company}</p><h3>{deal.name}</h3><strong>{deal.value}</strong><small>PROGRAM TARGET</small></article>)}</div></div>
+    </section>
+
+    <section class="deals-section deals-tools" id="tools">
+      <div class="deals-section-head"><div><p class="hub-label">02 / AI DEVTOOLS</p><h2>Build faster with<br />a sharper stack.</h2></div><p>Voice, browser automation, web search, video generation, data, observability, and deployment tools from modern product teams.</p></div>
+      <div class="tool-deal-grid">{tools.map((tool, index) => <article class="tool-deal reveal"><span>{String(index + 1).padStart(2, '0')}</span><strong>{tool}</strong><small>PARTNER DIRECTORY</small></article>)}</div>
+    </section>
+
+    <section class="deals-section deals-faq" id="faq">
+      <div class="deals-section-head"><div><p class="hub-label">03 / FAQ</p><h2>Clear terms.<br />No surprises.</h2></div><p>The program is still being assembled. These answers explain how access is intended to work.</p></div>
+      <div class="deals-faq-list">{faqs.map(([question, answer], index) => <details><summary><span>{String(index + 1).padStart(2, '0')}</span>{question}<i>+</i></summary><p>{answer}</p></details>)}</div>
+    </section>
+
+    <section class="deals-cta reveal"><div><p class="hub-label">BUILD THE STACK WITH US</p><h2>Bring your tool<br />to the next founders.</h2></div><div><p>Offer a meaningful startup benefit and become part of the RS Deals partner network.</p><a class="hub-primary" href="/partner"><span>→</span>BECOME A PARTNER</a></div></section>
+  </main>
+</BaseLayout>
