@@ -27,3 +27,68 @@
 .preview-float-left>span{background:#fff0e8;color:var(--goji-orange)}
 .foundry-home .site-footer{background:#fff;color:var(--goji-ink)}.foundry-home .site-footer::before{background:#eadbd2}.foundry-home .site-footer .brand-wordmark span{color:var(--goji-ink)}.foundry-home .site-footer .brand-wordmark em{color:var(--goji-orange)}.foundry-home .site-footer p,.foundry-home .site-footer a,.foundry-home .footer-line{color:#756a64}.foundry-home .footer-line{border-color:#eadbd2}
 @media(max-width:800px){.foundry-home .section{padding-block:86px}.committee-section::before{display:none}.pilot-banner{box-shadow:0 22px 60px rgba(170,72,31,.16)}}
+
+/* Compact editorial rhythm and segmented actions */
+.foundry-home .site-header{width:min(1180px,calc(100% - 40px));height:54px;margin-top:10px;padding:0 6px 0 14px;border:0;border-bottom:1px solid rgba(74,48,36,.1);border-radius:0;background:rgba(255,253,251,.84);box-shadow:none}
+.foundry-home .site-header>.brand{font-size:17px}
+.foundry-home .site-header>nav{gap:23px}
+.foundry-home .site-header nav>a:not(.nav-cta){padding:8px 0;color:#625b56;font-size:10px;font-weight:600}
+.foundry-home .site-header nav>a:last-child{display:flex;min-height:38px;padding:0 14px 0 0!important;align-items:center;overflow:hidden;border:1px solid #ded4ce;border-radius:5px;background:#fff;color:var(--goji-ink);font-size:10px;font-weight:700;gap:11px;box-shadow:0 7px 18px rgba(77,43,26,.06)}
+.foundry-home .site-header nav>a:last-child::before{display:grid;width:38px;align-self:stretch;place-items:center;background:var(--goji-orange);color:#fff;content:'↗';font-size:13px}
+.foundry-home .site-header nav>a:last-child::after{display:none}
+.foundry-home .site-header nav>a:last-child:hover{border-color:#cfc0b7;background:#fff;color:var(--goji-orange);transform:translateY(-1px)}
+
+.foundry-hero{padding-top:124px}
+.foundry-hero-inner{padding-top:40px}
+.foundry-kicker{margin-bottom:19px;padding:7px 11px;font-size:8px}
+.foundry-hero h1{max-width:860px;font-size:clamp(52px,6.65vw,84px);line-height:.96}
+.foundry-lede{max-width:620px;margin-top:20px;font-size:14px;line-height:1.62}
+.foundry-actions{margin-top:24px;gap:8px}
+.foundry-primary,.foundry-secondary{min-height:44px;border-radius:5px;font-size:9px;letter-spacing:.04em}
+.foundry-primary{padding:0 16px 0 0;overflow:hidden;gap:12px;box-shadow:0 9px 22px rgba(34,24,19,.13)}
+.foundry-primary::before{display:grid;width:42px;align-self:stretch;place-items:center;background:var(--goji-orange);color:#fff;content:'↗';font-size:13px}
+.foundry-primary>span{display:none}
+.foundry-primary:hover{background:var(--goji-ink);transform:translateY(-2px);box-shadow:0 13px 26px rgba(34,24,19,.16)}
+.foundry-secondary{padding:0 16px;border-color:#ded4ce;background:rgba(255,255,255,.8)}
+.foundry-preview{width:min(780px,90vw);margin-top:46px}
+.preview-window{border-radius:8px;box-shadow:0 28px 70px rgba(112,61,35,.14),0 4px 14px rgba(112,61,35,.06)}
+.preview-bar{height:38px}.preview-body{padding:21px}.preview-company>span{border-radius:7px}.preview-unlock{border-radius:5px}.preview-unlock>span,.preview-score>b{border-radius:4px}
+.preview-float{border-radius:6px;box-shadow:0 14px 34px rgba(100,55,32,.11)}
+.preview-float-left{left:-68px;bottom:43px}.preview-float-right{right:-54px;top:42px}
+.foundry-proof{margin-top:38px}
+
+.foundry-home .section{padding-block:94px}
+.foundry-home h2{font-size:clamp(42px,5.3vw,64px);line-height:.97}
+.foundry-section-code{margin-bottom:17px}
+.foundry-section-head{margin-bottom:44px;gap:48px}
+.foundry-section-head>p{font-size:13px;line-height:1.64}
+.thesis-layout{gap:52px}.thesis-equation{margin-top:52px}.thesis-equation span{min-height:84px}
+.foundry-steps article{min-height:318px;padding:20px 18px}
+.step-glyph{width:54px;height:54px;margin-top:34px;font-size:15px}
+.foundry-steps h3{margin:30px 0 9px;font-size:21px}.foundry-steps p{font-size:11px}
+.committee-layout{gap:50px}.committee-copy>p:not(.foundry-section-code){margin:21px 0;font-size:13px}.human-decision{margin-top:38px}
+.agent-console{border-radius:7px;box-shadow:0 22px 60px rgba(103,56,32,.1)}
+.console-top{min-height:46px;padding-inline:17px}.agent-grid article{min-height:166px;padding:19px}.agent-grid h3{margin:24px 0 8px;font-size:16px}.agent-grid small{margin-top:15px}.red-team{min-height:126px;padding:19px}.red-team>strong{border-radius:4px}
+.score-layout{gap:64px}.score-card{padding:24px;border-radius:7px;box-shadow:0 20px 55px rgba(110,59,32,.09)}
+.score-number{margin:36px 0 25px}.score-number strong{font-size:98px}.score-next{margin-top:28px}.score-copy>p:not(.foundry-section-code,.score-note){margin:21px 0 29px;font-size:13px}
+.capital-roadmap{gap:7px}.capital-roadmap article{min-height:300px;padding:21px;border-radius:6px}.capital-roadmap>i{padding:0 2px}.capital-roadmap h3{margin:38px 0 6px;font-size:20px}.capital-roadmap article>strong{font-size:38px}.capital-roadmap p{margin:17px 0}.capital-principle{margin-top:28px;padding:13px 18px;border-radius:5px}
+.fit-layout{gap:66px}.fit-layout>div:first-child>p:not(.foundry-section-code){margin:21px 0;font-size:13px}.fit-list article{min-height:106px;padding:20px 0}.fit-list article:hover{padding-inline:12px;border-radius:5px}.fit-layout>div:first-child>a{display:inline-flex;min-height:42px;margin-top:19px;padding:0 14px 0 0;align-items:center;overflow:hidden;border:0;border-radius:5px;background:var(--goji-ink);color:#fff;gap:11px}
+.fit-layout>div:first-child>a::before{display:grid;width:40px;align-self:stretch;place-items:center;background:var(--goji-orange);color:#fff;content:'↗';font-size:13px}.fit-layout>div:first-child>a:hover{color:#fff;transform:translateY(-2px)}
+.pilot-banner{min-height:450px;padding:40px;border-radius:9px;gap:55px;box-shadow:0 24px 65px rgba(170,72,31,.16)}
+.pilot-details>p{font-size:13px}.pilot-details span{padding:18px 0}.pilot-kpi{margin-top:17px}
+.foundry-faq summary{min-height:74px;font-size:16px}.foundry-faq details>p{margin-bottom:25px}
+.foundry-apply{padding:92px 0}.apply-layout{gap:66px}.apply-layout h2{font-size:clamp(42px,5.3vw,64px)}.apply-layout>div>p:not(.foundry-section-code){margin-top:21px;font-size:13px}
+.foundry-apply-form input[type=email]{height:50px;border-radius:5px 0 0 5px}.foundry-apply-form button{min-width:202px;min-height:50px;padding:0 15px 0 0;overflow:hidden;border-radius:0 5px 5px 0;gap:11px}
+.foundry-apply-form button::before{display:grid;width:44px;align-self:stretch;place-items:center;background:var(--goji-orange);color:#fff;content:'↗';font-size:13px}.foundry-apply-form button>span{display:none}.foundry-apply-form button:hover{background:var(--goji-ink);color:#fff;transform:translateY(-1px)}
+
+@media(max-width:1050px){.capital-roadmap{gap:8px}.foundry-home .site-header{width:calc(100% - 28px)}}
+@media(max-width:800px){
+  .foundry-home .site-header{display:grid;width:calc(100% - 20px);height:auto;min-height:54px;margin-top:8px;padding:8px 10px;border:1px solid rgba(74,48,36,.1);border-radius:8px}
+  .foundry-home .site-header>.brand{font-size:17px}.foundry-home .site-header>nav{gap:2px}.foundry-home .site-header nav>a:not(.nav-cta){font-size:13px}
+  .foundry-home .site-header nav>a:last-child{width:100%;min-height:42px;margin-top:3px;font-size:12px}.foundry-home .site-header nav>a:last-child::before{width:42px}
+  .foundry-hero{padding-top:114px}.foundry-hero-inner{padding-top:38px}.foundry-hero h1{font-size:clamp(44px,12vw,58px)}.foundry-lede{font-size:14px}.foundry-actions{width:min(100%,360px);align-items:stretch;flex-direction:column}.foundry-primary,.foundry-secondary{width:100%}
+  .foundry-preview{width:min(94vw,690px);margin-top:42px}.foundry-proof{margin-top:34px}
+  .foundry-home .section{padding-block:68px}.foundry-section-head{margin-bottom:34px;gap:25px}.foundry-steps article{min-height:235px}.committee-layout,.score-layout,.fit-layout,.pilot-banner,.apply-layout{gap:34px}.agent-grid article{min-height:150px}.score-card{padding:20px}.capital-roadmap article{min-height:260px}.fit-list article{min-height:96px}.pilot-banner{padding:28px}.foundry-faq summary{min-height:68px}.foundry-apply{padding:70px 0}
+  .foundry-apply-form input[type=email]{border-radius:5px}.foundry-apply-form button{border-radius:5px}
+}
+@media(max-width:520px){.foundry-home h2{font-size:38px}.foundry-hero h1{font-size:44px}.preview-body{padding:15px}.foundry-primary,.foundry-secondary{min-height:43px}.capital-roadmap article{min-height:245px}.pilot-banner{padding:24px}.foundry-apply-form button{min-width:0}}
