@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const resources=[
+  { code:'01',title:'Company Directory',text:'Research established software companies, pricing, categories, and product opportunities.',href:'/company-directory',meta:'MARKET RESEARCH' },
+  { code:'02',title:'Latest Startup News',text:'Follow focused signals across AI, funding, distribution, talent, and company building.',href:'/news',meta:'FOUNDER INTELLIGENCE' },
+  { code:'03',title:'Startup Jobs',text:'Explore high-ownership roles for technical builders and cross-functional operators.',href:'/jobs',meta:'TALENT NETWORK' },
+  { code:'04',title:'Free Tools',text:'Use practical tools for audits, research, content, websites, and founder workflows.',href:'/tools',meta:'BUILDER UTILITIES' },
+  { code:'05',title:'Open Source Library',text:'Start with curated GitHub foundations referenced across Rethinksoft research.',href:'/open-source',meta:'SOURCE FOUNDATIONS' },
+  { code:'06',title:'Product Research',text:'Compare software markets and inspect build prompts, source code, and opportunity notes.',href:'/directory',meta:'PRODUCT BLUEPRINTS' },
+];
+const title='Startup Resources for Technical Founders | Rethinksoft';
+const description='Rethinksoft resources for market research, startup news, jobs, free tools, open source code, and product opportunities.';
+---
+<BaseLayout {title} {description} pageClass="hub-page">
+  <section class="hub-hero resources-hero"><div class="container"><p class="eyebrow">Resources</p><h1>Everything useful.<br />Nothing <em>decorative.</em></h1><p>Practical research, tools, code, jobs, and market intelligence for technical founders moving from product to company.</p></div></section>
+  <section class="hub-main container"><div class="resource-hub-grid">{resources.map((item)=><a href={item.href}><span>{item.code}</span><p class="hub-label">{item.meta}</p><h2>{item.title}</h2><p>{item.text}</p><strong>Explore resource →</strong></a>)}</div></section>
+</BaseLayout>

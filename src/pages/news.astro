@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const stories = [
+  { category: 'Founders', title: 'Why working products are replacing pitch decks', summary: 'Technical founders can now demonstrate product quality, customer behavior, and shipping velocity before a traditional fundraising process begins.', tag: 'FIELD NOTE' },
+  { category: 'Capital', title: 'Progressive capital rewards verified learning', summary: 'Small proof-linked checks can help founders answer the next important question without overfunding untested assumptions.', tag: 'CAPITAL BRIEF' },
+  { category: 'AI', title: 'The new startup stack is becoming agent native', summary: 'Coding, research, support, and distribution agents are changing how very small teams build and operate software companies.', tag: 'MARKET SIGNAL' },
+  { category: 'Distribution', title: 'Customer access is the new technical moat', summary: 'As product creation gets faster, founders with a repeatable route to users gain a durable advantage over teams focused only on features.', tag: 'GROWTH NOTE' },
+  { category: 'Jobs', title: 'Early startup roles are becoming more cross functional', summary: 'The most valuable first hires increasingly combine technical fluency, customer judgment, and the ability to ship without heavy process.', tag: 'TALENT BRIEF' },
+  { category: 'Foundry', title: 'Rethinksoft Foundry W26 is taking shape', summary: 'The first cohort is designed around working AI-native products, verifiable founder evidence, and focused 30-day proof points.', tag: 'RETHINKSOFT' },
+];
+const categories=[...new Set(stories.map((story)=>story.category))];
+const title='Latest Startup News and Founder Intelligence | Rethinksoft';
+const description='Startup news, market signals, capital analysis, and practical intelligence for AI-native technical founders.';
+---
+<BaseLayout {title} {description} pageClass="hub-page">
+  <section class="hub-hero news-hub-hero"><div class="container"><p class="eyebrow">Latest Startup News</p><h1>Signals for founders<br />building what is <em>next.</em></h1><p>A focused editorial feed covering startup capital, AI-native teams, distribution, product, and technical founder strategy.</p></div></section>
+  <section class="hub-main container" data-news-feed><div class="hub-section-head"><div><p class="eyebrow">Founder intelligence</p><h2>Read the signal.<br />Skip the noise.</h2></div><div class="hub-chips"><button class="active" type="button" data-news-category="all">All</button>{categories.map((category)=><button type="button" data-news-category={category.toLowerCase()}>{category}</button>)}</div></div><div class="news-hub-grid">{stories.map((story,index)=><article data-news-card data-category={story.category.toLowerCase()}><div><span>{story.tag}</span><span>{String(index+1).padStart(2,'0')}</span></div><p class="hub-label">{story.category}</p><h2>{story.title}</h2><p>{story.summary}</p><strong>RETHINKSOFT EDITORIAL →</strong></article>)}</div></section>
+  <script is:inline>(()=>{const root=document.querySelector('[data-news-feed]');if(!root)return;const cards=[...root.querySelectorAll('[data-news-card]')];const buttons=[...root.querySelectorAll('[data-news-category]')];buttons.forEach((button)=>button.addEventListener('click',()=>{const category=button.dataset.newsCategory;buttons.forEach((item)=>item.classList.toggle('active',item===button));cards.forEach((card)=>card.hidden=category!=='all'&&card.dataset.category!==category);}));})();</script>
+</BaseLayout>

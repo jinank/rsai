@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProductMark from '../components/ProductMark.astro';
+import { categoryEmoji, getApps } from '../lib/apps';
+
+const companies = getApps();
+const categories = [...new Set(companies.map((company) => company.category))].sort();
+const title = 'Rethinksoft Company Directory | Startup Market Research';
+const description = 'Explore software companies and product categories researched by Rethinksoft for technical founders.';
+const jsonLd = { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Rethinksoft Company Directory', itemListElement: companies.map((company, index) => ({ '@type': 'ListItem', position: index + 1, name: company.name, url: `https://${company.domain}` })) };
+---
+<BaseLayout {title} {description} {jsonLd} pageClass="hub-page">
+  <section class="hub-hero"><div class="container"><p class="eyebrow">Rethinksoft Company Directory</p><h1>Know the market<br />before you <em>build.</em></h1><p>Research established software companies, compare categories and pricing, then inspect the product opportunities behind them.</p><div class="hub-metrics"><span><strong>{companies.length}</strong> researched companies</span><span><strong>{categories.length}</strong> software categories</span></div></div></section>
+  <section class="hub-main container" data-company-directory>
+    <div class="hub-toolbar"><label><span>Search companies</span><input type="search" placeholder="Search company, category, or domain" data-company-search /></label><div class="hub-chips"><button class="active" type="button" data-company-category="all">All</button>{categories.map((category) => <button type="button" data-company-category={category.toLowerCase()}>{category}</button>)}</div></div>
+    <div class="company-grid">{companies.map((company, index) => <article class="company-card" data-company data-search={`${company.name} ${company.domain} ${company.category}`.toLowerCase()} data-category={company.category.toLowerCase()}><div class="company-card-top"><ProductMark name={company.name} domain={company.domain} /><span>{String(index + 1).padStart(2, '0')}</span></div><p class="hub-label">{categoryEmoji[company.category]} {company.category}</p><h2>{company.name}</h2><p>{company.notes}</p><div class="company-card-foot"><span><strong>${company.priceMonthly}</strong> market price / month</span><a href={`/${company.slug}`}>View research →</a></div></article>)}</div>
+    <p class="hub-empty" data-company-empty hidden>No companies match those filters.</p>
+  </section>
+  <script is:inline>
+    (() => { const root=document.querySelector('[data-company-directory]'); if(!root)return; const input=root.querySelector('[data-company-search]'); const cards=[...root.querySelectorAll('[data-company]')]; const buttons=[...root.querySelectorAll('[data-company-category]')]; const empty=root.querySelector('[data-company-empty]'); let category='all'; const filter=()=>{const query=input.value.trim().toLowerCase();let count=0;cards.forEach((card)=>{const show=(!query||card.dataset.search.includes(query))&&(category==='all'||card.dataset.category===category);card.hidden=!show;if(show)count+=1;});empty.hidden=count!==0;};input.addEventListener('input',filter);buttons.forEach((button)=>button.addEventListener('click',()=>{category=button.dataset.companyCategory;buttons.forEach((item)=>item.classList.toggle('active',item===button));filter();})); })();
+  </script>
+</BaseLayout>

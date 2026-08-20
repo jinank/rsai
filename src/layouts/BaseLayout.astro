@@ -15,6 +15,7 @@ import '../styles/palette.css';
 import '../styles/holaos-inspired.css';
 import '../styles/foundry.css';
 import '../styles/foundry-goji.css';
+import '../styles/hub-pages.css';
 
 interface Props {
   title: string;
@@ -62,12 +63,17 @@ const imageUrl = new URL(image, Astro.site);
     </header>
     <main><slot /></main>
     <footer class="site-footer reveal">
-      <div class="footer-grid">
-        <div><a class="brand" href="/" aria-label="Rethinksoft home"><span class="brand-wordmark"><span>Rethink</span><em>soft</em></span></a><p>Progressive capital for<br />AI-native technical founders.</p></div>
-        <div><p class="eyebrow">Foundry</p><a href="/#model">How it works ↗</a><a href="/#score">Rethink Score ↗</a><a href="/#pilot">Foundry 01 ↗</a><a href="/#apply">Apply ↗</a></div>
-        <div><p class="eyebrow">Rethinksoft</p><a href="/tools">Free tools ↗</a><a href="/directory">Founder resources ↗</a><p>For enterprises: Rethinksoft AI</p></div>
+      <div class="footer-cta">
+        <div><p class="eyebrow">Rethinksoft Foundry</p><h2>Build the proof.<br />Fund the progress.</h2></div>
+        <a href="/#apply"><span>→</span>Apply to Foundry</a>
       </div>
-      <div class="footer-line"><span>© 2026 Rethinksoft</span><span><i></i> All systems operational</span></div>
+      <div class="footer-grid">
+        <div class="footer-brand"><a class="brand" href="/" aria-label="Rethinksoft home"><span class="brand-wordmark"><span>Rethink</span><em>soft</em></span></a><p>Progressive capital, startup intelligence, and practical infrastructure for AI-native technical founders.</p></div>
+        <div><p class="eyebrow">Discover</p><a href="/company-directory">Company Directory</a><a href="/news">Latest Startup News</a><a href="/jobs">Startup Jobs</a><a href="/resources">Resources</a></div>
+        <div><p class="eyebrow">Foundry</p><a href="/#model">How it works</a><a href="/#score">Rethink Score</a><a href="/#pilot">Foundry W26</a><a href="/#apply">Apply now</a></div>
+        <div><p class="eyebrow">Connect</p><a href="/partner">Become Partner</a><a href="/tools">Free Tools</a><a href="/open-source">Open Source</a><a href="/sell">Submit a Product</a></div>
+      </div>
+      <div class="footer-line"><span>© 2026 Rethinksoft</span><span>Built for technical founders</span><span><i></i> All systems operational</span></div>
     </footer>
     <script is:inline src="/site.js"></script>
   </body>

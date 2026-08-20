@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const roles=[
+  ['Founding Engineer','Engineering','Build core product systems with direct founder ownership.'],['Applied AI Engineer','AI','Turn models and agents into dependable customer workflows.'],['Founding Designer','Design','Shape product, brand, and interaction systems from first principles.'],['Growth Engineer','Growth','Build acquisition loops, experiments, and measurable distribution.'],['Founder Associate','Operations','Work across research, customers, capital, and company building.'],['Developer Advocate','Community','Help technical users learn, ship, and share what they build.'],
+];
+const title='Startup Jobs for Technical Builders | Rethinksoft';
+const description='Discover high-ownership startup roles for engineers, designers, growth builders, and AI-native operators.';
+---
+<BaseLayout {title} {description} pageClass="hub-page">
+  <section class="hub-hero jobs-hero"><div class="container"><p class="eyebrow">Startup Jobs</p><h1>Join a small team.<br />Do work that <em>compounds.</em></h1><p>High-ownership roles for people who can think clearly, move quickly, and help turn working products into enduring companies.</p><a class="hub-primary" href="#talent"><span>→</span>Join the talent network</a></div></section>
+  <section class="hub-main container"><div class="hub-section-head"><div><p class="eyebrow">Roles we track</p><h2>Built for people<br />who like to build.</h2></div><p>Foundry companies are early. Roles often span more than one function and reward judgment over narrow titles.</p></div><div class="jobs-grid">{roles.map((role,index)=><article><span>{String(index+1).padStart(2,'0')}</span><p class="hub-label">{role[1]}</p><h2>{role[0]}</h2><p>{role[2]}</p><small>NETWORK ROLE PROFILE</small></article>)}</div></section>
+  <section class="hub-capture" id="talent"><div class="container"><div><p class="eyebrow">Talent network</p><h2>Be first to hear<br />about new roles.</h2><p>Join the early list for opportunities across Rethinksoft and future Foundry companies.</p></div><form id="waitlist-form"><input class="hp" name="company" tabindex="-1" autocomplete="off" /><label for="jobs-email">WORK EMAIL</label><div><input id="jobs-email" name="email" type="email" placeholder="you@email.com" required /><button type="submit"><span>→</span>JOIN THE NETWORK</button></div><p id="waitlist-note" aria-live="polite">No spam. Only relevant startup opportunities.</p></form></div></section>
+</BaseLayout>
