@@ -21,7 +21,7 @@ const h = (type, props, ...children) => ({ type, props: { ...props, children } }
 async function render(name, eyebrow, title, accent, footer) {
   const tree = h('div', { style: { width: '1200px', height: '630px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', background: '#f7f8f5', color: '#151713', padding: '62px 70px', border: '2px solid #dfe3db', position: 'relative', overflow: 'hidden' } },
     h('div', { style: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontFamily: 'JetBrains Mono', fontSize: '20px' } },
-      h('div', { style: { display: 'flex', color: '#151713', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: '26px' } }, 'Rethinksoft'), h('div', { style: { display: 'flex', color: '#696e65' } }, 'READY-MADE SOFTWARE BUSINESSES')),
+      h('div', { style: { display: 'flex', color: '#151713', fontFamily: 'Space Grotesk', fontWeight: 700, fontSize: '26px' } }, 'Rethinksoft'), h('div', { style: { display: 'flex', color: '#696e65' } }, 'AI-NATIVE STARTUP FOUNDRY')),
     h('div', { style: { display: 'flex', flexDirection: 'column' } },
       h('div', { style: { display: 'flex', fontFamily: 'JetBrains Mono', color: accent, fontSize: '22px', letterSpacing: '2px', marginBottom: '22px' } }, `// ${eyebrow}`),
       h('div', { style: { display: 'flex', fontFamily: 'Space Grotesk', fontSize: title.length > 22 ? '86px' : '108px', fontWeight: 700, letterSpacing: '-6px', lineHeight: .9, maxWidth: '1040px' } }, title),
@@ -32,6 +32,6 @@ async function render(name, eyebrow, title, accent, footer) {
   fs.writeFileSync(path.join(out, name), new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng());
 }
 
-await render('home.png', 'PICK IT. OWN IT. START SELLING.', 'START YOUR SOFTWARE BUSINESS TODAY.', '#ec5d14', 'HOST IT OR OWN THE COMPLETE SOURCE CODE');
+await render('home.png', 'PROGRESSIVE CAPITAL FOR TECHNICAL FOUNDERS', 'BUILD YOUR STARTUP. WE FUND THE PROGRESS.', '#70a51b', 'APPLY TO FOUNDRY 01');
 for (const app of apps) await render(`${app.slug}.png`, `BUILD A ${app.name.toUpperCase()} STYLE PRODUCT`, scopes[app.verdict], colors[app.verdict], `${app.name.toUpperCase()} · AGENT PROMPT · OPEN SOURCE CODE`);
 console.log(`Generated ${apps.length + 1} Open Graph images.`);

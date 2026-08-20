@@ -147,6 +147,7 @@
     event.preventDefault();
     const button = waitlist.querySelector('button');
     const note = document.querySelector('#waitlist-note');
+    const original = button.textContent;
     button.disabled = true; button.textContent = 'TRANSMITTING…';
     try {
       const response = await fetch('/api/waitlist', { method: 'POST', body: new FormData(waitlist) });
@@ -154,7 +155,7 @@
       note.textContent = data.message || data.error;
       if (response.ok) waitlist.reset();
     } catch { note.textContent = 'SIGNAL LOST. TRY AGAIN.'; }
-    finally { button.disabled = false; button.textContent = 'JOIN QUEUE ↗'; }
+    finally { button.disabled = false; button.textContent = original; }
   });
 
   document.querySelector('[data-creator-form]')?.addEventListener('submit', async (event) => {

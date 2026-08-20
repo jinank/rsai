@@ -13,6 +13,7 @@ import '../styles/resources.css';
 import '../styles/responsive.css';
 import '../styles/palette.css';
 import '../styles/holaos-inspired.css';
+import '../styles/foundry.css';
 
 interface Props {
   title: string;
@@ -53,18 +54,18 @@ const imageUrl = new URL(image, Astro.site);
         <span></span><span></span><span></span>
       </button>
       <nav id="site-navigation" aria-label="Primary navigation">
-        <a href="/#businesses">Businesses</a>
-        <a href="/#how-it-works">How it works</a>
-        <a href="/tools">Free tools</a>
-        <a href="/showcase">Community builds</a>
+        <a href="/#model">How it works</a>
+        <a href="/#score">Rethink Score</a>
+        <a href="/#pilot">Foundry 01</a>
+        <a href="/#apply">Apply</a>
       </nav>
     </header>
     <main><slot /></main>
     <footer class="site-footer reveal">
       <div class="footer-grid">
-        <div><a class="brand" href="/" aria-label="Rethinksoft home"><span class="brand-wordmark"><span>Rethink</span><em>soft</em></span></a><p>Launch-ready software businesses<br />you can brand, own, and sell.</p></div>
-        <div><p class="eyebrow">Explore</p><a href="/#businesses">Software businesses ↗</a><a href="/#pricing">Pricing ↗</a><a href="/directory">Market research ↗</a><a href="/tools">Free tools ↗</a><a href="/showcase">Community builds ↗</a></div>
-        <div><p class="eyebrow">Privacy</p><p>First-party aggregate analytics only.<br />Built for independent teams.</p></div>
+        <div><a class="brand" href="/" aria-label="Rethinksoft home"><span class="brand-wordmark"><span>Rethink</span><em>soft</em></span></a><p>Progressive capital for<br />AI-native technical founders.</p></div>
+        <div><p class="eyebrow">Foundry</p><a href="/#model">How it works ↗</a><a href="/#score">Rethink Score ↗</a><a href="/#pilot">Foundry 01 ↗</a><a href="/#apply">Apply ↗</a></div>
+        <div><p class="eyebrow">Rethinksoft</p><a href="/tools">Free tools ↗</a><a href="/directory">Founder resources ↗</a><p>For enterprises: Rethinksoft AI</p></div>
       </div>
       <div class="footer-line"><span>© 2026 Rethinksoft</span><span><i></i> All systems operational</span></div>
     </footer>

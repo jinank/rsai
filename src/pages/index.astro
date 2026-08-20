@@ -1,102 +1,89 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ProductMark from '../components/ProductMark.astro';
-import FreeToolCard from '../components/FreeToolCard.astro';
-import { categoryEmoji, getApps, verdictCopy } from '../lib/apps';
-import { getVoteCounts } from '../lib/db';
-import { freeTools } from '../lib/freeTools';
-import { launchBusinesses } from '../lib/businesses';
 
-const apps = getApps();
-const counts = getVoteCounts();
-const ranked = apps.sort((a, b) => (counts[b.slug] || 0) - (counts[a.slug] || 0) || b.priceMonthly - a.priceMonthly);
-const categories = [...new Set(apps.map((app) => app.category))].sort();
-const homepageTools = [...freeTools.filter((item) => item.status === 'available'), ...freeTools.filter((item) => item.status === 'coming')].slice(0, 4);
-const title = 'Rethinksoft | Start Your Software Business Today';
-const description = 'Choose a launch-ready software business, make it yours, connect payments, and start selling. Host with Rethinksoft or own the complete source code.';
+const title = 'Rethinksoft | Build Your Startup. We Fund the Progress.';
+const description = 'Rethinksoft backs AI-native technical founders with progressive capital, infrastructure, and distribution support.';
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+const agents = [
+  { code: '01', name: 'Founder', text: 'Execution history, technical capability, commitment, and founder-market fit.' },
+  { code: '02', name: 'Market', text: 'Customer urgency, willingness to pay, timing, and reachable market size.' },
+  { code: '03', name: 'Product', text: 'Live value, differentiation, activation, and evidence of repeated use.' },
+  { code: '04', name: 'Technical', text: 'Architecture, security, code provenance, feasibility, and shipping velocity.' },
+  { code: '05', name: 'Distribution', text: 'Channel access, customer acquisition tests, sales ability, and unfair reach.' },
+  { code: '06', name: 'Traction', text: 'Verified users, revenue, growth, engagement, conversion, and retention.' },
+];
+const scoreFactors = [
+  ['Founder execution', 15], ['Problem evidence', 12], ['Market', 8], ['Product', 8], ['Technical execution', 8],
+  ['Distribution', 15], ['Traction', 15], ['Capital efficiency', 7], ['Differentiation', 5], ['Risk and integrity', 7],
+];
+const faqs = [
+  { q: 'Is this an accelerator?', a: 'Foundry 01 is a focused capital experiment for technical founders with a working B2B product. We combine AI-assisted diligence, a human funding decision, one critical commercial experiment, and hands-on distribution support.' },
+  { q: 'Do you take equity in the pilot?', a: 'No. The first four-founder pilot offers up to $1,000 in non-dilutive grant funding plus approved AI and cloud credits. Future investments may use a separate, clearly documented SAFE.' },
+  { q: 'How quickly will I receive a decision?', a: 'Our target is a provisional evidence review within minutes and a human-reviewed decision within 24 hours after required evidence is available.' },
+  { q: 'What happens if the experiment fails?', a: 'An honest negative result is useful. We evaluate the quality of execution and learning, then decide whether to continue, change the experiment, pause, or stop. Funding is not a reward for manufacturing positive results.' },
+];
 const jsonLd = [
-  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
-  { '@context': 'https://schema.org', '@type': 'ItemList', name: 'Launch-ready software businesses', itemListElement: launchBusinesses.map((business, index) => ({ '@type': 'ListItem', position: index + 1, url: `${siteUrl}/#${business.slug}`, name: business.name })) },
-  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Rethinksoft', url: siteUrl },
+  { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl },
+  { '@context': 'https://schema.org', '@type': 'Organization', name: 'Rethinksoft', url: siteUrl, description },
+  { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs.map((item) => ({ '@type': 'Question', name: item.q, acceptedAnswer: { '@type': 'Answer', text: item.a } })) },
 ];
 ---
-<BaseLayout {title} {description} image="/og/home.png" {jsonLd} pageClass="home-page business-home">
-  <section class="hero business-hero">
-    <div class="container business-hero-inner">
-      <p class="eyebrow">Software businesses, ready to make yours</p>
-      <h1>Pick it. Own it.<br /><em>Start selling.</em></h1>
-      <p class="hero-lede">Choose a launch-ready software product. Add your brand and domain. Connect payments. Go live without months of building.</p>
-      <div class="hero-actions"><a class="button business-primary" href="#businesses">EXPLORE BUSINESSES</a><a class="business-text-link" href="#ownership">SEE WHAT YOU OWN ↘</a></div>
-      <div class="journey-rail" aria-label="Rethinksoft launch journey">{['Pick', 'Own', 'Launch', 'Sell', 'Grow'].map((step, index) => <span><b>{String(index + 1).padStart(2, '0')}</b>{step}</span>)}</div>
+<BaseLayout {title} {description} image="/og/home.png" {jsonLd} pageClass="home-page foundry-home">
+  <section class="foundry-hero">
+    <div class="foundry-grid" aria-hidden="true"></div>
+    <div class="container foundry-hero-inner">
+      <p class="foundry-kicker"><span></span>Applications for Foundry 01 opening soon</p>
+      <h1>Build your startup.<br /><em>We fund the progress.</em></h1>
+      <p class="foundry-lede">Rethinksoft backs AI-native technical founders with progressive capital, infrastructure, and distribution support.</p>
+      <div class="foundry-actions"><a class="foundry-primary" href="#apply">APPLY TO FOUNDRY <span>↗</span></a><a class="foundry-secondary" href="#model">HOW FUNDING WORKS</a></div>
+      <div class="foundry-proof"><span><b>15 min</b> application</span><span><b>24 hr</b> decision target</span><span><b>$1K</b> first experiment</span><span><b>0%</b> pilot equity</span></div>
     </div>
   </section>
 
-  <section class="section container business-catalog reveal" id="businesses">
-    <div class="section-head"><div><p class="eyebrow">The founding collection</p><h2>Five businesses.<br />One clear starting point.</h2></div><p>Each product is a complete commercial application, not a design template. Pick the audience you understand and make the business distinctly yours.</p></div>
-    <div class="business-grid">
-      {launchBusinesses.map((business, index) => (
-        <article class="business-card" id={business.slug}>
-          <div class="business-card-top"><span class="business-icon">{business.icon}</span><span class="business-number">0{index + 1}</span></div>
-          <p class="business-audience">{business.audience}</p><h3>{business.name}</h3><p>{business.description}</p>
-          <div class="business-economics"><span>Your customer could pay</span><strong>{business.customerPrice}</strong></div>
-          <ul>{business.includes.map((item) => <li>{item}</li>)}</ul>
-          <div class="business-card-actions"><a href="#waitlist">REQUEST EARLY ACCESS</a><span>FROM ${business.licensePrice}</span></div>
-        </article>
-      ))}
+  <section class="foundry-thesis section" id="thesis"><div class="container thesis-layout reveal">
+    <p class="foundry-section-code">01 / THE THESIS</p>
+    <div><h2>Software is cheaper to build.<br /><em>Capital should become smarter.</em></h2><p>Instead of making one large bet on a collection of assumptions, Rethinksoft funds the smallest credible experiment that can prove what should happen next.</p></div>
+    <div class="thesis-equation" aria-label="Rethinksoft funding principle"><span>HIGH-RISK ASSUMPTION</span><b>×</b><span>SMALLEST CREDIBLE TEST</span><b>÷</b><span>CAPITAL REQUIRED</span><strong>= LEARNING PER DOLLAR</strong></div>
+  </div></section>
+
+  <section class="foundry-model section" id="model"><div class="container reveal">
+    <div class="foundry-section-head"><div><p class="foundry-section-code">02 / THE MODEL</p><h2>From working product<br />to verified demand.</h2></div><p>You have already built something. We help determine whether it deserves to become a company, then fund the next proof point.</p></div>
+    <div class="foundry-steps">
+      <article><span>01</span><div class="step-glyph">↗</div><h3>Apply</h3><p>Show us the product, customer, evidence, and constraint in about 15 minutes.</p></article>
+      <article><span>02</span><div class="step-glyph">⌁</div><h3>Underwrite</h3><p>Specialized agents examine the founder, market, product, technology, distribution, and traction.</p></article>
+      <article><span>03</span><div class="step-glyph">81</div><h3>Understand</h3><p>Receive an explainable score, evidence map, red-team case, and recommended next experiment.</p></article>
+      <article><span>04</span><div class="step-glyph">$</div><h3>Fund</h3><p>A human reviews the evidence and approves a small grant tied to one critical experiment.</p></article>
+      <article><span>05</span><div class="step-glyph">↑</div><h3>Progress</h3><p>Verified execution can unlock a larger investment and continued distribution support.</p></article>
     </div>
-  </section>
+  </div></section>
 
-  <section class="ownership-section section" id="ownership">
-    <div class="container reveal">
-      <div class="section-head centered-head"><div><p class="eyebrow">One product, two paths</p><h2>Host it or own every line.</h2></div><p>Choose convenience today without giving up ownership tomorrow.</p></div>
-      <div class="ownership-grid">
-        <article class="ownership-card cloud"><span class="ownership-label">RETHINK CLOUD</span><h3>We launch and run it.</h3><p>Add your brand, domain, and connected Stripe account. We handle deployment, updates, monitoring, and backups.</p><ul><li>Fast managed launch</li><li>Custom domain</li><li>Updates and backups</li><li>Connected payments</li></ul><strong>From $29/month</strong></article>
-        <article class="ownership-card code"><span class="ownership-label">SOURCE CODE</span><h3>You take it anywhere.</h3><p>Download the complete application with commercial-use rights. Modify it, self-host it, and keep full control.</p><ul><li>Complete source code</li><li>Commercial license</li><li>Setup documentation</li><li>No hidden revenue tracking</li></ul><strong>From $199 one time</strong></article>
-      </div>
-    </div>
-  </section>
+  <section class="committee-section section" id="diligence"><div class="container committee-layout reveal">
+    <div class="committee-copy"><p class="foundry-section-code">03 / AI DILIGENCE</p><h2>Seven perspectives.<br />One accountable decision.</h2><p>Rethinksoft does not ask one model to approve or reject a company. Specialized agents build independent cases, a red team argues against the investment, and an accountable human makes the final decision.</p><div class="human-decision"><span>H</span><div><strong>Human investment review</strong><p>Required before capital moves.</p></div></div></div>
+    <div class="agent-console"><div class="console-top"><span>RETHINK / COMMITTEE</span><span class="console-live"><i></i> EVIDENCE REVIEW</span></div><div class="agent-grid">{agents.map((agent) => <article><span>{agent.code}</span><h3>{agent.name} agent</h3><p>{agent.text}</p><small>ANALYSIS READY ✓</small></article>)}</div><div class="red-team"><span>07</span><div><h3>Red team</h3><p>Argues against the investment and identifies the assumptions most likely to break.</p></div><strong>CHALLENGE ACTIVE</strong></div></div>
+  </div></section>
 
-  <section class="section container lifecycle reveal" id="how-it-works">
-    <div class="section-head"><div><p class="eyebrow">The Rethinksoft lifecycle</p><h2>From choice to customers.</h2></div><p>The product is already built. Your job is to choose a market, shape the offer, launch, and learn.</p></div>
-    <div class="lifecycle-grid">
-      <article><span>01</span><h3>Pick</h3><p>Choose a software business and audience you understand.</p></article>
-      <article><span>02</span><h3>Own</h3><p>Add your name, brand, colors, pricing, and positioning.</p></article>
-      <article><span>03</span><h3>Launch</h3><p>Use Rethink Cloud or deploy the source code yourself.</p></article>
-      <article><span>04</span><h3>Sell</h3><p>Connect payments and start accepting real customers.</p></article>
-      <article><span>05</span><h3>Grow</h3><p>Add SEO, content, outreach, and paid acquisition when ready.</p></article>
-    </div>
-  </section>
+  <section class="score-section section" id="score"><div class="container score-layout reveal">
+    <div class="score-card"><div class="score-card-top"><span>RETHINK SCORE</span><span>PROVISIONAL</span></div><div class="score-number"><strong>81</strong><span>/100</span></div><div class="score-status"><i></i><div><span>CONDITIONAL</span><strong>Strong product. Distribution evidence required.</strong></div></div><div class="score-next"><span>NEXT PROOF POINT</span><p>Convert three design partners into paying customers.</p><small>POTENTIAL UNLOCK&nbsp;&nbsp; $10K TO $25K</small></div></div>
+    <div class="score-copy"><p class="foundry-section-code">04 / EXPLAINABLE UNDERWRITING</p><h2>A score that tells you<br />what to do next.</h2><p>Rethink Score is decision support, not an automatic verdict. You see what we like, what concerns us, the evidence used, and the proof point that could improve the decision.</p><div class="score-bars">{scoreFactors.map(([name, weight]) => <div><span>{name}</span><i><b style={`width:${Number(weight) * 5.6}%`}></b></i><strong>{weight}</strong></div>)}</div><p class="score-note">Severe integrity, legal, security, or IP concerns override the numerical score.</p></div>
+  </div></section>
 
-  <section class="section container reveal" id="directory-preview">
-    <div class="section-head"><div><p class="eyebrow">Research the opportunity</p><h2>Explore proven software markets.</h2></div><p>Compare familiar products, pricing, scope, and open source foundations before choosing what to sell.</p></div>
-    <div class="search-shell market-search"><label class="sr-only" for="app-search">Search software markets</label><input class="hero-search" id="app-search" type="search" placeholder="Search markets, products, or categories" autocomplete="off" /></div>
-    <div class="chips" aria-label="Filter by category"><button class="chip active" type="button" data-category="all">ALL</button>{categories.map((category) => <button class="chip" type="button" data-category={category.toLowerCase()}>{categoryEmoji[category] || '◈'} {category.toUpperCase()}</button>)}</div>
-    <div class="table-shell market-table">
-      <div class="list-header"><span>RANK</span><span>MARKET</span><span>CATEGORY</span><span>REFERENCE</span><span>SCOPE</span><span>BUILT</span><span>DETAILS</span></div>
-      <div id="app-list">{ranked.map((app, index) => (
-        <div class="app-row" data-name={`${app.name} ${app.domain}`.toLowerCase()} data-category={app.category.toLowerCase()}>
-          <span class="rank">{String(index + 1).padStart(2, '0')}</span><span class="app-id"><ProductMark name={app.name} domain={app.domain} /><a href={`/${app.slug}`}>{app.name}</a></span><span class="category">{categoryEmoji[app.category]} {app.category}</span><span class="price">${app.priceMonthly}/mo</span><span class="scope-cell"><span class:list={["verdict", `verdict-${app.verdict}`]}>{verdictCopy[app.verdict].short}</span></span><span class="votes">{counts[app.slug] || 0}</span><a class="demo-button" href={`/${app.slug}`} aria-label={`Explore ${app.name}`}>EXPLORE ↗</a>
-        </div>
-      ))}</div>
-      <div class="empty-state" id="empty-state">No matching markets found.</div>
-    </div>
-    <a class="tools-view-all" href="/directory">VIEW THE FULL DIRECTORY ↗</a>
-  </section>
+  <section class="capital-section section" id="capital"><div class="container reveal">
+    <div class="foundry-section-head"><div><p class="foundry-section-code">05 / PROGRESSIVE CAPITAL</p><h2>Prove more.<br />Unlock more.</h2></div><p>Capital follows verified learning. Each stage is designed to answer the next important question without overfunding an untested assumption.</p></div>
+    <div class="capital-roadmap"><article class="active"><span>STAGE 01</span><h3>Validate</h3><strong>$1K</strong><p>Test one critical customer or market assumption.</p><small>NON-DILUTIVE PILOT GRANT</small></article><i>→</i><article><span>STAGE 02</span><h3>Distribute</h3><strong>$10K</strong><p>Convert a working product into verified paying demand.</p><small>FUTURE SAFE INVESTMENT</small></article><i>→</i><article><span>STAGE 03</span><h3>Repeat</h3><strong>$25K</strong><p>Prove retention or a repeatable acquisition channel.</p><small>HUMAN INVESTMENT REVIEW</small></article><i>→</i><article><span>STAGE 04</span><h3>Scale</h3><strong>$100K+</strong><p>Concentrate capital behind demonstrated execution.</p><small>FOLLOW-ON CAPITAL</small></article></div>
+    <p class="capital-principle">Experiment priority = decision impact × uncertainty × speed ÷ cash required</p>
+  </div></section>
 
-  <section class="pricing-section business-pricing section" id="pricing">
-    <div class="container reveal">
-      <div class="section-head centered-head"><div><p class="eyebrow">Simple, transparent economics</p><h2>Own the software. Pay for what helps.</h2></div><p>No subscription required to retain source code you already purchased.</p></div>
-      <div class="revenue-grid">
-        <article><span>01</span><p class="pricing-name">Software License</p><div class="pricing-price"><strong>$199</strong><span>one time, from</span></div><p>Complete source code, commercial-use rights, documentation, and self-hosting freedom.</p><a href="#waitlist">BROWSE FOUNDING PRODUCTS ↗</a></article>
-        <article class="featured"><span>02</span><p class="pricing-name">Rethink Cloud</p><div class="pricing-price"><strong>$29</strong><span>/ month, from</span></div><p>Managed hosting, deployment, updates, backups, monitoring, and domain support.</p><a href="#waitlist">JOIN EARLY ACCESS ↗</a></article>
-        <article><span>03</span><p class="pricing-name">Rethink Growth</p><div class="pricing-price"><strong>$299</strong><span>/ month, from</span></div><p>SEO, AEO, content, social, outreach, lead generation, and acquisition support.</p><a href="#waitlist">TALK ABOUT GROWTH ↗</a></article>
-      </div>
-      <p class="pricing-note">Cloud commerce fees will be disclosed clearly. Self-hosted products have no hidden transaction tracking.</p>
-    </div>
-  </section>
+  <section class="founder-fit section" id="fit"><div class="container fit-layout reveal">
+    <div><p class="foundry-section-code">06 / WHO IT IS FOR</p><h2>Already building.<br /><em>Ready to prove it.</em></h2><p>Foundry 01 is intentionally narrow. We are looking for technical founders who can reach a real customer without months of additional product development.</p><a href="#apply">CHECK YOUR FIT ↓</a></div>
+    <div class="fit-list"><article><span>01</span><strong>One or two technical founders</strong><p>You can build and ship without outsourcing the core product.</p></article><article><span>02</span><strong>Working B2B software</strong><p>A customer can use the product today, even if the experience is still rough.</p></article><article><span>03</span><strong>Under $5K MRR</strong><p>You are early enough for a small experiment to materially change the trajectory.</p></article><article><span>04</span><strong>Customer access</strong><p>You have completed at least five genuine conversations and can charge within 30 days.</p></article><article><span>05</span><strong>Verifiable evidence</strong><p>You are comfortable supporting claims with product, repository, user, and revenue evidence.</p></article></div>
+  </div></section>
 
-  <section class="home-tools section container reveal"><div class="section-head"><div><p class="eyebrow">Useful before you buy</p><h2>Free tools for builders.</h2></div><p>Research, audit, create, and validate your next business with practical tools.</p></div><div class="free-tools-grid home-tools-grid">{homepageTools.map((item) => <FreeToolCard {item} compact />)}</div><a class="tools-view-all" href="/tools">EXPLORE ALL FREE TOOLS ↗</a></section>
+  <section class="pilot-section section" id="pilot"><div class="container reveal">
+    <div class="pilot-banner"><div><p class="foundry-section-code">FOUNDRY 01 / THE PILOT</p><h2>Four founders.<br />One month.<br />No equity.</h2></div><div class="pilot-details"><p>We are testing whether Rethinksoft can help strong technical founders reach verified customer demand faster and more efficiently.</p><div><span><strong>4</strong> founders</span><span><strong>$1K</strong> grant each</span><span><strong>30</strong> days</span><span><strong>0%</strong> equity</span></div></div></div>
+    <div class="pilot-kpi"><span>PRIMARY PILOT METRIC</span><strong>Verified new paying customers</strong><i>per $1,000 of Rethinksoft cost</i></div>
+  </div></section>
 
-  <section class="waitlist reveal" id="waitlist"><div class="container wait-card"><div><p class="eyebrow">Founding access</p><h2>Which business<br />would you launch?</h2></div><div><p>Join the founding list. Tell us which product you want and whether you prefer managed hosting or complete source-code ownership.</p><form class="wait-form" id="waitlist-form"><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" /><label class="sr-only" for="email">Email address</label><input id="email" name="email" type="email" placeholder="founder@yourcompany.com" required /><button class="button" type="submit">REQUEST ACCESS ↗</button></form><p class="form-note" id="waitlist-note" aria-live="polite">No spam. One useful update when founding products are ready.</p></div></div></section>
+  <section class="faq-section section" id="faq"><div class="container reveal"><div class="foundry-section-head"><div><p class="foundry-section-code">07 / QUESTIONS</p><h2>Clear terms.<br />No accelerator theatre.</h2></div><p>The first cohort is designed to test Rethinksoft as much as it tests the participating companies.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
+
+  <section class="foundry-apply" id="apply"><div class="container apply-layout reveal"><div><p class="foundry-section-code">FOUNDRY 01</p><h2>Your product is live.<br /><em>What should happen next?</em></h2><p>Join the early application list for the first four-founder Rethinksoft cohort.</p></div><form class="foundry-apply-form" id="waitlist-form"><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" /><label for="email">WORK EMAIL</label><div><input id="email" name="email" type="email" placeholder="founder@startup.com" required /><button type="submit">REQUEST APPLICATION <span>↗</span></button></div><p id="waitlist-note" aria-live="polite">We will send the application brief when Foundry 01 opens. No spam.</p></form></div></section>
 </BaseLayout>
