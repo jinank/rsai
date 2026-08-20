@@ -26,15 +26,15 @@ h1,h2,h3{letter-spacing:-.05em}h1{font-size:clamp(56px,8.2vw,106px);line-height:
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
 
 /* Elegant, simple typography */
-body{font-family:'Manrope',sans-serif;font-size:14px;line-height:1.65;letter-spacing:-.01em}
-body :where(h1,h2,h3,p,a,button,input,select,textarea,label,li,strong,b,span,summary){font-family:'Manrope',sans-serif!important}
-button,input,select,textarea{font-family:'Manrope',sans-serif}
-h1,h2,h3{font-family:'Manrope',sans-serif!important;letter-spacing:-.04em}
+body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.625;letter-spacing:-.02em}
+body :where(h1,h2,h3,p,a,button,input,select,textarea,label,li,strong,b,span,summary){font-family:'Inter',sans-serif!important}
+button,input,select,textarea{font-family:'Inter',sans-serif}
+h1,h2,h3{font-family:'Inter',sans-serif!important;letter-spacing:-.045em}
 h1{font-size:clamp(54px,7.8vw,98px);font-weight:600;line-height:.94}
 h2{font-size:clamp(35px,4.7vw,54px);font-weight:600;line-height:1}
 h3{font-weight:600;letter-spacing:-.025em}
-.brand,.brand-mark{font-family:'Manrope',sans-serif!important;letter-spacing:-.025em}
-.hero-lede{font:500 18px/1.6 'Manrope',sans-serif!important}
+.brand,.brand-mark{font-family:'Inter',sans-serif!important;letter-spacing:-.035em}
+.hero-lede{font:400 20px/1.3 'Inter',sans-serif!important;letter-spacing:-.02em!important}
 .directory-hero h1,.store-hero h1,.creator-hero h1,.checkout-copy h1,.demo-heading h1{font-size:clamp(50px,6.8vw,82px);letter-spacing:-.045em}
 .eyebrow,.list-header,.list-header *,.rank,.category,.price,.votes,.verdict,.demo-button,.search-key,.ticker-label,.code-toolbar,.code-toolbar *,.copy-button,.form-note,.checkout-label,.back-link,.demo-window-bar,.demo-window-bar *,pre,code{font-family:'JetBrains Mono',monospace!important;letter-spacing:.03em}
 
