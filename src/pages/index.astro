@@ -53,43 +53,55 @@ const jsonLd = [
     </div>
   </section>
 
-  <section class="foundry-thesis section" id="thesis"><div class="container thesis-layout reveal">
-    <p class="foundry-section-code">01 / THE THESIS</p>
-    <div><h2>Software is cheaper to build.<br /><em>Capital should become smarter.</em></h2><p>Instead of making one large bet on a collection of assumptions, Rethinksoft funds the smallest credible experiment that can prove what should happen next.</p></div>
-    <div class="thesis-equation" aria-label="Rethinksoft funding principle"><span>HIGH-RISK ASSUMPTION</span><b>×</b><span>SMALLEST CREDIBLE TEST</span><b>÷</b><span>CAPITAL REQUIRED</span><strong>= LEARNING PER DOLLAR</strong></div>
-  </div></section>
+  <section class="foundry-story" id="thesis">
+    <div class="container foundry-story-layout">
+      <aside class="foundry-story-main reveal">
+        <p class="foundry-section-code">01 / THE THESIS</p>
+        <h2>Software is cheaper to build.<br /><em>Capital should become smarter.</em></h2>
+        <p>Instead of making one large bet on a collection of assumptions, Rethinksoft funds the smallest credible experiment that can prove what should happen next.</p>
+        <div class="story-equation" aria-label="Rethinksoft funding principle"><span>HIGH-RISK ASSUMPTION</span><b>×</b><span>SMALLEST CREDIBLE TEST</span><b>÷</b><span>CAPITAL REQUIRED</span><strong>= LEARNING PER DOLLAR</strong></div>
+      </aside>
 
-  <section class="foundry-model section" id="model"><div class="container reveal">
-    <div class="foundry-section-head"><div><p class="foundry-section-code">02 / THE MODEL</p><h2>From working product<br />to verified demand.</h2></div><p>You have already built something. We help determine whether it deserves to become a company, then fund the next proof point.</p></div>
-    <div class="foundry-steps">
-      <article><span>01</span><div class="step-glyph">↗</div><h3>Apply</h3><p>Show us the product, customer, evidence, and constraint in about 15 minutes.</p></article>
-      <article><span>02</span><div class="step-glyph">⌁</div><h3>Underwrite</h3><p>Specialized agents examine the founder, market, product, technology, distribution, and traction.</p></article>
-      <article><span>03</span><div class="step-glyph">81</div><h3>Understand</h3><p>Receive an explainable score, evidence map, red-team case, and recommended next experiment.</p></article>
-      <article><span>04</span><div class="step-glyph">$</div><h3>Fund</h3><p>A human reviews the evidence and approves a small grant tied to one critical experiment.</p></article>
-      <article><span>05</span><div class="step-glyph">↑</div><h3>Progress</h3><p>Verified execution can unlock a larger investment and continued distribution support.</p></article>
+      <div class="foundry-story-stack">
+        <article class="story-card story-model reveal" id="model">
+          <div class="story-card-head"><div><p class="foundry-section-code">02 / THE MODEL</p><h2>From working product<br />to verified demand.</h2></div><p>You have already built something. We help determine whether it deserves to become a company, then fund the next proof point.</p></div>
+          <div class="story-step-grid">
+            <div><span>01</span><b>↗</b><h3>Apply</h3><p>Show us the product, customer, evidence, and constraint in about 15 minutes.</p></div>
+            <div><span>02</span><b>⌁</b><h3>Underwrite</h3><p>Specialized agents examine the founder, market, product, technology, distribution, and traction.</p></div>
+            <div><span>03</span><b>81</b><h3>Understand</h3><p>Receive an explainable score, evidence map, red team case, and recommended next experiment.</p></div>
+            <div><span>04</span><b>$</b><h3>Fund</h3><p>A human reviews the evidence and approves a small grant tied to one critical experiment.</p></div>
+            <div><span>05</span><b>↑</b><h3>Progress</h3><p>Verified execution can unlock a larger investment and continued distribution support.</p></div>
+          </div>
+        </article>
+
+        <article class="story-card story-diligence reveal" id="diligence">
+          <div class="story-card-head"><div><p class="foundry-section-code">03 / AI DILIGENCE</p><h2>Seven perspectives.<br />One accountable decision.</h2></div><p>Specialized agents build independent cases, a red team argues against the investment, and an accountable human makes the final decision.</p></div>
+          <div class="story-human"><span>H</span><div><strong>Human investment review</strong><p>Required before capital moves.</p></div><small>EVIDENCE REVIEW</small></div>
+          <div class="story-agent-grid">{agents.map((agent) => <div><span>{agent.code}</span><h3>{agent.name} agent</h3><p>{agent.text}</p><small>ANALYSIS READY ✓</small></div>)}<div class="story-red-team"><span>07</span><h3>Red team</h3><p>Argues against the investment and identifies the assumptions most likely to break.</p><small>CHALLENGE ACTIVE</small></div></div>
+        </article>
+
+        <article class="story-card story-score reveal" id="score">
+          <div class="story-card-head"><div><p class="foundry-section-code">04 / EXPLAINABLE UNDERWRITING</p><h2>A score that tells you<br />what to do next.</h2></div><p>Rethink Score is decision support, not an automatic verdict. You see the evidence, concerns, and next proof point.</p></div>
+          <div class="story-score-layout">
+            <div class="story-score-result"><div><span>RETHINK SCORE</span><small>PROVISIONAL</small></div><strong>81<em>/100</em></strong><p><b>CONDITIONAL</b> Strong product. Distribution evidence required.</p><div><span>NEXT PROOF POINT</span><p>Convert three design partners into paying customers.</p><small>POTENTIAL UNLOCK&nbsp; $10K TO $25K</small></div></div>
+            <div><div class="score-bars">{scoreFactors.map(([name, weight]) => <div><span>{name}</span><i><b style={`width:${Number(weight) * 5.6}%`}></b></i><strong>{weight}</strong></div>)}</div><p class="score-note">Severe integrity, legal, security, or IP concerns override the numerical score.</p></div>
+          </div>
+        </article>
+
+        <article class="story-card story-capital reveal" id="capital">
+          <div class="story-card-head"><div><p class="foundry-section-code">05 / PROGRESSIVE CAPITAL</p><h2>Prove more.<br />Unlock more.</h2></div><p>Capital follows verified learning. Each stage answers the next important question without overfunding an untested assumption.</p></div>
+          <div class="story-capital-grid"><div class="active"><span>STAGE 01</span><h3>Validate</h3><strong>$1K</strong><p>Test one critical customer or market assumption.</p><small>NON-DILUTIVE PILOT GRANT</small></div><div><span>STAGE 02</span><h3>Distribute</h3><strong>$10K</strong><p>Convert a working product into verified paying demand.</p><small>FUTURE SAFE INVESTMENT</small></div><div><span>STAGE 03</span><h3>Repeat</h3><strong>$25K</strong><p>Prove retention or a repeatable acquisition channel.</p><small>HUMAN INVESTMENT REVIEW</small></div><div><span>STAGE 04</span><h3>Scale</h3><strong>$100K+</strong><p>Concentrate capital behind demonstrated execution.</p><small>FOLLOW-ON CAPITAL</small></div></div>
+          <p class="story-formula">Experiment priority = decision impact × uncertainty × speed ÷ cash required</p>
+        </article>
+
+        <article class="story-card story-fit reveal" id="fit">
+          <div class="story-card-head"><div><p class="foundry-section-code">06 / WHO IT IS FOR</p><h2>Already building.<br /><em>Ready to prove it.</em></h2></div><p>We are looking for technical founders who can reach a real customer without months of additional product development.</p></div>
+          <div class="story-fit-grid"><div><span>01</span><strong>One or two technical founders</strong><p>You can build and ship without outsourcing the core product.</p></div><div><span>02</span><strong>Working B2B software</strong><p>A customer can use the product today, even if the experience is still rough.</p></div><div><span>03</span><strong>Under $5K MRR</strong><p>You are early enough for a small experiment to change the trajectory.</p></div><div><span>04</span><strong>Customer access</strong><p>You have completed at least five genuine conversations and can charge within 30 days.</p></div><div><span>05</span><strong>Verifiable evidence</strong><p>You support claims with product, repository, user, and revenue evidence.</p></div></div>
+          <a class="story-fit-cta" href="#apply"><span>→</span>CHECK YOUR FIT</a>
+        </article>
+      </div>
     </div>
-  </div></section>
-
-  <section class="committee-section section" id="diligence"><div class="container committee-layout reveal">
-    <div class="committee-copy"><p class="foundry-section-code">03 / AI DILIGENCE</p><h2>Seven perspectives.<br />One accountable decision.</h2><p>Rethinksoft does not ask one model to approve or reject a company. Specialized agents build independent cases, a red team argues against the investment, and an accountable human makes the final decision.</p><div class="human-decision"><span>H</span><div><strong>Human investment review</strong><p>Required before capital moves.</p></div></div></div>
-    <div class="agent-console"><div class="console-top"><span>RETHINK / COMMITTEE</span><span class="console-live"><i></i> EVIDENCE REVIEW</span></div><div class="agent-grid">{agents.map((agent) => <article><span>{agent.code}</span><h3>{agent.name} agent</h3><p>{agent.text}</p><small>ANALYSIS READY ✓</small></article>)}</div><div class="red-team"><span>07</span><div><h3>Red team</h3><p>Argues against the investment and identifies the assumptions most likely to break.</p></div><strong>CHALLENGE ACTIVE</strong></div></div>
-  </div></section>
-
-  <section class="score-section section" id="score"><div class="container score-layout reveal">
-    <div class="score-card"><div class="score-card-top"><span>RETHINK SCORE</span><span>PROVISIONAL</span></div><div class="score-number"><strong>81</strong><span>/100</span></div><div class="score-status"><i></i><div><span>CONDITIONAL</span><strong>Strong product. Distribution evidence required.</strong></div></div><div class="score-next"><span>NEXT PROOF POINT</span><p>Convert three design partners into paying customers.</p><small>POTENTIAL UNLOCK&nbsp;&nbsp; $10K TO $25K</small></div></div>
-    <div class="score-copy"><p class="foundry-section-code">04 / EXPLAINABLE UNDERWRITING</p><h2>A score that tells you<br />what to do next.</h2><p>Rethink Score is decision support, not an automatic verdict. You see what we like, what concerns us, the evidence used, and the proof point that could improve the decision.</p><div class="score-bars">{scoreFactors.map(([name, weight]) => <div><span>{name}</span><i><b style={`width:${Number(weight) * 5.6}%`}></b></i><strong>{weight}</strong></div>)}</div><p class="score-note">Severe integrity, legal, security, or IP concerns override the numerical score.</p></div>
-  </div></section>
-
-  <section class="capital-section section" id="capital"><div class="container reveal">
-    <div class="foundry-section-head"><div><p class="foundry-section-code">05 / PROGRESSIVE CAPITAL</p><h2>Prove more.<br />Unlock more.</h2></div><p>Capital follows verified learning. Each stage is designed to answer the next important question without overfunding an untested assumption.</p></div>
-    <div class="capital-roadmap"><article class="active"><span>STAGE 01</span><h3>Validate</h3><strong>$1K</strong><p>Test one critical customer or market assumption.</p><small>NON-DILUTIVE PILOT GRANT</small></article><i>→</i><article><span>STAGE 02</span><h3>Distribute</h3><strong>$10K</strong><p>Convert a working product into verified paying demand.</p><small>FUTURE SAFE INVESTMENT</small></article><i>→</i><article><span>STAGE 03</span><h3>Repeat</h3><strong>$25K</strong><p>Prove retention or a repeatable acquisition channel.</p><small>HUMAN INVESTMENT REVIEW</small></article><i>→</i><article><span>STAGE 04</span><h3>Scale</h3><strong>$100K+</strong><p>Concentrate capital behind demonstrated execution.</p><small>FOLLOW-ON CAPITAL</small></article></div>
-    <p class="capital-principle">Experiment priority = decision impact × uncertainty × speed ÷ cash required</p>
-  </div></section>
-
-  <section class="founder-fit section" id="fit"><div class="container fit-layout reveal">
-    <div><p class="foundry-section-code">06 / WHO IT IS FOR</p><h2>Already building.<br /><em>Ready to prove it.</em></h2><p>Foundry 01 is intentionally narrow. We are looking for technical founders who can reach a real customer without months of additional product development.</p><a href="#apply">CHECK YOUR FIT ↓</a></div>
-    <div class="fit-list"><article><span>01</span><strong>One or two technical founders</strong><p>You can build and ship without outsourcing the core product.</p></article><article><span>02</span><strong>Working B2B software</strong><p>A customer can use the product today, even if the experience is still rough.</p></article><article><span>03</span><strong>Under $5K MRR</strong><p>You are early enough for a small experiment to materially change the trajectory.</p></article><article><span>04</span><strong>Customer access</strong><p>You have completed at least five genuine conversations and can charge within 30 days.</p></article><article><span>05</span><strong>Verifiable evidence</strong><p>You are comfortable supporting claims with product, repository, user, and revenue evidence.</p></article></div>
-  </div></section>
+  </section>
 
   <section class="pilot-section section" id="pilot"><div class="container reveal">
     <div class="pilot-banner"><div><p class="foundry-section-code">FOUNDRY 01 / THE PILOT</p><h2>Four founders.<br />One month.<br />No equity.</h2></div><div class="pilot-details"><p>We are testing whether Rethinksoft can help strong technical founders reach verified customer demand faster and more efficiently.</p><div><span><strong>4</strong> founders</span><span><strong>$1K</strong> grant each</span><span><strong>30</strong> days</span><span><strong>0%</strong> equity</span></div></div></div>
