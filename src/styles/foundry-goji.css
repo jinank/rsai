@@ -31,12 +31,10 @@
 /* Compact editorial rhythm and segmented actions */
 .foundry-home .site-header{width:min(1180px,calc(100% - 40px));height:54px;margin-top:10px;padding:0 6px 0 14px;border:0;border-bottom:1px solid rgba(74,48,36,.1);border-radius:0;background:rgba(255,253,251,.84);box-shadow:none}
 .foundry-home .site-header>.brand{font-size:17px}
-.foundry-home .site-header>nav{position:static;left:auto;margin-left:auto;gap:23px;transform:none}
+.foundry-home .site-header>nav{position:absolute;left:50%;margin:0;gap:23px;transform:translateX(-50%)}
 .foundry-home .site-header nav>a:not(.nav-cta){padding:8px 0;color:#625b56;font-size:10px;font-weight:600}
-.foundry-home .site-header nav>a:last-child{display:flex;min-height:44px;padding:0 18px 0 0!important;align-items:center;overflow:hidden;border:1px solid #cfc4bd;border-radius:0;background:#fff;color:var(--goji-ink);font-size:11px;font-weight:650;gap:15px;box-shadow:0 7px 18px rgba(77,43,26,.05)}
-.foundry-home .site-header nav>a:last-child::before{display:grid;width:44px;align-self:stretch;place-items:center;background:#ff5f57;color:#fff;content:'→';font-size:19px;box-shadow:inset 0 0 0 1px rgba(111,26,19,.12)}
-.foundry-home .site-header nav>a:last-child::after{display:none}
-.foundry-home .site-header nav>a:last-child:hover{border-color:#cfc0b7;background:#fff;color:var(--goji-orange);transform:translateY(-1px)}
+.foundry-home .header-apply-cta{border-color:#cfc4bd;background:#fff;color:var(--goji-ink)}
+.foundry-home .header-apply-cta:hover{border-color:#cfc0b7;color:var(--goji-orange)}
 
 .foundry-hero{padding-top:124px}
 .foundry-hero-inner{padding-top:40px}
@@ -88,8 +86,7 @@
 @media(max-width:1050px){.capital-roadmap{gap:8px}.foundry-home .site-header{width:calc(100% - 28px)}}
 @media(max-width:800px){
   .foundry-home .site-header{display:grid;width:calc(100% - 20px);height:auto;min-height:54px;margin-top:8px;padding:8px 10px;border:1px solid rgba(74,48,36,.1);border-radius:8px}
-  .foundry-home .site-header>.brand{font-size:17px}.foundry-home .site-header>nav{margin-left:0;gap:2px}.foundry-home .site-header nav>a:not(.nav-cta){font-size:13px}
-  .foundry-home .site-header nav>a:last-child{width:100%;min-height:44px;margin-top:3px;font-size:12px}.foundry-home .site-header nav>a:last-child::before{width:44px}
+  .foundry-home .site-header>.brand{font-size:17px}.foundry-home .site-header>nav{position:static;left:auto;margin:8px 0 0;gap:2px;transform:none}.foundry-home .site-header nav>a:not(.nav-cta){font-size:13px}
   .foundry-hero{padding-top:114px}.foundry-hero-inner{padding-top:38px}.foundry-hero h1{font-size:clamp(42px,10.8vw,54px)}.foundry-lede{font-size:16px}.foundry-actions{width:min(100%,360px);align-items:stretch;flex-direction:column}.foundry-primary,.foundry-secondary{width:100%}
   .foundry-preview{width:min(94vw,690px);margin-top:42px}.foundry-proof{margin-top:34px}
   .foundry-home .section{padding-block:68px}.foundry-section-head{margin-bottom:34px;gap:25px}.foundry-steps article{min-height:235px}.committee-layout,.score-layout,.fit-layout,.pilot-banner,.apply-layout{gap:34px}.agent-grid article{min-height:150px}.score-card{padding:20px}.capital-roadmap article{min-height:260px}.fit-list article{min-height:96px}.pilot-banner{padding:28px}.foundry-faq summary{min-height:68px}.foundry-apply{padding:70px 0}

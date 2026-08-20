@@ -58,8 +58,9 @@ const imageUrl = new URL(image, Astro.site);
       <nav id="site-navigation" aria-label="Primary navigation">
         <a href="/#model">How it works</a>
         <a href="/#score">Rethink Score</a>
-        <a href="/#apply">Apply now</a>
+        <a class="mobile-apply-link" href="/#apply">Apply now</a>
       </nav>
+      <a class="header-apply-cta" href="/#apply"><span>→</span>Apply now</a>
     </header>
     <main><slot /></main>
     <footer class="site-footer reveal">
