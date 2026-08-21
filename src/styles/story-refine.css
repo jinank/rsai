@@ -1,0 +1,209 @@
+/* Story chapters: tighter vertical rhythm, readable body copy, scroll-driven motion.
+   Loaded last so it settles the story-* scale that the older .foundry-steps/.agent-grid
+   typography pass no longer reaches. */
+
+/* ---------- 1. Motion baseline: reveal on scroll, not on page load ---------- */
+/* The blanket load-time animations outrank the observer transition, so everything
+   finished animating before it was ever on screen. Hand motion back to .visible. */
+.foundry-home h2,
+.foundry-home .foundry-section-code,
+.foundry-section-head > p,
+.foundry-story .story-card h2 { animation: none }
+
+/* Hidden-until-revealed is gated on .motion-ready, which site.js sets only once it has
+   actually run. Without JS (or with reduced motion) every .reveal stays plainly visible
+   rather than stranding the page at opacity 0. */
+.reveal { opacity: 1; animation: none; transform: none }
+.story-card.reveal { opacity: 1; transform: none }
+
+html.motion-ready .reveal { opacity: 0; transform: translateY(26px); transition: opacity .6s ease, transform .75s cubic-bezier(.22,1,.36,1) }
+html.motion-ready .reveal.visible { opacity: 1; transform: none }
+
+html.motion-ready .story-card.reveal { transform: translateY(30px) scale(.994); transition: opacity .6s ease, transform .75s cubic-bezier(.22,1,.36,1), box-shadow .35s ease }
+html.motion-ready .story-card.reveal.visible { transform: none }
+.story-card.reveal:hover,
+html.motion-ready .story-card.reveal.visible:hover { transform: translateY(-3px); box-shadow: 0 26px 70px rgba(83,49,31,.09) }
+.story-card:nth-child(2).reveal,
+.story-card:nth-child(3).reveal,
+.story-card:nth-child(4).reveal,
+.story-card:nth-child(5).reveal { transition-delay: 0s }
+
+/* Head copy leads the card in. */
+html.motion-ready .story-card .foundry-section-code,
+html.motion-ready .story-card .story-card-head h2,
+html.motion-ready .story-card .story-card-head > p { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .6s cubic-bezier(.22,1,.36,1) }
+html.motion-ready .story-card.visible .foundry-section-code { opacity: 1; transform: none; transition-delay: .05s }
+html.motion-ready .story-card.visible .story-card-head h2 { opacity: 1; transform: none; transition-delay: .1s }
+html.motion-ready .story-card.visible .story-card-head > p { opacity: 1; transform: none; transition-delay: .16s }
+
+/* Grid cells stagger in behind the head. */
+html.motion-ready .story-card :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid) > div,
+html.motion-ready .story-card .story-equation > *,
+html.motion-ready .story-card .story-human,
+html.motion-ready .story-card .story-formula,
+html.motion-ready .story-card .story-fit-cta { opacity: 0; transform: translateY(16px) }
+html.motion-ready .story-card :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid) > div,
+html.motion-ready .story-card .story-equation > * { transition: opacity .45s ease, transform .55s cubic-bezier(.22,1,.36,1), background-color .25s ease }
+html.motion-ready .story-card :is(.story-human, .story-formula, .story-fit-cta) { transition: opacity .45s ease, transform .55s cubic-bezier(.22,1,.36,1), color .2s ease }
+
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid) > div,
+html.motion-ready .story-card.visible .story-equation > *,
+html.motion-ready .story-card.visible :is(.story-human, .story-formula, .story-fit-cta) { opacity: 1; transform: none }
+
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(1) { transition-delay: .22s }
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(2) { transition-delay: .28s }
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(3) { transition-delay: .34s }
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(4) { transition-delay: .40s }
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(5) { transition-delay: .46s }
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(6) { transition-delay: .52s }
+html.motion-ready .story-card.visible :is(.story-step-grid, .story-agent-grid, .story-capital-grid, .story-fit-grid, .story-equation) > *:nth-child(n+7) { transition-delay: .58s }
+html.motion-ready .story-card.visible .story-human { transition-delay: .18s }
+html.motion-ready .story-card.visible :is(.story-formula, .story-fit-cta) { transition-delay: .5s }
+
+/* Score bars wipe out from the left, keeping their inline widths. */
+html.motion-ready .story-score-layout .score-bars b { transform: scaleX(0); transform-origin: left center; transition: transform .8s cubic-bezier(.22,1,.36,1) }
+html.motion-ready .story-card.visible .story-score-layout .score-bars b { transform: scaleX(1) }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(1) b { transition-delay: .30s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(2) b { transition-delay: .36s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(3) b { transition-delay: .42s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(4) b { transition-delay: .48s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(5) b { transition-delay: .54s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(6) b { transition-delay: .60s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(7) b { transition-delay: .66s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(8) b { transition-delay: .72s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(9) b { transition-delay: .78s }
+html.motion-ready .story-card.visible .score-bars > div:nth-child(10) b { transition-delay: .84s }
+html.motion-ready .story-score-layout { opacity: 0; transform: translateY(16px); transition: opacity .45s ease, transform .55s cubic-bezier(.22,1,.36,1) }
+html.motion-ready .story-card.visible .story-score-layout { opacity: 1; transform: none; transition-delay: .2s }
+
+/* The live indicators actually read as live. */
+.story-human > span { position: relative }
+html.motion-ready .story-card.visible .story-human > span::after { position: absolute; inset: 0; border-radius: 50%; border: 1px solid var(--hub-coral); content: ''; animation: story-ping 2.6s cubic-bezier(0,0,.2,1) infinite }
+@keyframes story-ping { 0% { opacity: .7; transform: scale(1) } 70%, 100% { opacity: 0; transform: scale(1.7) } }
+
+/* ---------- 2. Readability: the story grids were stuck at 12px ----------
+   One scale for everything inside a chapter, so the cards stop reading as fine print:
+   body 14.5px, sub-heads 19px, numerals 11.5px, mono micro-labels 11px. */
+.story-card-head > p { max-width: 46ch; color: #5e5650; font-size: 16px; line-height: 1.66 }
+.story-step-grid p,
+.story-agent-grid p,
+.story-capital-grid p,
+.story-fit-grid p,
+.story-human p { color: #5e5650; font-size: 14.5px; line-height: 1.6 }
+.story-agent-grid p { margin: 8px 0 0 }
+.story-capital-grid p { margin: 14px 0 }
+.story-step-grid h3,
+.story-agent-grid h3 { font-size: 19px }
+.story-fit-grid strong { font-size: 18.5px }
+.story-human strong { font-size: 16px }
+
+/* Numerals that index each cell. */
+.story-step-grid span,
+.story-agent-grid > div > span,
+.story-fit-grid > div > span { font-size: 11.5px }
+
+/* Mono micro-labels: 9-9.5px was below comfortable reading. */
+.story-agent-grid small,
+.story-capital-grid span,
+.story-capital-grid small,
+.story-human > small,
+.story-equation span,
+.story-equation strong,
+.story-formula,
+.story-score-result > div:first-child span,
+.story-score-result > div:first-child small,
+.story-score-result > div:last-child span,
+.story-score-result > div:last-child small { font-size: 11px }
+.story-equation b { font-size: 21px }
+.story-equation > * { min-height: 54px }
+
+/* Score panel copy. */
+.story-score-result > p { font-size: 14.5px; line-height: 1.55 }
+.story-score-result > div:last-child p { font-size: 16px; line-height: 1.45 }
+
+/* Score bars: the label column has to grow with its type. */
+.story-score-layout .score-bars > div { grid-template-columns: 170px 1fr 26px }
+.story-score-layout .score-bars span { font-size: 13px }
+.story-score-layout .score-bars strong { font-size: 11.5px }
+.story-score-layout .score-note { font-size: 12px !important; line-height: 1.6 }
+
+/* Headings stop shouting over the copy they introduce. */
+.story-card-head h2 { margin-top: 10px; font-size: clamp(32px, 3.5vw, 46px); line-height: 1.02 }
+.foundry-section-code { margin-bottom: 12px }
+
+/* ---------- 3. Rhythm: less dead space between and inside chapters ---------- */
+.foundry-story { padding: 36px 0 78px }
+.foundry-story-stack { gap: 16px }
+.story-thesis { margin-bottom: 16px }
+.story-card { padding: 30px 32px }
+.story-card-head { padding-bottom: 22px; gap: 34px }
+.story-step-grid,
+.story-agent-grid,
+.story-capital-grid,
+.story-fit-grid,
+.story-score-layout { margin-top: 22px }
+.story-human { margin-top: 22px; padding: 15px 18px }
+.story-agent-grid { margin-top: 12px }
+.story-thesis .story-equation { margin-top: 26px }
+.story-equation > * { min-height: 48px }
+.story-formula { margin-top: 20px; padding: 11px 15px }
+.story-fit-cta { margin-top: 22px }
+
+/* Cells size to their content instead of padding out to a fixed block. */
+.story-step-grid > div { min-height: 200px; padding: 20px 18px }
+.story-step-grid b { margin: 22px 0 8px }
+.story-agent-grid > div { min-height: 146px; padding: 20px }
+.story-capital-grid > div { min-height: 224px; padding: 20px 18px }
+.story-capital-grid h3 { margin: 20px 0 2px }
+.story-fit-grid > div { min-height: 122px; padding: 20px }
+.story-score-result { padding: 24px }
+.story-score-result > strong { margin: 26px 0 20px; font-size: 84px }
+.story-score-result > div:last-child { padding-top: 22px }
+.story-score-layout > div:last-child { padding: 24px }
+
+/* Downstream sections carried the same 94px block padding. */
+.foundry-home .section { padding-block: 74px }
+.foundry-apply { padding: 78px 0 }
+.foundry-section-head { margin-bottom: 34px }
+.foundry-faq summary { min-height: 62px; font-size: 17px }
+.foundry-faq details > p { margin-bottom: 20px; font-size: 14.5px }
+.pilot-banner { min-height: 0; padding: 36px; gap: 44px }
+
+/* ---------- 4. Hover feedback on the individual cells ---------- */
+.story-step-grid > div:hover,
+.story-agent-grid > div:hover,
+.story-capital-grid > div:hover,
+.story-fit-grid > div:hover { background: #fffaf7 }
+.story-step-grid > div,
+.story-fit-grid > div { transition: background-color .25s ease }
+.story-step-grid span { transition: background-color .25s ease, color .25s ease, border-color .25s ease }
+.story-step-grid > div:hover span { border-color: var(--hub-coral); background: var(--hub-coral); color: #fff }
+
+@media (max-width: 760px) {
+  .foundry-story { padding: 24px 0 56px }
+  .story-card { padding: 22px }
+  .story-card-head { padding-bottom: 18px; gap: 16px }
+  .story-card-head h2 { font-size: 34px }
+  .story-step-grid > div { min-height: 178px }
+  .story-capital-grid > div { min-height: 196px }
+  .foundry-home .section { padding-block: 56px }
+  .pilot-banner { padding: 26px; gap: 30px }
+  .story-score-layout .score-bars > div { grid-template-columns: 140px 1fr 24px }
+}
+
+@media (max-width: 420px) {
+  .story-score-layout .score-bars > div { grid-template-columns: 118px 1fr 22px }
+  .story-score-layout .score-bars span { font-size: 12px }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html .reveal,
+  html.motion-ready .reveal,
+  html.motion-ready .reveal.visible,
+  html.motion-ready .story-card.reveal,
+  html.motion-ready .story-card.reveal.visible,
+  html.motion-ready .story-card.reveal.visible:hover { opacity: 1; transform: none; transition: none }
+  .story-card *,
+  .story-score-layout,
+  .story-score-layout .score-bars b { opacity: 1 !important; transform: none !important; transition: none !important; animation: none !important }
+}
