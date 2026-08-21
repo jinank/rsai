@@ -137,6 +137,25 @@
     requestAnimationFrame(roll);
   }
 
+  const countUp = (el) => {
+    const target = Number(el.dataset.countup || 0);
+    const started = performance.now();
+    const roll = (now) => {
+      const progress = Math.min(1, (now - started) / 1200);
+      el.textContent = String(Math.round(target * (1 - Math.pow(1 - progress, 4))));
+      if (progress < 1) requestAnimationFrame(roll);
+    };
+    requestAnimationFrame(roll);
+  };
+  const counters = [...document.querySelectorAll('[data-countup]')];
+  if (counters.length && !reducedMotion && 'IntersectionObserver' in window) {
+    counters.forEach((el) => { el.textContent = '0'; });
+    const countObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => { if (entry.isIntersecting) { countUp(entry.target); countObserver.unobserve(entry.target); } });
+    }, { threshold: 0.5 });
+    counters.forEach((el) => countObserver.observe(el));
+  }
+
   const observer = 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
     entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); } });
   }, { threshold: 0.08 }) : null;
