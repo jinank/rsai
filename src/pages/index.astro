@@ -1,26 +1,26 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const title = 'Rethinksoft | Build Your Startup. We Fund the Progress.';
-const description = 'Rethinksoft backs AI-native technical founders with progressive capital, infrastructure, and distribution support.';
+const title = 'Rethinksoft Founder Sprint | From Product to Customers';
+const description = 'A free 30-day founder growth program helping technical founders find customers through distribution, execution, product feedback, and measurable accountability.';
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const agents = [
-  { code: '01', name: 'Founder', text: 'Execution history, technical capability, commitment, and founder-market fit.' },
-  { code: '02', name: 'Market', text: 'Customer urgency, willingness to pay, timing, and reachable market size.' },
-  { code: '03', name: 'Product', text: 'Live value, differentiation, activation, and evidence of repeated use.' },
-  { code: '04', name: 'Technical', text: 'Architecture, security, code provenance, feasibility, and shipping velocity.' },
-  { code: '05', name: 'Distribution', text: 'Channel access, customer acquisition tests, sales ability, and unfair reach.' },
-  { code: '06', name: 'Traction', text: 'Verified users, revenue, growth, engagement, conversion, and retention.' },
+  { code: '01', name: 'Product', text: 'What shipped, where users get value, and which product constraint matters most this week.' },
+  { code: '02', name: 'Customer', text: 'Customer conversations, painful problems, objections, urgency, and willingness to pay.' },
+  { code: '03', name: 'Distribution', text: 'Outreach, content, partnerships, SEO, AEO, and the channels producing qualified demand.' },
+  { code: '04', name: 'Revenue', text: 'Pricing, pipeline, conversions, paying customers, and the next credible revenue milestone.' },
+  { code: '05', name: 'Activation', text: 'Onboarding, time to value, product usage, retention signals, and preventable drop-off.' },
+  { code: '06', name: 'Execution', text: 'Shipping consistency, experiment quality, focus, follow-through, and learning velocity.' },
 ];
 const scoreFactors = [
-  ['Founder execution', 15], ['Problem evidence', 12], ['Market', 8], ['Product', 8], ['Technical execution', 8],
-  ['Distribution', 15], ['Traction', 15], ['Capital efficiency', 7], ['Differentiation', 5], ['Risk and integrity', 7],
+  ['Product execution', 15], ['Customer evidence', 15], ['Distribution activity', 20], ['Revenue progress', 15],
+  ['Activation and retention', 10], ['Shipping consistency', 10], ['Experiment quality', 10], ['Founder responsiveness', 5],
 ];
 const faqs = [
-  { q: 'Is this an accelerator?', a: 'Foundry 01 is a focused capital experiment for technical founders with a working B2B product. We combine AI-assisted diligence, a human funding decision, one critical commercial experiment, and hands-on distribution support.' },
-  { q: 'Do you take equity in the pilot?', a: 'No. The first four-founder pilot offers up to $1,000 in non-dilutive grant funding plus approved AI and cloud credits. Future investments may use a separate, clearly documented SAFE.' },
-  { q: 'How quickly will I receive a decision?', a: 'Our target is a provisional evidence review within minutes and a human-reviewed decision within 24 hours after required evidence is available.' },
-  { q: 'What happens if the experiment fails?', a: 'An honest negative result is useful. We evaluate the quality of execution and learning, then decide whether to continue, change the experiment, pause, or stop. Funding is not a reward for manufacturing positive results.' },
+  { q: 'Is this another accelerator?', a: 'No. The Founder Sprint is a focused 30-day execution program for technical founders with a working product. The wedge is distribution, customer progress, and weekly accountability.' },
+  { q: 'What does it cost and do you take equity?', a: 'The first cohort is free. Rethinksoft takes 0% equity and makes no cash investment. Founders keep 100% of their company.' },
+  { q: 'What do founders receive?', a: 'Each founder receives a weekly growth plan, product feedback, SEO and AEO support, outreach guidance, pricing and conversion reviews, accountability, and relevant credits or deals where available.' },
+  { q: 'How do founders graduate?', a: 'Graduation requires a verified outcome such as a paying customer, material MRR growth, qualified sales opportunities, improved activation, or a validated distribution channel.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl },
@@ -32,69 +32,69 @@ const jsonLd = [
   <section class="foundry-hero">
     <div class="foundry-grid" aria-hidden="true"></div>
     <div class="container foundry-hero-inner">
-      <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">Applications for Rethinksoft Foundry <strong>W26</strong> closing soon</span></p>
-      <h1>You build your startup.<br /><em>We fund the progress.</em></h1>
-      <p class="foundry-lede">Rethinksoft backs AI-native technical founders with progressive capital, infrastructure, and distribution support.</p>
-      <div class="foundry-actions"><a class="foundry-primary" href="#apply">APPLY TO RETHINKSOFT FOUNDRY <span>↗</span></a><a class="foundry-secondary" href="#model">HOW FUNDING WORKS</a></div>
-      <div class="foundry-preview" aria-label="Example Rethinksoft diligence result">
+      <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">Applications for the 30-day Founder Sprint <strong>W26</strong> closing soon</span></p>
+      <h1>You build the product.<br /><em>We help you find customers.</em></h1>
+      <p class="foundry-lede">A free 30-day growth program for technical founders ready to turn a working product into measurable customer progress.</p>
+      <div class="foundry-actions"><a class="foundry-primary" href="#apply">APPLY TO THE FOUNDER SPRINT <span>↗</span></a><a class="foundry-secondary" href="#model">HOW THE SPRINT WORKS</a></div>
+      <div class="foundry-preview" aria-label="Example Rethinksoft weekly growth plan">
         <div class="preview-window">
-          <div class="preview-bar"><span><i></i><i></i><i></i></span><small>foundry.rethinksoft.ai / review</small><b>LIVE</b></div>
+          <div class="preview-bar"><span><i></i><i></i><i></i></span><small>growth.rethinksoft.com / week-04</small><b>LIVE</b></div>
           <div class="preview-body">
-            <div class="preview-company"><span>CA</span><div><small>APPLICATION 004</small><strong>ConstructionProposal AI</strong><p>Working B2B product · 3 design partners · Pre-revenue</p></div></div>
-            <div class="preview-score"><small>RETHINK SCORE</small><strong>81<span>/100</span></strong><b>CONDITIONAL</b></div>
-            <div class="preview-agents"><span>FOUNDER <b>84</b></span><span>PRODUCT <b>86</b></span><span>DISTRIBUTION <b>62</b></span><span>TRACTION <b>70</b></span></div>
-            <div class="preview-unlock"><div><small>NEXT PROOF POINT</small><strong>Convert 3 design partners into paying customers</strong></div><span>POTENTIAL UNLOCK&nbsp; $10K</span></div>
+            <div class="preview-company"><span>CA</span><div><small>FOUNDER SPRINT · WEEK 04</small><strong>ConstructionProposal AI</strong><p>Working B2B product · 3 design partners · $740 MRR</p></div></div>
+            <div class="preview-score"><small>GROWTH SCORE</small><strong>78<span>/100</span></strong><b>PROGRESSING</b></div>
+            <div class="preview-agents"><span>PRODUCT <b>92</b></span><span>DISTRIBUTION <b>68</b></span><span>REVENUE <b>47</b></span><span>CONSISTENCY <b>86</b></span></div>
+            <div class="preview-unlock"><div><small>NEXT 7 DAYS</small><strong>Convert 3 existing design partners into paying customers</strong></div><span>NEXT MILESTONE&nbsp; $1K MRR</span></div>
           </div>
         </div>
-        <div class="preview-float preview-float-left"><span>✓</span><div><small>EVIDENCE VERIFIED</small><strong>GitHub + product live</strong></div></div>
-        <div class="preview-float preview-float-right"><small>FIRST EXPERIMENT</small><strong>$1,000</strong><span>0% equity</span></div>
+        <div class="preview-float preview-float-left"><span>✓</span><div><small>WEEKLY PLAN READY</small><strong>5 focused actions</strong></div></div>
+        <div class="preview-float preview-float-right"><small>MRR PROGRESS</small><strong>+32%</strong><span>this month</span></div>
       </div>
-      <div class="foundry-proof"><span><b>15 min</b> application</span><span><b>24 hr</b> decision target</span><span><b>$1K</b> first experiment</span><span><b>0%</b> pilot equity</span></div>
+      <div class="foundry-proof"><span><b>10</b> technical founders</span><span><b>30</b> focused days</span><span><b>$0</b> program cost</span><span><b>0%</b> equity taken</span></div>
     </div>
   </section>
 
   <section class="foundry-story" id="thesis">
     <div class="container foundry-story-layout">
       <article class="story-card story-thesis reveal">
-        <div class="story-card-head"><div><p class="foundry-section-code">01 / THE THESIS</p><h2>Software is cheaper to build.<br /><em>Capital should become smarter.</em></h2></div><p>Instead of making one large bet on a collection of assumptions, Rethinksoft funds the smallest credible experiment that can prove what should happen next.</p></div>
-        <div class="story-equation" aria-label="Rethinksoft funding principle"><span>HIGH-RISK ASSUMPTION</span><b>×</b><span>SMALLEST CREDIBLE TEST</span><b>÷</b><span>CAPITAL REQUIRED</span><strong>= LEARNING PER DOLLAR</strong></div>
+        <div class="story-card-head"><div><p class="foundry-section-code">01 / THE THESIS</p><h2>Building is getting cheaper.<br /><em>Distribution is not.</em></h2></div><p>Technical founders can ship a product faster than ever. The difficult part is finding customers, learning what converts, and building a repeatable path to growth.</p></div>
+        <div class="story-equation" aria-label="Rethinksoft growth principle"><span>WORKING PRODUCT</span><b>×</b><span>FOCUSED EXECUTION</span><b>×</b><span>DISTRIBUTION</span><strong>= VERIFIED CUSTOMER PROGRESS</strong></div>
       </article>
 
       <div class="foundry-story-stack">
         <article class="story-card story-model reveal" id="model">
-          <div class="story-card-head"><div><p class="foundry-section-code">02 / THE MODEL</p><h2>From working product<br />to verified demand.</h2></div><p>You have already built something. We help determine whether it deserves to become a company, then fund the next proof point.</p></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">02 / THE MODEL</p><h2>From working product<br />to paying customers.</h2></div><p>You bring a product people can use today. We help you focus, reach the right customers, improve conversion, and identify what deserves to be repeated.</p></div>
           <div class="story-step-grid">
-            <div><span>01</span><b>↗</b><h3>Apply</h3><p>Show us the product, customer, evidence, and constraint in about 15 minutes.</p></div>
-            <div><span>02</span><b>⌁</b><h3>Underwrite</h3><p>Specialized agents examine the founder, market, product, technology, distribution, and traction.</p></div>
-            <div><span>03</span><b>81</b><h3>Understand</h3><p>Receive an explainable score, evidence map, red team case, and recommended next experiment.</p></div>
-            <div><span>04</span><b>$</b><h3>Fund</h3><p>A human reviews the evidence and approves a small grant tied to one critical experiment.</p></div>
-            <div><span>05</span><b>↑</b><h3>Progress</h3><p>Verified execution can unlock a larger investment and continued distribution support.</p></div>
+            <div><span>01</span><b>↗</b><h3>Apply</h3><p>Show us your working product, target customer, current metrics, and biggest growth constraint.</p></div>
+            <div><span>02</span><b>◎</b><h3>Focus</h3><p>Choose one 30-day outcome, one primary customer, and the distribution channel worth testing first.</p></div>
+            <div><span>03</span><b>→</b><h3>Reach</h3><p>Run customer discovery, outreach, SEO, AEO, content, and partnership experiments.</p></div>
+            <div><span>04</span><b>✓</b><h3>Convert</h3><p>Improve positioning, onboarding, pricing, activation, and sales follow-up using real evidence.</p></div>
+            <div><span>05</span><b>↑</b><h3>Repeat</h3><p>Document what worked and leave with a focused growth plan for the next 30 days.</p></div>
           </div>
         </article>
 
         <article class="story-card story-diligence reveal" id="diligence">
-          <div class="story-card-head"><div><p class="foundry-section-code">03 / AI DILIGENCE</p><h2>Seven perspectives.<br />One accountable decision.</h2></div><p>Specialized agents build independent cases, a red team argues against the investment, and an accountable human makes the final decision.</p></div>
-          <div class="story-human"><span>H</span><div><strong>Human investment review</strong><p>Required before capital moves.</p></div><small>EVIDENCE REVIEW</small></div>
-          <div class="story-agent-grid">{agents.map((agent) => <div><span>{agent.code}</span><h3>{agent.name} agent</h3><p>{agent.text}</p><small>ANALYSIS READY ✓</small></div>)}<div class="story-red-team"><span>07</span><h3>Red team</h3><p>Argues against the investment and identifies the assumptions most likely to break.</p><small>CHALLENGE ACTIVE</small></div></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">03 / WEEKLY GROWTH SYSTEM</p><h2>Six perspectives.<br />One focused weekly plan.</h2></div><p>Rethinksoft turns verified founder activity into a practical seven-day plan instead of another dashboard full of vanity metrics.</p></div>
+          <div class="story-human"><span>H</span><div><strong>Weekly founder review</strong><p>Human judgment keeps the plan useful and realistic.</p></div><small>ACTION REVIEW</small></div>
+          <div class="story-agent-grid">{agents.map((agent) => <div><span>{agent.code}</span><h3>{agent.name}</h3><p>{agent.text}</p><small>WEEKLY SIGNAL ✓</small></div>)}<div class="story-red-team"><span>07</span><h3>Focus check</h3><p>Removes low-impact work and forces the founder to prioritize the few actions most likely to change a customer or revenue metric.</p><small>PRIORITY ACTIVE</small></div></div>
         </article>
 
         <article class="story-card story-score reveal" id="score">
-          <div class="story-card-head"><div><p class="foundry-section-code">04 / EXPLAINABLE UNDERWRITING</p><h2>A score that tells you<br />what to do next.</h2></div><p>Rethink Score is decision support, not an automatic verdict. You see the evidence, concerns, and next proof point.</p></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">04 / GROWTH SCORE</p><h2>Measure progress.<br />Choose what comes next.</h2></div><p>The Growth Score measures execution and customer evidence. It explains what improved, what remains weak, and which action should matter next.</p></div>
           <div class="story-score-layout">
-            <div class="story-score-result"><div><span>RETHINK SCORE</span><small>PROVISIONAL</small></div><strong><i data-countup="81">81</i><em>/100</em></strong><p><b>CONDITIONAL</b> Strong product. Distribution evidence required.</p><div><span>NEXT PROOF POINT</span><p>Convert three design partners into paying customers.</p><small>POTENTIAL UNLOCK&nbsp; $10K TO $25K</small></div></div>
-            <div><div class="score-bars">{scoreFactors.map(([name, weight]) => <div><span>{name}</span><i><b style={`width:${Number(weight) * 5.6}%`}></b></i><strong>{weight}</strong></div>)}</div><p class="score-note">Severe integrity, legal, security, or IP concerns override the numerical score.</p></div>
+            <div class="story-score-result"><div><span>GROWTH SCORE</span><small>WEEK 04</small></div><strong><i data-countup="78">78</i><em>/100</em></strong><p><b>PROGRESSING</b> Strong product execution. Distribution and revenue need focus.</p><div><span>NEXT 7 DAYS</span><p>Convert three existing design partners into paying customers.</p><small>NEXT MILESTONE&nbsp; $1K MRR</small></div></div>
+            <div><div class="score-bars">{scoreFactors.map(([name, weight]) => <div><span>{name}</span><i><b style={`width:${Math.min(Number(weight) * 5, 100)}%`}></b></i><strong>{weight}</strong></div>)}</div><p class="score-note">The score is a planning tool, not a ranking of founder worth or an automatic investment decision.</p></div>
           </div>
         </article>
 
-        <article class="story-card story-capital reveal" id="capital">
-          <div class="story-card-head"><div><p class="foundry-section-code">05 / PROGRESSIVE CAPITAL</p><h2>Prove more.<br />Unlock more.</h2></div><p>Capital follows verified learning. Each stage answers the next important question without overfunding an untested assumption.</p></div>
-          <div class="story-capital-grid"><div class="active"><span>STAGE 01</span><h3>Validate</h3><strong>$1K</strong><p>Test one critical customer or market assumption.</p><small>NON-DILUTIVE PILOT GRANT</small></div><div><span>STAGE 02</span><h3>Distribute</h3><strong>$10K</strong><p>Convert a working product into verified paying demand.</p><small>FUTURE SAFE INVESTMENT</small></div><div><span>STAGE 03</span><h3>Repeat</h3><strong>$25K</strong><p>Prove retention or a repeatable acquisition channel.</p><small>HUMAN INVESTMENT REVIEW</small></div><div><span>STAGE 04</span><h3>Scale</h3><strong>$100K+</strong><p>Concentrate capital behind demonstrated execution.</p><small>FOLLOW-ON CAPITAL</small></div></div>
-          <p class="story-formula">Experiment priority = decision impact × uncertainty × speed ÷ cash required</p>
+        <article class="story-card story-capital reveal" id="sprint">
+          <div class="story-card-head"><div><p class="foundry-section-code">05 / THE 30-DAY SPRINT</p><h2>Four weeks.<br />One measurable outcome.</h2></div><p>Each week narrows the distance between a working product and a repeatable path to customers.</p></div>
+          <div class="story-capital-grid"><div class="active"><span>WEEK 01</span><h3>Focus</h3><strong>01</strong><p>Define the ideal customer, core promise, baseline metrics, and one 30-day goal.</p><small>POSITIONING + BASELINE</small></div><div><span>WEEK 02</span><h3>Reach</h3><strong>02</strong><p>Run outreach, customer discovery, SEO, AEO, content, or partnership experiments.</p><small>CHANNEL EVIDENCE</small></div><div><span>WEEK 03</span><h3>Convert</h3><strong>03</strong><p>Test pricing, improve activation, follow up with prospects, and address objections.</p><small>CUSTOMER PROGRESS</small></div><div><span>WEEK 04</span><h3>Repeat</h3><strong>04</strong><p>Document what worked and build the next focused 30-day growth plan.</p><small>REPEATABLE PLAYBOOK</small></div></div>
+          <p class="story-formula">Weekly priority = customer impact × evidence × speed ÷ founder effort</p>
         </article>
 
         <article class="story-card story-fit reveal" id="fit">
-          <div class="story-card-head"><div><p class="foundry-section-code">06 / WHO IT IS FOR</p><h2>Already building.<br /><em>Ready to prove it.</em></h2></div><p>We are looking for technical founders who can reach a real customer without months of additional product development.</p></div>
-          <div class="story-fit-grid"><div><span>01</span><strong>One or two technical founders</strong><p>You can build and ship without outsourcing the core product.</p></div><div><span>02</span><strong>Working B2B software</strong><p>A customer can use the product today, even if the experience is still rough.</p></div><div><span>03</span><strong>Under $5K MRR</strong><p>You are early enough for a small experiment to change the trajectory.</p></div><div><span>04</span><strong>Customer access</strong><p>You have completed at least five genuine conversations and can charge within 30 days.</p></div><div><span>05</span><strong>Verifiable evidence</strong><p>You support claims with product, repository, user, and revenue evidence.</p></div></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">06 / WHO IT IS FOR</p><h2>Already shipping.<br /><em>Ready to find customers.</em></h2></div><p>We are looking for technical founders who have crossed the building threshold and are ready to execute on distribution.</p></div>
+          <div class="story-fit-grid"><div><span>01</span><strong>One or two technical founders</strong><p>You can build and ship without outsourcing the core product.</p></div><div><span>02</span><strong>A working product</strong><p>A real customer can use the product today, even if the experience is still rough.</p></div><div><span>03</span><strong>Under $10K MRR</strong><p>You are early enough for focused distribution work to materially change the trajectory.</p></div><div><span>04</span><strong>Customer access</strong><p>You have completed at least five genuine conversations or can reach customers now.</p></div><div><span>05</span><strong>Thirty-day commitment</strong><p>You will report verified metrics, complete weekly actions, and share what you learn.</p></div></div>
           <a class="story-fit-cta" href="#apply"><span>→</span>CHECK YOUR FIT</a>
         </article>
       </div>
@@ -102,11 +102,11 @@ const jsonLd = [
   </section>
 
   <section class="pilot-section section" id="pilot"><div class="container reveal">
-    <div class="pilot-banner"><div><p class="foundry-section-code">FOUNDRY 01 / THE PILOT</p><h2>Four founders.<br />One month.<br />No equity.</h2></div><div class="pilot-details"><p>We are testing whether Rethinksoft can help strong technical founders reach verified customer demand faster and more efficiently.</p><div><span><strong>4</strong> founders</span><span><strong>$1K</strong> grant each</span><span><strong>30</strong> days</span><span><strong>0%</strong> equity</span></div></div></div>
-    <div class="pilot-kpi"><span>PRIMARY PILOT METRIC</span><strong>Verified new paying customers</strong><i>per $1,000 of Rethinksoft cost</i></div>
+    <div class="pilot-banner"><div><p class="foundry-section-code">FOUNDER SPRINT W26</p><h2>Ten founders.<br />Thirty days.<br />Founder keeps 100%.</h2></div><div class="pilot-details"><p>The first cohort tests whether focused distribution, weekly accountability, and product feedback can materially improve a verified business metric.</p><div><span><strong>10</strong> founders</span><span><strong>$0</strong> program cost</span><span><strong>30</strong> days</span><span><strong>0%</strong> equity</span></div></div></div>
+    <div class="pilot-kpi"><span>PRIMARY SPRINT METRIC</span><strong>Verified customer progress</strong><i>revenue, qualified leads, activation, or a validated channel</i></div>
   </div></section>
 
-  <section class="faq-section section" id="faq"><div class="container reveal"><div class="foundry-section-head"><div><p class="foundry-section-code">07 / QUESTIONS</p><h2>Clear terms.<br />No accelerator theatre.</h2></div><p>The first cohort is designed to test Rethinksoft as much as it tests the participating companies.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
+  <section class="faq-section section" id="faq"><div class="container reveal"><div class="foundry-section-head"><div><p class="foundry-section-code">07 / QUESTIONS</p><h2>Clear expectations.<br />No accelerator theatre.</h2></div><p>The sprint is free, focused, and measured by real customer progress rather than attendance or presentation quality.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
 
-  <section class="foundry-apply" id="apply"><div class="container apply-layout reveal"><div><p class="foundry-section-code">FOUNDRY 01</p><h2>Your product is live.<br /><em>What should happen next?</em></h2><p>Join the early application list for the first four-founder Rethinksoft cohort.</p></div><form class="foundry-apply-form" id="waitlist-form"><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" /><label for="email">WORK EMAIL</label><div><input id="email" name="email" type="email" placeholder="founder@startup.com" required /><button type="submit">REQUEST APPLICATION <span>↗</span></button></div><p id="waitlist-note" aria-live="polite">We will send the application brief when Foundry 01 opens. No spam.</p></form></div></section>
+  <section class="foundry-apply" id="apply"><div class="container apply-layout reveal"><div><p class="foundry-section-code">FOUNDER SPRINT W26</p><h2>Your product is live.<br /><em>Now find the customers.</em></h2><p>Join the application list for the first 10-founder Rethinksoft growth cohort.</p></div><form class="foundry-apply-form" id="waitlist-form"><input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" /><label for="email">WORK EMAIL</label><div><input id="email" name="email" type="email" placeholder="founder@startup.com" required /><button type="submit">REQUEST APPLICATION <span>↗</span></button></div><p id="waitlist-note" aria-live="polite">We will send the sprint brief when applications open. No spam.</p></form></div></section>
 </BaseLayout>
