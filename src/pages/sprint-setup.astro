@@ -1,0 +1,236 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Founder Sprint Setup | Rethinksoft';
+const description = 'Set up for the Rethinksoft 30-day Founder Sprint in 20 minutes: define one outcome, record your baseline, name your customer, and lock a weekly reporting rhythm.';
+const siteUrl = Astro.site!.toString().replace(/\/$/, '');
+
+const prereqs = [
+  { name: 'A product a customer can use', text: 'It can be rough. It has to be reachable by a real user today, not a prototype behind a waitlist.' },
+  { name: 'Access to your own numbers', text: 'Whatever you already have: Stripe, analytics, a spreadsheet of conversations. Nothing new to install.' },
+  { name: 'Ninety minutes a week', text: 'One reporting slot and the focused actions in the weekly plan. That is the whole time commitment.' },
+];
+
+const baselineSteps = [
+  {
+    n: '1',
+    title: 'Pick one 30-day outcome',
+    text: 'A sprint fails when it carries four goals. Write a single sentence a stranger could verify at the end of the month.',
+    points: [
+      'Good: <code>Convert three design partners into paying customers.</code>',
+      'Good: <code>Take activation from 22% to 40% for new signups.</code>',
+      'Not an outcome: ship the redesign, post more, talk to more people.',
+    ],
+    note: 'If you cannot name the number that moves, the outcome is still a wish. Write the number down even if you dislike it.',
+  },
+  {
+    n: '2',
+    title: 'Record your baseline',
+    text: 'Week 04 is measured against the day you started, so capture the numbers before anything changes. Five minutes, one page.',
+    points: [
+      'MRR, paying customers, and average price today.',
+      'Signups, activated users, and where drop-off happens.',
+      'Qualified conversations in the last 30 days, and how each one started.',
+      'The channel that produced your most recent customer.',
+    ],
+  },
+  {
+    n: '3',
+    title: 'Name your primary customer',
+    text: 'One segment, described tightly enough that you could list ten real companies or people who fit it.',
+    points: [
+      'Who has the problem badly enough to pay this quarter.',
+      'Where they already gather, search, or ask for help.',
+      'The objection you hear most, in their words.',
+    ],
+    note: 'Multiple segments are fine to have. Only one gets the sprint. The rest wait 30 days.',
+  },
+];
+
+const rhythmSteps = [
+  {
+    n: '4',
+    title: 'Book your reporting slot',
+    text: 'Same slot every week for four weeks. It is a 20 minute write-up, not a meeting, and it is what turns activity into a plan.',
+    points: [
+      'What you shipped, what you sent, and who replied.',
+      'The baseline numbers again, so the delta is visible.',
+      'The one thing that blocked you.',
+    ],
+  },
+  {
+    n: '5',
+    title: 'Choose the first channel to test',
+    text: 'Week 02 runs one channel properly rather than five badly. Pick the one closest to where your customer already is.',
+    points: [
+      'Direct outreach to a named list you can build this week.',
+      'SEO and AEO on the questions your customer actually types.',
+      'Content or community where the segment already gathers.',
+      'Partnerships with whoever already sells to them.',
+    ],
+    note: 'Prior evidence beats preference. If one customer already arrived through a channel, start there.',
+  },
+  {
+    n: '6',
+    title: 'Get your first weekly plan',
+    text: 'Your baseline and first report become a Growth Score and five focused actions for the next seven days.',
+    points: [
+      'Six perspectives review the week: product, customer, distribution, revenue, activation, execution.',
+      'A focus check strips out low-impact work before the plan reaches you.',
+      'You get five actions, not a dashboard.',
+    ],
+    cta: { href: '/#score', label: 'SEE HOW THE SCORE WORKS' },
+  },
+];
+
+const checklist = [
+  'One 30-day outcome, written as a sentence with a number in it.',
+  'Baseline numbers recorded and dated before week 01 starts.',
+  'One primary customer segment named, with ten real names behind it.',
+  'A weekly reporting slot in the calendar for all four weeks.',
+  'A first distribution channel chosen, with a reason attached.',
+  'Week 01 plan received and the first action started.',
+];
+
+const record = [
+  { name: 'Where it came from', text: 'Built from the pattern behind founders who found customers and the ones who stalled at a working product with no distribution.' },
+  { name: 'What we tested', text: 'Run against founders at different stages, in different segments, with different channels, to find where the weekly rhythm broke.' },
+  { name: 'What we cut', text: 'Attendance, pitch practice, demo days, and any metric that improves without a customer noticing.' },
+  { name: 'How it is measured', text: 'One verified outcome: revenue, qualified leads, activation, or a validated channel. Graduation needs evidence, not a presentation.' },
+];
+
+const strengths = [
+  'Setup takes 20 minutes and produces a baseline you can be measured against.',
+  'One outcome, one customer, one channel. The constraint is the point.',
+  'Every weekly plan is five actions, reviewed by a human before it reaches you.',
+  'Free, 0% equity, no cash investment. You keep 100% of your company.',
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Rethinksoft Founder Sprint setup',
+    description,
+    totalTime: 'PT20M',
+    url: `${siteUrl}/sprint-setup`,
+    step: [...baselineSteps, ...rhythmSteps].map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.title,
+      text: step.text,
+    })),
+  },
+];
+---
+<BaseLayout {title} {description} {jsonLd} pageClass="hub-page setup-page">
+  <section class="hub-hero">
+    <div class="container">
+      <p class="eyebrow">Founder Sprint W26</p>
+      <h1>Sprint setup.<br />Twenty <em>minutes.</em></h1>
+      <p>Before week 01 you need one outcome, a baseline, a named customer, and a weekly slot. This page walks you through all four. Nothing to install.</p>
+      <div class="setup-hero-meta">
+        <span><b>20</b> MINUTES</span>
+        <span><b>6</b> STEPS</span>
+        <span><b>2</b> PARTS</span>
+        <span><b>0</b> TOOLS TO INSTALL</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="setup-quick container reveal">
+    <div class="setup-quick-card">
+      <div>
+        <p class="hub-label">Quick start</p>
+        <h2>Already have a baseline?</h2>
+        <p>If you already track MRR, activation, and where your last customer came from, skip the intro and go straight to the weekly rhythm in Part 2.</p>
+      </div>
+      <a class="setup-cta-inline" href="#part-two" style="margin-top:0"><span>↓</span>SKIP TO PART 2</a>
+    </div>
+  </section>
+
+  <div class="setup-main container">
+    <section class="setup-prereq reveal">
+      <p class="hub-label">Before you start</p>
+      <h2>Three things you need.</h2>
+      <div class="setup-prereq-list">
+        {prereqs.map((item) => <div><strong>{item.name}</strong><p>{item.text}</p></div>)}
+      </div>
+    </section>
+
+    <section class="setup-part reveal" id="part-one">
+      <div class="setup-part-head">
+        <h2>Part 1 · <em>Baseline</em></h2>
+        <span>10 MINS · STEPS 1 TO 3</span>
+      </div>
+      <ol class="setup-steps">
+        {baselineSteps.map((step) => (
+          <li>
+            <b>{step.n}</b>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+              <ul>{step.points.map((point) => <li set:html={point} />)}</ul>
+              {step.note && <p class="setup-note">{step.note}</p>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="setup-part reveal" id="part-two">
+      <div class="setup-part-head">
+        <h2>Part 2 · <em>Weekly rhythm</em></h2>
+        <span>10 MINS · STEPS 4 TO 6</span>
+      </div>
+      <ol class="setup-steps">
+        {rhythmSteps.map((step) => (
+          <li>
+            <b>{step.n}</b>
+            <div>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+              <ul>{step.points.map((point) => <li set:html={point} />)}</ul>
+              {step.note && <p class="setup-note">{step.note}</p>}
+              {step.cta && <a class="setup-cta-inline" href={step.cta.href}><span>→</span>{step.cta.label}</a>}
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="setup-check reveal">
+      <p class="hub-label">Before you finish</p>
+      <h2>Six quick checks.</h2>
+      <ul>{checklist.map((item) => <li><i>✓</i><span>{item}</span></li>)}</ul>
+    </section>
+
+    <details class="setup-record reveal">
+      <summary>How the sprint was designed<em>NEW</em><i>+</i></summary>
+      <div class="setup-record-body">
+        <div class="setup-record-stats">
+          <span><b>4</b> WEEKS</span>
+          <span><b>6</b> WEEKLY PERSPECTIVES</span>
+          <span><b>8</b> SCORE FACTORS</span>
+          <span><b>1</b> VERIFIED OUTCOME</span>
+        </div>
+        <div class="setup-record-rows">
+          {record.map((item) => <div><strong>{item.name}</strong><p>{item.text}</p></div>)}
+        </div>
+        <p class="hub-label" style="margin-top:26px">Key strengths</p>
+        <ul class="setup-record-strengths">{strengths.map((item) => <li><span>{item}</span></li>)}</ul>
+      </div>
+    </details>
+  </div>
+
+  <section class="setup-close reveal">
+    <div class="container">
+      <div>
+        <p class="eyebrow">Founder Sprint W26</p>
+        <h2>Setup is done.<br /><em>Week 01 starts.</em></h2>
+        <p>Ten founders, thirty days, one measurable outcome each. The first cohort is free and Rethinksoft takes 0% equity.</p>
+      </div>
+      <a class="hub-primary" href="/#apply" style="margin-top:0"><span>→</span>APPLY TO THE FOUNDER SPRINT</a>
+    </div>
+  </section>
+</BaseLayout>

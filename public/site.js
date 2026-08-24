@@ -124,6 +124,31 @@
     filterTools();
   }));
 
+  const opportunitySearch = document.querySelector('[data-opportunity-search]');
+  const opportunityItems = [...document.querySelectorAll('[data-opportunity-item]')];
+  const opportunityChips = [...document.querySelectorAll('[data-opportunity-category]')];
+  let opportunityCategory = 'all';
+  const filterOpportunities = () => {
+    const query = (opportunitySearch?.value || '').trim().toLowerCase();
+    let visible = 0;
+    opportunityItems.forEach((item) => {
+      const matchesText = !query || item.dataset.search.includes(query);
+      const matchesCategory = opportunityCategory === 'all' || item.dataset.category === opportunityCategory;
+      item.hidden = !(matchesText && matchesCategory);
+      if (!item.hidden) visible++;
+    });
+    const count = document.querySelector('[data-opportunity-count]');
+    const empty = document.querySelector('[data-opportunity-empty]');
+    if (count) count.textContent = String(visible);
+    if (empty) empty.hidden = visible > 0;
+  };
+  opportunitySearch?.addEventListener('input', filterOpportunities);
+  opportunityChips.forEach((chip) => chip.addEventListener('click', () => {
+    opportunityCategory = chip.dataset.opportunityCategory;
+    opportunityChips.forEach((item) => item.classList.toggle('active', item === chip));
+    filterOpportunities();
+  }));
+
   const odometer = document.querySelector('.odometer');
   if (odometer && !reducedMotion) {
     const target = Number(odometer.dataset.value || 0);
@@ -176,6 +201,52 @@
     } catch { note.textContent = 'SIGNAL LOST. TRY AGAIN.'; }
     finally { button.disabled = false; button.textContent = original; }
   });
+
+  document.querySelector('[data-founder-start-form]')?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const button = form.querySelector('button[type="submit"]');
+    const note = form.querySelector('[data-founder-form-note]');
+    const original = button.innerHTML;
+    button.disabled = true;
+    button.textContent = 'CREATING YOUR FOUNDER OS...';
+    try {
+      const response = await fetch('/api/founder/start', { method: 'POST', body: new FormData(form) });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Could not create the workspace.');
+      note.textContent = `RETHINK SCORE ${data.score}. OPENING YOUR PRIVATE WORKSPACE...`;
+      window.location.assign(data.redirect);
+    } catch (error) {
+      note.textContent = error.message || 'Could not create the workspace. Try again.';
+      button.disabled = false;
+      button.innerHTML = original;
+    }
+  });
+
+  document.querySelectorAll('[data-goal-id]').forEach((checkbox) => checkbox.addEventListener('change', async () => {
+    const list = checkbox.closest('[data-goal-list]');
+    const row = checkbox.closest('.os-goal');
+    const marker = row.querySelector('i');
+    const note = document.querySelector('[data-goal-note]');
+    const position = [...list.querySelectorAll('[data-goal-id]')].indexOf(checkbox) + 1;
+    checkbox.disabled = true;
+    try {
+      const body = new FormData();
+      body.set('goalId', checkbox.dataset.goalId);
+      body.set('completed', String(checkbox.checked));
+      const response = await fetch(`/api/founder/goals/${list.dataset.businessId}`, { method: 'POST', body });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || 'Progress could not be saved.');
+      row.classList.toggle('complete', checkbox.checked);
+      marker.textContent = checkbox.checked ? '✓' : String(position).padStart(2, '0');
+      note.textContent = checkbox.checked ? 'ACTION COMPLETE. KEEP THE EVIDENCE.' : 'ACTION REOPENED.';
+    } catch (error) {
+      checkbox.checked = !checkbox.checked;
+      note.textContent = error.message || 'Progress could not be saved.';
+    } finally {
+      checkbox.disabled = false;
+    }
+  }));
 
   document.querySelector('[data-creator-form]')?.addEventListener('submit', async (event) => {
     event.preventDefault();

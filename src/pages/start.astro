@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getOpportunity, opportunities } from '../lib/opportunities';
+
+const selected = getOpportunity(Astro.url.searchParams.get('opportunity') || '');
+const title = 'Start Your Software Business | Rethinksoft';
+const description = 'Create your software business profile and receive a focused Rethink Score, weekly goals, and growth recommendations.';
+const categories = [...new Set(opportunities.map((item) => item.category))].sort();
+---
+<BaseLayout {title} {description} pageClass="hub-page pivot-page start-page">
+  <section class="pivot-hero compact">
+    <div class="foundry-grid" aria-hidden="true"></div>
+    <div class="container pivot-hero-inner">
+      <p class="foundry-kicker"><span class="foundry-kicker-mark">R</span><span>FOUNDER OS · BUSINESS SETUP</span></p>
+      <h1>Turn the idea into<br /><em>a focused business.</em></h1>
+      <p>Tell Rethinksoft what you are building, who it serves, and what progress matters next. You will leave with a private workspace, a starting score, and five practical actions.</p>
+    </div>
+  </section>
+
+  <section class="start-shell container">
+    <aside class="start-aside reveal">
+      <p class="foundry-section-code">WHAT YOU GET</p>
+      <ol>
+        <li><span>01</span><div><strong>Business profile</strong><p>One source of truth for the product, customer, stage, and outcome.</p></div></li>
+        <li><span>02</span><div><strong>Rethink Score V1</strong><p>A useful baseline across product, market, distribution, and execution.</p></div></li>
+        <li><span>03</span><div><strong>Weekly priorities</strong><p>Five focused actions instead of an endless startup checklist.</p></div></li>
+        <li><span>04</span><div><strong>Next milestone</strong><p>A measurable outcome that keeps building connected to customers.</p></div></li>
+      </ol>
+      <p class="start-privacy">Your workspace is private to this browser. No public profile is created.</p>
+    </aside>
+
+    <form class="founder-start-form reveal" data-founder-start-form>
+      <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
+      <div class="form-section-head"><span>01</span><div><p>THE FOUNDER</p><h2>Who is building?</h2></div></div>
+      <div class="form-grid two">
+        <label>Your name<input name="founderName" autocomplete="name" required placeholder="Jinank Thakker" /></label>
+        <label>Work email<input name="email" type="email" autocomplete="email" required placeholder="founder@company.com" /></label>
+      </div>
+
+      <div class="form-section-head"><span>02</span><div><p>THE BUSINESS</p><h2>What are you starting?</h2></div></div>
+      <div class="form-grid two">
+        <label>Business or working name<input name="businessName" required maxlength="100" value={selected?.name || ''} placeholder="CareerForge AI" /></label>
+        <label>Category<select name="category" required><option value="">Choose a market</option>{categories.map((category) => <option selected={selected?.category === category}>{category}</option>)}</select></label>
+      </div>
+      <label>Product and problem<textarea name="idea" required minlength="20" maxlength="800" rows="4" placeholder="We help recruiting teams run structured candidate interviews and create consistent scorecards.">{selected ? `${selected.summary} Built for ${selected.audience.toLowerCase()}.` : ''}</textarea></label>
+      <label>Specific target customer<input name="targetCustomer" required maxlength="200" value={selected?.audience || ''} placeholder="Recruiting agencies with 5 to 30 employees" /></label>
+
+      <div class="form-section-head"><span>03</span><div><p>THE BASELINE</p><h2>Where are you now?</h2></div></div>
+      <div class="form-grid two">
+        <label>Current stage<select name="stage" required><option value="idea">I have an idea</option><option value="validating">Validating demand</option><option value="building">Building the product</option><option value="launched">Product is live</option><option value="growing">Already has customers</option></select></label>
+        <label>Live website <span>optional</span><input name="websiteUrl" type="url" placeholder="https://yourproduct.com" /></label>
+        <label>Monthly revenue <span>optional</span><div class="input-prefix"><span>$</span><input name="monthlyRevenue" type="number" min="0" step="1" value="0" /></div></label>
+        <label>Paying customers <span>optional</span><input name="customerCount" type="number" min="0" step="1" value="0" /></label>
+      </div>
+      <label>One outcome for the next 30 days<input name="primaryGoal" required minlength="10" maxlength="240" value={selected ? 'Interview 10 target customers and convert the first 3 paying customers.' : ''} placeholder="Convert three design partners into paying customers" /></label>
+
+      <div class="start-submit"><button class="foundry-primary" type="submit">CREATE MY FOUNDER OS <span>↗</span></button><p data-founder-form-note aria-live="polite">Takes about three minutes. No payment or application required.</p></div>
+    </form>
+  </section>
+</BaseLayout>

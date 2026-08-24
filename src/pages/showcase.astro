@@ -8,7 +8,6 @@ const apps = getApps();
 const products = getCommunityProducts();
 const appBySlug = new Map(apps.map((app) => [app.slug, app]));
 const submitted = Astro.url.searchParams.get('submitted') === '1';
-const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const title = 'Community Built Software Products | Rethinksoft';
 const description = 'Explore live software products built from Rethinksoft blueprints or submit your own product to the community showcase.';
 const jsonLd = {
@@ -104,4 +103,3 @@ const productDomain = (url: string) => {
     </div>
   </section>
 </BaseLayout>
-

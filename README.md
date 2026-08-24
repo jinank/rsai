@@ -1,6 +1,6 @@
 # Rethinksoft
 
-A server-rendered product launch library with ready to use AI agent prompts and proven open source codebases for software founders and independent builders.
+A server-rendered operating system for software entrepreneurs. Rethinksoft helps founders discover opportunities, validate markets, define products, launch, find customers, and decide what to do next.
 
 ## Local development
 
@@ -13,7 +13,7 @@ The SQLite database is created automatically at `data/site.db`. Set `DATABASE_PA
 
 ## Content
 
-Every audit is a standalone JSON file in `data/apps/`. Add a file with the documented schema, then rebuild; the route, sitemap entry, related content, search result, and OG card are generated automatically.
+Every product blueprint is a standalone JSON file in `data/apps/`. Researched business opportunities live in `src/lib/opportunities.ts`. Founder profiles, Rethink Scores, and weekly goals are stored in SQLite for the P0 validation experience.
 
 ## Production
 
@@ -26,7 +26,7 @@ Use a persistent disk for the SQLite database. Reverse-proxy the Node server and
 
 ## Privacy
 
-No accounts, ads, payments, or third-party analytics. Vote IPs are salted and irreversibly hashed. Waitlist emails are deduplicated.
+No ads, payments, or third-party analytics. Private Founder OS workspaces use an HttpOnly browser cookie, and no public profile is created during onboarding. Vote IPs are salted and irreversibly hashed. Waitlist emails are deduplicated.
 
 ## License
 

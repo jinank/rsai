@@ -1,0 +1,91 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getFounderBusiness, getFounderGoals } from '../../lib/db';
+
+export const prerender = false;
+
+const businessId = Astro.params.id || '';
+const session = Astro.cookies.get('rethink_founder')?.value || '';
+const separator = session.indexOf('.');
+const sessionId = separator > 0 ? session.slice(0, separator) : '';
+const token = separator > 0 ? session.slice(separator + 1) : '';
+const business = sessionId === businessId ? getFounderBusiness(businessId, token) : null;
+const goals = business ? getFounderGoals(business.id) : [];
+const title = business ? `${business.businessName} Founder OS | Rethinksoft` : 'Private Founder Workspace | Rethinksoft';
+const description = business ? `Private Rethinksoft Founder OS workspace for ${business.businessName}.` : 'This private founder workspace requires access from the browser that created it.';
+
+const dimensions = business ? [
+  ['Product', business.stage === 'idea' ? 38 : business.stage === 'validating' ? 52 : business.stage === 'building' ? 72 : 84],
+  ['Market', Math.min(88, 50 + (business.targetCustomer.length > 24 ? 17 : 7))],
+  ['Distribution', business.customerCount > 0 ? 68 : business.stage === 'growing' ? 62 : 43],
+  ['Traction', Math.min(92, 34 + business.customerCount * 3 + Math.ceil(business.monthlyRevenue / 250))],
+  ['Execution', Math.min(90, 58 + goals.filter((goal) => goal.completed).length * 6)],
+] : [];
+const weakest = [...dimensions].sort((a, b) => Number(a[1]) - Number(b[1]))[0];
+const completed = goals.filter((goal) => goal.completed).length;
+const recommendation = weakest?.[0] === 'Distribution'
+  ? 'Stop adding features this week. Speak directly with target customers, run one focused channel test, and record which message earns a reply.'
+  : weakest?.[0] === 'Traction'
+    ? 'Turn interest into a paid commitment. Ask current prospects for a specific pilot decision and document every objection.'
+    : 'Choose the smallest product change that improves time to value, then put it in front of five real users this week.';
+---
+<BaseLayout {title} {description} pageClass="founder-os-page pivot-page" noindex={true}>
+  {business ? (
+    <>
+      <section class="founder-os-head">
+        <div class="foundry-grid" aria-hidden="true"></div>
+        <div class="container">
+          <div class="founder-os-identity"><span>{business.businessName.slice(0, 2).toUpperCase()}</span><div><p class="foundry-section-code">FOUNDER OS · {business.category.toUpperCase()}</p><h1>{business.businessName}</h1><p>{business.idea}</p></div></div>
+          <div class="founder-os-stage"><small>CURRENT STAGE</small><strong>{business.stage.toUpperCase()}</strong>{business.websiteUrl && <a href={business.websiteUrl} target="_blank" rel="noopener">VIEW LIVE PRODUCT ↗</a>}</div>
+        </div>
+      </section>
+
+      <main class="founder-os-shell container">
+        <section class="os-metrics reveal">
+          <article><small>MONTHLY REVENUE</small><strong>${business.monthlyRevenue.toLocaleString('en-US')}</strong><span>BASELINE MRR</span></article>
+          <article><small>PAYING CUSTOMERS</small><strong>{business.customerCount}</strong><span>CURRENT BASELINE</span></article>
+          <article><small>WEEKLY ACTIONS</small><strong>{completed}<em>/{goals.length}</em></strong><span>{completed === goals.length ? 'WEEK COMPLETE' : 'IN PROGRESS'}</span></article>
+          <article><small>NEXT MILESTONE</small><strong>{business.monthlyRevenue < 1000 ? '$1K' : business.monthlyRevenue < 5000 ? '$5K' : '$10K'}</strong><span>MONTHLY REVENUE</span></article>
+        </section>
+
+        <div class="founder-os-grid">
+          <section class="os-panel os-score reveal" id="score">
+            <div class="os-panel-head"><div><p class="foundry-section-code">RETHINK SCORE V1</p><h2>Company health,<br /><em>made actionable.</em></h2></div><span>LIVE BASELINE</span></div>
+            <div class="os-score-layout">
+              <div class="os-score-number"><strong><i data-countup={business.rethinkScore}>{business.rethinkScore}</i><em>/100</em></strong><span>{business.rethinkScore >= 75 ? 'STRONG START' : business.rethinkScore >= 60 ? 'PROGRESSING' : 'EARLY SIGNALS'}</span></div>
+              <div class="os-dimensions">{dimensions.map(([name, value]) => <div><span>{name}</span><i><b style={`width:${value}%`}></b></i><strong>{value}</strong></div>)}</div>
+            </div>
+            <p class="os-score-note">This first score uses your current stage, customer definition, traction, and execution. Connected product and revenue data will make it more precise later.</p>
+          </section>
+
+          <section class="os-panel os-priority reveal">
+            <div class="os-panel-head"><div><p class="foundry-section-code">AI GROWTH RECOMMENDATION</p><h2>Your constraint is<br /><em>{String(weakest?.[0] || 'focus').toLowerCase()}.</em></h2></div><span>NEXT 7 DAYS</span></div>
+            <blockquote>{recommendation}</blockquote>
+            <div class="os-focus"><small>30-DAY OUTCOME</small><strong>{business.primaryGoal}</strong></div>
+          </section>
+
+          <section class="os-panel os-goals reveal">
+            <div class="os-panel-head"><div><p class="foundry-section-code">THIS WEEK</p><h2>Five actions.<br /><em>One outcome.</em></h2></div><span>{completed}/{goals.length} COMPLETE</span></div>
+            <div class="os-goal-list" data-goal-list data-business-id={business.id}>
+              {goals.map((goal, index) => <label class:list={['os-goal', goal.completed && 'complete']}><input type="checkbox" data-goal-id={goal.id} checked={goal.completed} /><i>{goal.completed ? '✓' : String(index + 1).padStart(2, '0')}</i><span><small>{goal.category}</small><strong>{goal.title}</strong></span></label>)}
+            </div>
+            <p class="os-goal-note" data-goal-note aria-live="polite">Progress is saved to this private workspace.</p>
+          </section>
+
+          <aside class="os-panel os-next reveal">
+            <p class="foundry-section-code">WHAT COMES NEXT</p>
+            <h2>Build the business,<br />not only the product.</h2>
+            <nav><a href="/opportunities"><span>01</span><div><strong>Opportunity research</strong><p>Compare markets and validation paths.</p></div><i>↗</i></a><a href="/directory"><span>02</span><div><strong>Build foundations</strong><p>Use prompts and proven source code.</p></div><i>↗</i></a><a href="/deals"><span>03</span><div><strong>Founder deals</strong><p>Reduce the cost of your startup stack.</p></div><i>↗</i></a><a href="/sprint-setup"><span>04</span><div><strong>30-day operating rhythm</strong><p>Set a baseline and weekly review.</p></div><i>↗</i></a></nav>
+          </aside>
+        </div>
+      </main>
+    </>
+  ) : (
+    <section class="private-empty container">
+      <p class="foundry-section-code">PRIVATE WORKSPACE</p>
+      <h1>This Founder OS<br /><em>is not available here.</em></h1>
+      <p>Open it in the browser where it was created, or start a new software business profile.</p>
+      <a class="foundry-primary" href="/start">START A BUSINESS <span>↗</span></a>
+    </section>
+  )}
+</BaseLayout>
