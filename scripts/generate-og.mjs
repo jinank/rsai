@@ -32,6 +32,6 @@ async function render(name, eyebrow, title, accent, footer) {
   fs.writeFileSync(path.join(out, name), new Resvg(svg, { fitTo: { mode: 'width', value: 1200 } }).render().asPng());
 }
 
-await render('home.png', 'THE OS FOR SOFTWARE ENTREPRENEURS', 'START YOUR SOFTWARE BUSINESS.', '#6ca512', 'DISCOVER · VALIDATE · LAUNCH · GROW');
+await render('home.png', 'ENTERPRISE-READY SOFTWARE INFRASTRUCTURE', 'START YOUR SOFTWARE BUSINESS TODAY.', '#6ca512', 'BUILD · LAUNCH · OWN · GROW');
 for (const app of apps) await render(`${app.slug}.png`, `BUILD A ${app.name.toUpperCase()} STYLE PRODUCT`, scopes[app.verdict], colors[app.verdict], `${app.name.toUpperCase()} · AGENT PROMPT · OPEN SOURCE CODE`);
 console.log(`Generated ${apps.length + 1} Open Graph images.`);
