@@ -7,26 +7,26 @@ const description = 'Launch scalable applications with enterprise-grade infrastr
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const featured = opportunities.slice(0, 3);
 const journey = [
-  { n: '01', glyph: '⌕', name: 'Discover', text: 'Find researched opportunities or bring the idea already on your mind.' },
-  { n: '02', glyph: '✓', name: 'Validate', text: 'Understand the customer, market, risks, and evidence required before you overbuild.' },
-  { n: '03', glyph: '⌁', name: 'Build', text: 'Turn the opportunity into a focused specification for your preferred AI coding tools.' },
-  { n: '04', glyph: '↗', name: 'Launch', text: 'Connect the business basics, go live, and move directly into customer acquisition.' },
-  { n: '05', glyph: '↑', name: 'Grow', text: 'Run weekly distribution experiments and always know what deserves attention next.' },
+  { n: '01', glyph: '⌕', name: 'Choose', text: 'Start from a proven product path or describe the software business you want to launch.' },
+  { n: '02', glyph: '✦', name: 'Generate', text: 'Turn plain English into the product scope, user flows, data model, interface, and launch plan.' },
+  { n: '03', glyph: '⌁', name: 'Connect', text: 'Add payments, authentication, storage, analytics, email, and your operating stack.' },
+  { n: '04', glyph: '↗', name: 'Deploy', text: 'Connect a custom domain and launch with secure, scalable infrastructure.' },
+  { n: '05', glyph: '↑', name: 'Grow', text: 'Track revenue, improve conversion, and follow a focused customer acquisition plan.' },
 ];
 const growthChannels = [
-  ['01', 'SEO + AEO', 'Create high-intent pages that answer the questions buyers are already asking.'],
-  ['02', 'Founder-led sales', 'Build a useful prospect list, reach out personally, and learn from every objection.'],
-  ['03', 'Content', 'Turn customer evidence and product insight into credible founder distribution.'],
-  ['04', 'Partnerships', 'Reach customers through communities, complementary products, and trusted operators.'],
-  ['05', 'Activation', 'Improve the path from first visit to first value before buying more traffic.'],
-  ['06', 'Retention', 'Find the repeated outcome that makes customers return and recommend the product.'],
+  ['01', 'AI-assisted building', 'Describe the product in plain English and receive a complete, implementation-ready business build path.'],
+  ['02', 'Full-stack foundations', 'Plan the application, database, authentication, user management, and backend workflows together.'],
+  ['03', 'Built-in payments', 'Connect Stripe for subscriptions, one-time purchases, checkout, billing, and secure webhooks.'],
+  ['04', 'Integrated storage', 'Support images, documents, uploads, and product assets with scalable cloud storage.'],
+  ['05', 'Custom deployment', 'Launch on your domain with SSL, global delivery, monitoring, and a production checklist.'],
+  ['06', 'Full code ownership', 'Keep access to the codebase, customize the product, and avoid unnecessary platform lock-in.'],
 ];
-const scoreFactors = [['Product', 84], ['Market', 76], ['Distribution', 48], ['Traction', 59], ['Execution', 82]];
+const scoreFactors = [['Application', 100], ['Payments', 100], ['Storage', 100], ['Deployment', 100], ['Ownership', 100]];
 const faqs = [
-  { q: 'Is Rethinksoft another AI app builder?', a: 'No. Rethinksoft works around the coding tools. It helps you choose an opportunity, validate demand, define the right product, launch it, find customers, and decide what to do next.' },
-  { q: 'Do I need to have a software idea already?', a: 'No. You can explore researched software opportunities or start with your own idea. Both paths lead into the same validation and Founder OS workflow.' },
-  { q: 'Can I use Codex, Claude Code, Cursor, or my own developers?', a: 'Yes. Rethinksoft is build-tool agnostic. Existing product blueprints include specifications and open-source foundations you can use with the coding workflow you prefer.' },
-  { q: 'Does Rethinksoft fund companies?', a: 'Funding is not the core product and Rethinksoft does not promise capital. Founders build traction first. Investor readiness, introductions, and future funding options can become available later.' },
+  { q: 'What kind of software can I launch?', a: 'You can start with SaaS products, AI tools, marketplaces, customer portals, internal tools, ecommerce experiences, and focused vertical software businesses.' },
+  { q: 'Do I need to know how to code?', a: 'No coding experience is required to choose a product path, define the business, or create the build specification. You can use Codex, Claude Code, Cursor, or a developer to implement and customize the application.' },
+  { q: 'How do payments and revenue work?', a: 'The launch path is designed around connecting your own Stripe account. Customer payments should flow directly to your business, and Rethinksoft does not claim a percentage of your revenue.' },
+  { q: 'Do I own the code and the business?', a: 'Yes. Rethinksoft is designed around portable code, commercial ownership, custom domains, and infrastructure you can control. Specific third-party services remain subject to their own terms.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/opportunities?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
@@ -63,63 +63,63 @@ const jsonLd = [
   <section class="foundry-story" id="thesis">
     <div class="container foundry-story-layout">
       <article class="story-card story-thesis reveal">
-        <div class="story-card-head"><div><p class="foundry-section-code">01 / THE THESIS</p><h2>Building software is easier.<br /><em>Building a business is not.</em></h2></div><p>AI has compressed the cost of shipping code. It has not solved opportunity selection, customer evidence, positioning, distribution, revenue, or founder focus.</p></div>
-        <div class="story-equation"><span>RIGHT OPPORTUNITY</span><b>×</b><span>USEFUL PRODUCT</span><b>×</b><span>DISTRIBUTION</span><strong>= SOFTWARE BUSINESS</strong></div>
+        <div class="story-card-head"><div><p class="foundry-section-code">01 / BUILT FOR LAUNCH</p><h2>Everything connected.<br /><em>Ready for business.</em></h2></div><p>Move from a product idea to a complete software business with the essential infrastructure already mapped into one launch path.</p></div>
+        <div class="story-equation"><span>FULL-STACK APPLICATION</span><b>+</b><span>PAYMENTS + STORAGE</span><b>+</b><span>ONE-CLICK DEPLOYMENT</span><strong>= BUSINESS-READY SOFTWARE</strong></div>
       </article>
 
       <div class="foundry-story-stack">
         <article class="story-card story-model reveal" id="journey">
-          <div class="story-card-head"><div><p class="foundry-section-code">02 / HOW IT WORKS</p><h2>From an idea<br />to verified revenue.</h2></div><p>Rethinksoft connects the stages that generic AI builders leave disconnected.</p></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">02 / HOW IT WORKS</p><h2>Choose. Build.<br /><em>Launch.</em></h2></div><p>Start from a proven product path or bring your own idea. Rethinksoft connects the build, business infrastructure, launch, and growth workflow.</p></div>
           <div class="story-step-grid">{journey.map((step) => <div><span>{step.n}</span><b>{step.glyph}</b><h3>{step.name}</h3><p>{step.text}</p></div>)}</div>
         </article>
 
         <article class="story-card story-diligence opportunity-home reveal" id="discover">
-          <div class="story-card-head"><div><p class="foundry-section-code">03 / EXPLORE SOFTWARE BUSINESSES</p><h2>Start with a problem<br />worth solving.</h2></div><p>Browse serious opportunities with a clear customer, business model, validation path, and honest risk profile.</p></div>
-          <div class="home-opportunity-grid">{featured.map((item) => <a href={`/start?opportunity=${item.slug}`}><span>{item.category}</span><h3>{item.name}</h3><p>{item.summary}</p><div><small>OPPORTUNITY SCORE</small><strong>{item.score}<em>/100</em></strong></div><b>START THIS BUSINESS ↗</b></a>)}</div>
-          <a class="story-fit-cta" href="/opportunities"><span>→</span>EXPLORE ALL OPPORTUNITIES</a>
+          <div class="story-card-head"><div><p class="foundry-section-code">03 / READY-TO-USE PRODUCT PATHS</p><h2>Start faster with<br />a proven direction.</h2></div><p>Choose a researched software business with a defined customer, pricing model, product scope, validation plan, and source foundation.</p></div>
+          <div class="home-opportunity-grid">{featured.map((item) => <a href={`/start?opportunity=${item.slug}`}><span>{item.category}</span><h3>{item.name}</h3><p>{item.summary}</p><div><small>LAUNCH READINESS</small><strong>{item.score}<em>/100</em></strong></div><b>USE THIS PRODUCT PATH ↗</b></a>)}</div>
+          <a class="story-fit-cta" href="/opportunities"><span>→</span>VIEW ALL PRODUCT PATHS</a>
         </article>
 
         <article class="story-card story-score reveal" id="validate">
-          <div class="story-card-head"><div><p class="foundry-section-code">04 / VALIDATE BEFORE YOU BUILD</p><h2>Know what must be true<br /><em>before writing more code.</em></h2></div><p>The Rethink Opportunity Score turns an interesting idea into an evidence plan.</p></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">04 / AI-ASSISTED BUILDING</p><h2>Describe the product.<br /><em>Get the complete plan.</em></h2></div><p>Turn a plain-English idea into the product, data, payments, infrastructure, and launch decisions an implementation agent needs.</p></div>
           <div class="story-score-layout">
-            <div class="story-score-result"><div><span>OPPORTUNITY SCORE</span><small>AI INTERVIEW COACH</small></div><strong><i data-countup="82">82</i><em>/100</em></strong><p><b>STRONG</b> Clear pain, practical MVP, existing spend, and a reachable customer.</p><div><span>VALIDATE FIRST</span><p>Interview 10 active job seekers and test a $19 monthly offer.</p><small>DECISION TARGET&nbsp; 20 QUALIFIED SIGNUPS</small></div></div>
-            <div class="validation-lists"><section><h3>Why this could work</h3><ul><li>Clear customer pain</li><li>Focused MVP scope</li><li>Existing alternatives prove spend</li><li>Strong SEO opportunity</li></ul></section><section><h3>Biggest risks</h3><ul><li>Crowded market</li><li>Differentiation needs focus</li><li>Retention after job placement</li></ul></section></div>
+            <div class="story-score-result"><div><span>BUILD PATH</span><small>AI INTERVIEW COACH</small></div><strong><i data-countup="12">12</i><em> modules</em></strong><p><b>READY</b> Product scope, application flows, monetization, infrastructure, and launch steps are connected.</p><div><span>IMPLEMENTATION BRIEF</span><p>Build role-specific mock interviews with feedback, progress history, and subscriptions.</p><small>AGENT READY&nbsp; FULL CODE ACCESS</small></div></div>
+            <div class="validation-lists"><section><h3>Product included</h3><ul><li>Responsive customer application</li><li>Authentication and user accounts</li><li>Admin and usage dashboard</li><li>Analytics and email workflows</li></ul></section><section><h3>Business included</h3><ul><li>Stripe subscriptions and billing</li><li>Pricing and packaging guidance</li><li>Custom-domain launch checklist</li><li>First customer acquisition plan</li></ul></section></div>
           </div>
         </article>
 
         <article class="story-card story-capital reveal" id="launch">
-          <div class="story-card-head"><div><p class="foundry-section-code">05 / BUILD AND LAUNCH</p><h2>Use AI to build.<br />Keep ownership.</h2></div><p>Rethinksoft defines the business and product. Your preferred coding tools turn the specification into software.</p></div>
-          <div class="story-capital-grid"><div class="active"><span>STEP 01</span><h3>Scope</h3><strong>PRD</strong><p>User flows, data, authentication, payments, AI requirements, and a launch checklist.</p><small>FOCUSED MVP</small></div><div><span>STEP 02</span><h3>Build</h3><strong>AI</strong><p>Use Codex, Claude Code, Cursor, open-source foundations, or your own team.</p><small>TOOL AGNOSTIC</small></div><div><span>STEP 03</span><h3>Connect</h3><strong>01</strong><p>Add your brand, domain, payments, email, analytics, and operating stack.</p><small>BUSINESS READY</small></div><div><span>STEP 04</span><h3>Launch</h3><strong>↗</strong><p>Go live, establish a baseline, and immediately begin the first customer plan.</p><small>START DISTRIBUTION</small></div></div>
-          <p class="story-formula">The product is not finished when it deploys. The business starts when customers arrive.</p>
+          <div class="story-card-head"><div><p class="foundry-section-code">05 / CONNECT AND LAUNCH</p><h2>Business infrastructure.<br />Without the busywork.</h2></div><p>Connect the services every serious software product needs, then launch on infrastructure designed to scale.</p></div>
+          <div class="story-capital-grid"><div class="active"><span>INTEGRATION 01</span><h3>Payments</h3><strong>$</strong><p>Subscriptions, one-time payments, checkout sessions, billing, and secure webhooks.</p><small>KEEP 100% OF REVENUE</small></div><div><span>INTEGRATION 02</span><h3>Storage</h3><strong>GB</strong><p>Cloud file uploads, product assets, images, documents, and generated media.</p><small>SCALABLE STORAGE</small></div><div><span>INTEGRATION 03</span><h3>Application</h3><strong>01</strong><p>Database, authentication, user management, email, analytics, and admin controls.</p><small>FULL-STACK FOUNDATION</small></div><div><span>INTEGRATION 04</span><h3>Deployment</h3><strong>↗</strong><p>Custom domains, SSL, global delivery, monitoring, and production checks.</p><small>READY TO GO LIVE</small></div></div>
+          <p class="story-formula">One product path. One connected stack. Your domain, code, customers, and revenue.</p>
         </article>
 
         <article class="story-card story-diligence reveal" id="growth">
-          <div class="story-card-head"><div><p class="foundry-section-code">06 / GET YOUR FIRST CUSTOMERS</p><h2>Distribution becomes<br />part of the product.</h2></div><p>Rethinksoft creates a focused customer acquisition plan and turns it into weekly execution.</p></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">06 / EVERYTHING YOU NEED</p><h2>Build and launch<br />without the gaps.</h2></div><p>Every part of the launch path is designed to work together, from the first product description to the first paying customer.</p></div>
           <div class="story-agent-grid">{growthChannels.map(([code, name, text]) => <div><span>{code}</span><h3>{name}</h3><p>{text}</p><small>GROWTH CHANNEL</small></div>)}</div>
         </article>
 
         <article class="story-card story-score reveal" id="founder-os">
-          <div class="story-card-head"><div><p class="foundry-section-code">07 / FOUNDER OS</p><h2>Always know<br /><em>what to do next.</em></h2></div><p>Your Rethink Score combines company health, execution, customer evidence, and weekly progress into one useful decision system.</p></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">07 / OWN WHAT YOU BUILD</p><h2>Your code. Your domain.<br /><em>Your revenue.</em></h2></div><p>Launch without surrendering control of the product or creating a platform tax on every customer payment.</p></div>
           <div class="story-score-layout">
-            <div class="story-score-result"><div><span>RETHINK SCORE</span><small>CAREERFORGE AI</small></div><strong><i data-countup="74">74</i><em>/100</em></strong><p><b>PROGRESSING</b> Strong product. Distribution is the current constraint.</p><div><span>AI RECOMMENDATION</span><p>Stop building features this week. Talk to 20 target customers.</p><small>NEXT MILESTONE&nbsp; $1K MRR</small></div></div>
-            <div><div class="score-bars">{scoreFactors.map(([name, value]) => <div><span>{name}</span><i><b style={`width:${value}%`}></b></i><strong>{value}</strong></div>)}</div><div class="founder-os-actions"><span>✓ FIRST CUSTOMER</span><span>✓ $500 MRR</span><span>84% TO $1K MRR</span></div><a class="story-fit-cta" href="/start"><span>→</span>CREATE YOUR FOUNDER OS</a></div>
+            <div class="story-score-result"><div><span>BUSINESS OWNERSHIP</span><small>CAREERFORGE AI</small></div><strong><i data-countup="100">100</i><em>%</em></strong><p><b>YOURS</b> Payments flow to your account. The product launches on your domain.</p><div><span>NO PLATFORM REVENUE FEE</span><p>Keep the upside you create and retain a portable path to the complete codebase.</p><small>OWNERSHIP FIRST&nbsp; NO LOCK-IN</small></div></div>
+            <div><div class="score-bars">{scoreFactors.map(([name, value]) => <div><span>{name}</span><i><b style={`width:${value}%`}></b></i><strong>{value}</strong></div>)}</div><div class="founder-os-actions"><span>✓ CUSTOM DOMAIN</span><span>✓ DIRECT PAYMENTS</span><span>✓ FULL CODE ACCESS</span></div><a class="story-fit-cta" href="/start"><span>→</span>START BUILDING</a></div>
           </div>
         </article>
 
         <article class="story-card story-ecosystem reveal" id="ecosystem">
-          <div class="story-card-head"><div><p class="foundry-section-code">08 / THE ECOSYSTEM</p><h2>Support that grows<br />with the company.</h2></div><p>Use only the layer you need now. Unlock deeper support after the business earns it.</p></div>
-          <div class="ecosystem-grid"><a href="/deals"><span>01</span><h3>Rethink Deals</h3><p>Reduce costs with relevant AI, cloud, analytics, email, sales, and developer benefits.</p><b>EXPLORE DEALS ↗</b></a><a href="/partner"><span>02</span><h3>Rethink Growth</h3><p>Optional managed SEO, AEO, content, outbound, conversion, and growth support.</p><b>GROW WITH RETHINKSOFT ↗</b></a><div><span>03</span><h3>Funding readiness</h3><p>Build traction first. Capital comes next through preparation, introductions, and future eligibility.</p><b>TRACTION REQUIRED</b></div></div>
+          <div class="story-card-head"><div><p class="foundry-section-code">08 / BEYOND THE BUILD</p><h2>Launch the product.<br />Then grow the business.</h2></div><p>Rethinksoft continues after deployment with operating guidance, startup benefits, and practical customer acquisition support.</p></div>
+          <div class="ecosystem-grid"><a href="/opportunities"><span>01</span><h3>Product paths</h3><p>Start from researched products with build scope, pricing, customer, and launch direction.</p><b>VIEW PRODUCT PATHS ↗</b></a><a href="/deals"><span>02</span><h3>Rethink Deals</h3><p>Reduce operating costs with relevant AI, cloud, analytics, email, and developer benefits.</p><b>EXPLORE DEALS ↗</b></a><a href="/start"><span>03</span><h3>Founder OS</h3><p>Track goals, revenue, customer progress, launch readiness, and the next growth priority.</p><b>CREATE YOUR WORKSPACE ↗</b></a></div>
         </article>
       </div>
     </div>
   </section>
 
   <section class="pilot-section section" id="philosophy"><div class="container reveal">
-    <div class="pilot-banner"><div><p class="foundry-section-code">THE RETHINKSOFT PHILOSOPHY</p><h2>Starting has never<br />been easier.<br /><em>Succeeding takes work.</em></h2></div><div class="pilot-details"><p>Rethinksoft does not promise instant revenue or replace founder judgment. It reduces uncertainty, organizes execution, and keeps every week connected to customers.</p><div><span><strong>Discover</strong> the opportunity</span><span><strong>Validate</strong> the evidence</span><span><strong>Launch</strong> the product</span><span><strong>Grow</strong> the company</span></div></div></div>
-    <div class="pilot-kpi"><span>THE NORTH STAR</span><strong>Make software entrepreneurship accessible to everyone</strong></div>
+    <div class="pilot-banner"><div><p class="foundry-section-code">BUSINESS-READY FROM DAY ONE</p><h2>Build in days.<br />Launch with confidence.<br /><em>Own the outcome.</em></h2></div><div class="pilot-details"><p>Rethinksoft brings the product, infrastructure, monetization, and growth path into one focused system for serious software entrepreneurs.</p><div><span><strong>Full stack</strong> application</span><span><strong>Integrated</strong> payments</span><span><strong>Custom</strong> deployment</span><span><strong>Complete</strong> ownership</span></div></div></div>
+    <div class="pilot-kpi"><span>THE RETHINKSOFT PROMISE</span><strong>Everything needed to move from software idea to operating business</strong></div>
   </div></section>
 
-  <section class="faq-section section" id="faq"><div class="container reveal"><div class="foundry-section-head"><div><p class="foundry-section-code">09 / QUESTIONS</p><h2>Build the business.<br />Not only the app.</h2></div><p>Rethinksoft sits around the tools you already use and connects product work to market evidence, customers, and growth.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
+  <section class="faq-section section" id="faq"><div class="container reveal"><div class="foundry-section-head"><div><p class="foundry-section-code">09 / QUESTIONS</p><h2>Build without limits.<br />Launch without lock-in.</h2></div><p>Clear answers about the products you can launch, the tools you can use, payments, deployment, and ownership.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
 
-  <section class="foundry-apply" id="start"><div class="container apply-layout reveal"><div><p class="foundry-section-code">START YOUR SOFTWARE BUSINESS</p><h2>Choose the opportunity.<br /><em>Make the next move.</em></h2><p>Bring an idea or start from a researched opportunity. Create a private Founder OS workspace in about three minutes.</p></div><div class="final-action-stack"><a class="foundry-primary" href="/start">START A BUSINESS <span>↗</span></a><a class="foundry-secondary" href="/opportunities">EXPLORE OPPORTUNITIES</a><p>No application, payment, or equity required for the first workspace.</p></div></div></section>
+  <section class="foundry-apply" id="start"><div class="container apply-layout reveal"><div><p class="foundry-section-code">START YOUR SOFTWARE BUSINESS TODAY</p><h2>Your idea is ready.<br /><em>Make it real.</em></h2><p>Choose a proven product path or describe what you want to launch. Connect the business infrastructure and keep 100% of the revenue you create.</p></div><div class="final-action-stack"><a class="foundry-primary" href="/start">START BUILDING NOW <span>↗</span></a><a class="foundry-secondary" href="/opportunities">VIEW PRODUCT PATHS</a><p>Custom domain, integrated launch path, and full code access.</p></div></div></section>
 </BaseLayout>
