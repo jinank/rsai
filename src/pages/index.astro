@@ -2,21 +2,21 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { opportunities } from '../lib/opportunities';
 
-const title = 'Start Your Software Business Today | Rethinksoft';
-const description = 'Launch scalable applications with enterprise-grade infrastructure, integrated payments, storage, and deployment in one platform.';
+const title = 'Build Software and Start Selling | Rethinksoft';
+const description = 'Choose a proven software idea, make it yours, and launch without code.';
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const featured = opportunities.slice(0, 3);
 const journey = [
-  { n: '01', name: 'Pick your business', text: 'Choose a ready-made software idea or describe your own.' },
-  { n: '02', name: 'Make it yours', text: 'Choose the name, colors, features, and price in plain English.' },
-  { n: '03', name: 'Connect the essentials', text: 'Add your domain, payment account, email, and file storage.' },
-  { n: '04', name: 'Launch and sell', text: 'Go live, welcome customers, and keep the revenue you earn.' },
+  { n: '01', name: 'Choose', text: 'Pick a proven idea.' },
+  { n: '02', name: 'Personalize', text: 'Add your brand and price.' },
+  { n: '03', name: 'Connect', text: 'Add payments and a domain.' },
+  { n: '04', name: 'Launch', text: 'Go live and start selling.' },
 ];
 const faqs = [
-  { q: 'What kind of software can I launch?', a: 'You can start with SaaS products, AI tools, marketplaces, customer portals, internal tools, ecommerce experiences, and focused vertical software businesses.' },
-  { q: 'Do I need to know how to code?', a: 'No coding experience is required to choose a product path, define the business, or create the build specification. You can use Codex, Claude Code, Cursor, or a developer to implement and customize the application.' },
-  { q: 'How do payments and revenue work?', a: 'The launch path is designed around connecting your own Stripe account. Customer payments should flow directly to your business, and Rethinksoft does not claim a percentage of your revenue.' },
-  { q: 'Do I own the code and the business?', a: 'Yes. Rethinksoft is designed around portable code, commercial ownership, custom domains, and infrastructure you can control. Specific third-party services remain subject to their own terms.' },
+  { q: 'What can I launch?', a: 'SaaS products, AI tools, marketplaces, portals, internal tools, and focused software businesses.' },
+  { q: 'Do I need to code?', a: 'No. Start in plain English and follow a guided launch path.' },
+  { q: 'How do I get paid?', a: 'Connect your Stripe account. Payments go directly to your business.' },
+  { q: 'Do I own it?', a: 'Yes. Your brand, domain, customers, revenue, and code stay yours.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/opportunities?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
@@ -28,11 +28,11 @@ const jsonLd = [
   <section class="foundry-hero">
     <div class="foundry-grid" aria-hidden="true"></div>
     <div class="container foundry-hero-inner">
-      <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">THE SIMPLE WAY TO START A <strong>SOFTWARE BUSINESS</strong></span></p>
-      <h1>Start Your Software<br /><em>Business Today.</em></h1>
-      <p class="foundry-lede">Launch your own software business without learning to code. Your product, payments, files, and hosting are connected in one simple place.</p>
-      <div class="foundry-actions"><a class="foundry-primary" href="/start">START A BUSINESS <span>↗</span></a><a class="foundry-secondary" href="/opportunities">EXPLORE OPPORTUNITIES</a></div>
-      <p class="hero-trust-line"><span>Enterprise-ready infrastructure</span><i aria-hidden="true"></i><span>Keep 100% of revenue</span></p>
+      <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">NO CODE REQUIRED</span></p>
+      <h1>Build Software.<br /><em>Start Selling.</em></h1>
+      <p class="foundry-lede">Choose a proven product. Make it yours. Launch in one place.</p>
+      <div class="foundry-actions"><a class="foundry-primary" href="/start">START BUILDING <span>↗</span></a><a class="foundry-secondary" href="/opportunities">BROWSE PRODUCTS</a></div>
+      <p class="hero-trust-line"><span>No code required</span><i aria-hidden="true"></i><span>Keep 100% of your profits</span></p>
       <div class="foundry-preview" aria-label="Example Rethinksoft Founder OS workspace">
         <div class="preview-window">
           <div class="preview-bar"><span><i></i><i></i><i></i></span><small>founder.rethinksoft.com / careerforge</small><b>LIVE</b></div>
@@ -52,14 +52,14 @@ const jsonLd = [
 
   <main class="simple-home">
     <section class="simple-intro section" id="journey"><div class="container reveal">
-      <p class="simple-eyebrow">FROM IDEA TO FIRST CUSTOMER</p>
-      <h2>You do not need to be technical.<br /><em>You just need a business idea.</em></h2>
-      <p class="simple-intro-copy">Rethinksoft helps you choose, personalize, and launch a real software product. We guide the technical setup so you can focus on the customer and the business.</p>
+      <p class="simple-eyebrow">HOW IT WORKS</p>
+      <h2>From idea to<br /><em>live product.</em></h2>
+      <p class="simple-intro-copy">Four simple steps. Everything connected.</p>
       <div class="simple-steps">{journey.map((step) => <article><span>{step.n}</span><div><h3>{step.name}</h3><p>{step.text}</p></div></article>)}</div>
     </div></section>
 
     <section class="simple-feature section" id="discover"><div class="container simple-feature-grid reveal">
-      <div class="simple-feature-copy"><p class="simple-eyebrow">01 / CHOOSE</p><h2>Start with an idea people already understand.</h2><p>Browse clear product opportunities with the customer, business model, suggested price, and launch difficulty explained in everyday language.</p><a class="simple-link" href="/opportunities">EXPLORE PRODUCT IDEAS <span>↗</span></a></div>
+      <div class="simple-feature-copy"><p class="simple-eyebrow">01 / CHOOSE</p><h2>Pick a proven idea.</h2><p>See the product, customer, price, and launch plan.</p><a class="simple-link" href="/opportunities">BROWSE PRODUCTS <span>↗</span></a></div>
       <div class="simple-ui simple-picker" aria-label="Software opportunity picker preview">
         <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Choose your software business</small></div>
         <div class="picker-search">⌕ <span>What would you like to sell?</span></div>
@@ -68,7 +68,7 @@ const jsonLd = [
     </div></section>
 
     <section class="simple-feature simple-feature-tint section" id="customize"><div class="container simple-feature-grid reverse reveal">
-      <div class="simple-feature-copy"><p class="simple-eyebrow">02 / PERSONALIZE</p><h2>Tell us how you want it to look and work.</h2><p>Use plain English to choose your brand, pricing, pages, and features. You always see what will be created before anything goes live.</p><a class="simple-link" href="/start">DESCRIBE YOUR BUSINESS <span>↗</span></a></div>
+      <div class="simple-feature-copy"><p class="simple-eyebrow">02 / PERSONALIZE</p><h2>Make it yours.</h2><p>Change the brand, price, pages, and features in plain English.</p><a class="simple-link" href="/start">CUSTOMIZE YOURS <span>↗</span></a></div>
       <div class="simple-ui simple-builder" aria-label="Plain English product builder preview">
         <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Make it yours</small></div>
         <div class="builder-preview"><div class="builder-brand"><span>RP</span><strong>ResumePilot</strong><b>Get started</b></div><h3>A better resume.<br />A faster job search.</h3><p>Personal AI guidance for every application.</p><div class="builder-cards"><i></i><i></i><i></i></div></div>
@@ -77,7 +77,7 @@ const jsonLd = [
     </div></section>
 
     <section class="simple-feature section" id="launch"><div class="container simple-feature-grid reveal">
-      <div class="simple-feature-copy"><p class="simple-eyebrow">03 / CONNECT AND LAUNCH</p><h2>Payments, hosting, and your domain in one place.</h2><p>Connect the accounts you already use. Rethinksoft shows you what is ready, what needs attention, and the exact next step.</p><a class="simple-link" href="/start">START YOUR SETUP <span>↗</span></a></div>
+      <div class="simple-feature-copy"><p class="simple-eyebrow">03 / LAUNCH</p><h2>Connect. Publish. Sell.</h2><p>Add your payments and domain. We handle the rest.</p><a class="simple-link" href="/start">START YOUR SETUP <span>↗</span></a></div>
       <div class="simple-ui simple-launch" aria-label="Launch checklist preview">
         <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Launch checklist</small></div>
         <div class="launch-score"><span><b>3</b> of 4 ready</span><i><b></b></i></div>
@@ -86,18 +86,18 @@ const jsonLd = [
     </div></section>
 
     <section class="simple-paths section"><div class="container reveal">
-      <div class="simple-section-head"><div><p class="simple-eyebrow">READY-MADE STARTING POINTS</p><h2>Pick a product.<br /><em>Make it your business.</em></h2></div><p>Each path explains what you are selling, who it is for, how much you could charge, and what it takes to launch.</p></div>
+      <div class="simple-section-head"><div><p class="simple-eyebrow">PRODUCT IDEAS</p><h2>Ready to launch.</h2></div><p>Pick one. Add your brand. Start selling.</p></div>
       <div class="simple-path-grid">{featured.map((item, index) => <a href={`/start?opportunity=${item.slug}`}><span class={`path-icon path-icon-${index + 1}`}>{item.name.slice(0, 1)}</span><small>{item.category}</small><h3>{item.name}</h3><p>{item.summary}</p><div><b>READINESS {item.score}/100</b><strong>VIEW PRODUCT <i>↗</i></strong></div></a>)}</div>
       <a class="simple-all-link" href="/opportunities">VIEW ALL PRODUCT IDEAS <span>↗</span></a>
     </div></section>
 
     <section class="simple-ownership section" id="ownership"><div class="container reveal">
-      <div><p class="simple-eyebrow">BUILT AROUND OWNERSHIP</p><h2>Your business stays yours.</h2><p>Use your brand, your domain, and your payment account. Keep the revenue you earn and retain access to the code behind your product.</p><a class="foundry-primary" href="/start">START A BUSINESS <span>↗</span></a></div>
+      <div><p class="simple-eyebrow">FULL OWNERSHIP</p><h2>Your product.<br />Your profits.</h2><p>Your brand, domain, payments, customers, and code.</p><a class="foundry-primary" href="/start">START BUILDING <span>↗</span></a></div>
       <dl><div><dt>100%</dt><dd>of your revenue stays with you</dd></div><div><dt>1</dt><dd>clear workspace for your launch</dd></div><div><dt>0</dt><dd>coding knowledge required to begin</dd></div></dl>
     </div></section>
   </main>
 
-  <section class="faq-section simple-faq section" id="faq"><div class="container reveal"><div class="simple-section-head"><div><p class="simple-eyebrow">COMMON QUESTIONS</p><h2>Simple answers<br />before you start.</h2></div><p>What you need to know about building, launching, payments, and ownership.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
+  <section class="faq-section simple-faq section" id="faq"><div class="container reveal"><div class="simple-section-head"><div><p class="simple-eyebrow">FAQ</p><h2>Questions, answered.</h2></div><p>Everything you need to start.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
 
-  <section class="foundry-apply" id="start"><div class="container apply-layout reveal"><div><p class="foundry-section-code">START YOUR SOFTWARE BUSINESS TODAY</p><h2>Your idea is ready.<br /><em>Make it real.</em></h2><p>Choose a proven product path or describe what you want to launch. Connect the business infrastructure and keep 100% of the revenue you create.</p></div><div class="final-action-stack"><a class="foundry-primary" href="/start">START BUILDING NOW <span>↗</span></a><a class="foundry-secondary" href="/opportunities">VIEW PRODUCT PATHS</a><p>Custom domain, integrated launch path, and full code access.</p></div></div></section>
+  <section class="foundry-apply" id="start"><div class="container apply-layout reveal"><div><p class="foundry-section-code">START TODAY</p><h2>Build it.<br /><em>Sell it.</em></h2><p>Your software business starts here.</p></div><div class="final-action-stack"><a class="foundry-primary" href="/start">START BUILDING <span>↗</span></a><a class="foundry-secondary" href="/opportunities">BROWSE PRODUCTS</a><p>No code. Full ownership.</p></div></div></section>
 </BaseLayout>
