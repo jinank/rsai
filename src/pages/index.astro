@@ -7,21 +7,11 @@ const description = 'Launch scalable applications with enterprise-grade infrastr
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const featured = opportunities.slice(0, 3);
 const journey = [
-  { n: '01', glyph: '⌕', name: 'Choose', text: 'Start from a proven product path or describe the software business you want to launch.' },
-  { n: '02', glyph: '✦', name: 'Generate', text: 'Turn plain English into the product scope, user flows, data model, interface, and launch plan.' },
-  { n: '03', glyph: '⌁', name: 'Connect', text: 'Add payments, authentication, storage, analytics, email, and your operating stack.' },
-  { n: '04', glyph: '↗', name: 'Deploy', text: 'Connect a custom domain and launch with secure, scalable infrastructure.' },
-  { n: '05', glyph: '↑', name: 'Grow', text: 'Track revenue, improve conversion, and follow a focused customer acquisition plan.' },
+  { n: '01', name: 'Pick your business', text: 'Choose a ready-made software idea or describe your own.' },
+  { n: '02', name: 'Make it yours', text: 'Choose the name, colors, features, and price in plain English.' },
+  { n: '03', name: 'Connect the essentials', text: 'Add your domain, payment account, email, and file storage.' },
+  { n: '04', name: 'Launch and sell', text: 'Go live, welcome customers, and keep the revenue you earn.' },
 ];
-const growthChannels = [
-  ['01', 'AI-assisted building', 'Describe the product in plain English and receive a complete, implementation-ready business build path.'],
-  ['02', 'Full-stack foundations', 'Plan the application, database, authentication, user management, and backend workflows together.'],
-  ['03', 'Built-in payments', 'Connect Stripe for subscriptions, one-time purchases, checkout, billing, and secure webhooks.'],
-  ['04', 'Integrated storage', 'Support images, documents, uploads, and product assets with scalable cloud storage.'],
-  ['05', 'Custom deployment', 'Launch on your domain with SSL, global delivery, monitoring, and a production checklist.'],
-  ['06', 'Full code ownership', 'Keep access to the codebase, customize the product, and avoid unnecessary platform lock-in.'],
-];
-const scoreFactors = [['Application', 100], ['Payments', 100], ['Storage', 100], ['Deployment', 100], ['Ownership', 100]];
 const faqs = [
   { q: 'What kind of software can I launch?', a: 'You can start with SaaS products, AI tools, marketplaces, customer portals, internal tools, ecommerce experiences, and focused vertical software businesses.' },
   { q: 'Do I need to know how to code?', a: 'No coding experience is required to choose a product path, define the business, or create the build specification. You can use Codex, Claude Code, Cursor, or a developer to implement and customize the application.' },
@@ -38,88 +28,76 @@ const jsonLd = [
   <section class="foundry-hero">
     <div class="foundry-grid" aria-hidden="true"></div>
     <div class="container foundry-hero-inner">
-      <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">THE OPERATING SYSTEM FOR <strong>SOFTWARE ENTREPRENEURS</strong></span></p>
+      <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">THE SIMPLE WAY TO START A <strong>SOFTWARE BUSINESS</strong></span></p>
       <h1>Start Your Software<br /><em>Business Today.</em></h1>
-      <p class="foundry-lede">Launch scalable applications with enterprise-grade infrastructure. Integrated payments, storage, and deployment, all in one platform.</p>
+      <p class="foundry-lede">Launch your own software business without learning to code. Your product, payments, files, and hosting are connected in one simple place.</p>
       <div class="foundry-actions"><a class="foundry-primary" href="/start">START A BUSINESS <span>↗</span></a><a class="foundry-secondary" href="/opportunities">EXPLORE OPPORTUNITIES</a></div>
       <p class="hero-trust-line"><span>Enterprise-ready infrastructure</span><i aria-hidden="true"></i><span>Keep 100% of revenue</span></p>
       <div class="foundry-preview" aria-label="Example Rethinksoft Founder OS workspace">
         <div class="preview-window">
           <div class="preview-bar"><span><i></i><i></i><i></i></span><small>founder.rethinksoft.com / careerforge</small><b>LIVE</b></div>
           <div class="preview-body">
-            <div class="preview-company"><span>CF</span><div><small>FOUNDER OS · RECRUITING</small><strong>CareerForge AI</strong><p>AI interview coaching · 41 customers · $840 MRR</p></div></div>
-            <div class="preview-score"><small>RETHINK SCORE</small><strong>74<span>/100</span></strong><b>PROGRESSING</b></div>
-            <div class="preview-agents"><span>PRODUCT <b>88</b></span><span>DISTRIBUTION <b>61</b></span><span>REVENUE <b>67</b></span><span>CONSISTENCY <b>82</b></span></div>
-            <div class="preview-unlock"><div><small>NEXT 7 DAYS</small><strong>Stop adding features. Interview 10 active job seekers.</strong></div><span>NEXT MILESTONE&nbsp; $1K MRR</span></div>
+            <div class="preview-company"><span>RP</span><div><small>YOUR BUSINESS WORKSPACE</small><strong>ResumePilot</strong><p>AI resume builder · 24 customers · $456 monthly revenue</p></div></div>
+            <div class="preview-score"><small>LAUNCH PROGRESS</small><strong>75<span>%</span></strong><b>ALMOST READY</b></div>
+            <div class="preview-agents"><span>WEBSITE <b>✓</b></span><span>PAYMENTS <b>✓</b></span><span>DOMAIN <b>✓</b></span><span>PUBLISH <b>4</b></span></div>
+            <div class="preview-unlock"><div><small>YOUR NEXT STEP</small><strong>Review your price, then publish ResumePilot.</strong></div><span>GO LIVE&nbsp; ↗</span></div>
           </div>
         </div>
         <div class="preview-float preview-float-left"><span>✓</span><div><small>WEEKLY PLAN READY</small><strong>5 focused actions</strong></div></div>
         <div class="preview-float preview-float-right"><small>MRR PROGRESS</small><strong>84%</strong><span>to next milestone</span></div>
       </div>
-      <div class="foundry-proof"><span><b>01</b> Discover</span><span><b>02</b> Validate</span><span><b>03</b> Launch</span><span><b>04</b> Grow</span></div>
+      <div class="foundry-proof"><span><b>01</b> Choose</span><span><b>02</b> Personalize</span><span><b>03</b> Launch</span><span><b>04</b> Sell</span></div>
     </div>
   </section>
 
-  <section class="foundry-story" id="thesis">
-    <div class="container foundry-story-layout">
-      <article class="story-card story-thesis reveal">
-        <div class="story-card-head"><div><p class="foundry-section-code">01 / BUILT FOR LAUNCH</p><h2>Everything connected.<br /><em>Ready for business.</em></h2></div><p>Move from a product idea to a complete software business with the essential infrastructure already mapped into one launch path.</p></div>
-        <div class="story-equation"><span>FULL-STACK APPLICATION</span><b>+</b><span>PAYMENTS + STORAGE</span><b>+</b><span>ONE-CLICK DEPLOYMENT</span><strong>= BUSINESS-READY SOFTWARE</strong></div>
-      </article>
+  <main class="simple-home">
+    <section class="simple-intro section" id="journey"><div class="container reveal">
+      <p class="simple-eyebrow">FROM IDEA TO FIRST CUSTOMER</p>
+      <h2>You do not need to be technical.<br /><em>You just need a business idea.</em></h2>
+      <p class="simple-intro-copy">Rethinksoft helps you choose, personalize, and launch a real software product. We guide the technical setup so you can focus on the customer and the business.</p>
+      <div class="simple-steps">{journey.map((step) => <article><span>{step.n}</span><div><h3>{step.name}</h3><p>{step.text}</p></div></article>)}</div>
+    </div></section>
 
-      <div class="foundry-story-stack">
-        <article class="story-card story-model reveal" id="journey">
-          <div class="story-card-head"><div><p class="foundry-section-code">02 / HOW IT WORKS</p><h2>Choose. Build.<br /><em>Launch.</em></h2></div><p>Start from a proven product path or bring your own idea. Rethinksoft connects the build, business infrastructure, launch, and growth workflow.</p></div>
-          <div class="story-step-grid">{journey.map((step) => <div><span>{step.n}</span><b>{step.glyph}</b><h3>{step.name}</h3><p>{step.text}</p></div>)}</div>
-        </article>
-
-        <article class="story-card story-diligence opportunity-home reveal" id="discover">
-          <div class="story-card-head"><div><p class="foundry-section-code">03 / READY-TO-USE PRODUCT PATHS</p><h2>Start faster with<br />a proven direction.</h2></div><p>Choose a researched software business with a defined customer, pricing model, product scope, validation plan, and source foundation.</p></div>
-          <div class="home-opportunity-grid">{featured.map((item) => <a href={`/start?opportunity=${item.slug}`}><span>{item.category}</span><h3>{item.name}</h3><p>{item.summary}</p><div><small>LAUNCH READINESS</small><strong>{item.score}<em>/100</em></strong></div><b>USE THIS PRODUCT PATH ↗</b></a>)}</div>
-          <a class="story-fit-cta" href="/opportunities"><span>→</span>VIEW ALL PRODUCT PATHS</a>
-        </article>
-
-        <article class="story-card story-score reveal" id="validate">
-          <div class="story-card-head"><div><p class="foundry-section-code">04 / AI-ASSISTED BUILDING</p><h2>Describe the product.<br /><em>Get the complete plan.</em></h2></div><p>Turn a plain-English idea into the product, data, payments, infrastructure, and launch decisions an implementation agent needs.</p></div>
-          <div class="story-score-layout">
-            <div class="story-score-result"><div><span>BUILD PATH</span><small>AI INTERVIEW COACH</small></div><strong><i data-countup="12">12</i><em> modules</em></strong><p><b>READY</b> Product scope, application flows, monetization, infrastructure, and launch steps are connected.</p><div><span>IMPLEMENTATION BRIEF</span><p>Build role-specific mock interviews with feedback, progress history, and subscriptions.</p><small>AGENT READY&nbsp; FULL CODE ACCESS</small></div></div>
-            <div class="validation-lists"><section><h3>Product included</h3><ul><li>Responsive customer application</li><li>Authentication and user accounts</li><li>Admin and usage dashboard</li><li>Analytics and email workflows</li></ul></section><section><h3>Business included</h3><ul><li>Stripe subscriptions and billing</li><li>Pricing and packaging guidance</li><li>Custom-domain launch checklist</li><li>First customer acquisition plan</li></ul></section></div>
-          </div>
-        </article>
-
-        <article class="story-card story-capital reveal" id="launch">
-          <div class="story-card-head"><div><p class="foundry-section-code">05 / CONNECT AND LAUNCH</p><h2>Business infrastructure.<br />Without the busywork.</h2></div><p>Connect the services every serious software product needs, then launch on infrastructure designed to scale.</p></div>
-          <div class="story-capital-grid"><div class="active"><span>INTEGRATION 01</span><h3>Payments</h3><strong>$</strong><p>Subscriptions, one-time payments, checkout sessions, billing, and secure webhooks.</p><small>KEEP 100% OF REVENUE</small></div><div><span>INTEGRATION 02</span><h3>Storage</h3><strong>GB</strong><p>Cloud file uploads, product assets, images, documents, and generated media.</p><small>SCALABLE STORAGE</small></div><div><span>INTEGRATION 03</span><h3>Application</h3><strong>01</strong><p>Database, authentication, user management, email, analytics, and admin controls.</p><small>FULL-STACK FOUNDATION</small></div><div><span>INTEGRATION 04</span><h3>Deployment</h3><strong>↗</strong><p>Custom domains, SSL, global delivery, monitoring, and production checks.</p><small>READY TO GO LIVE</small></div></div>
-          <p class="story-formula">One product path. One connected stack. Your domain, code, customers, and revenue.</p>
-        </article>
-
-        <article class="story-card story-diligence reveal" id="growth">
-          <div class="story-card-head"><div><p class="foundry-section-code">06 / EVERYTHING YOU NEED</p><h2>Build and launch<br />without the gaps.</h2></div><p>Every part of the launch path is designed to work together, from the first product description to the first paying customer.</p></div>
-          <div class="story-agent-grid">{growthChannels.map(([code, name, text]) => <div><span>{code}</span><h3>{name}</h3><p>{text}</p><small>GROWTH CHANNEL</small></div>)}</div>
-        </article>
-
-        <article class="story-card story-score reveal" id="founder-os">
-          <div class="story-card-head"><div><p class="foundry-section-code">07 / OWN WHAT YOU BUILD</p><h2>Your code. Your domain.<br /><em>Your revenue.</em></h2></div><p>Launch without surrendering control of the product or creating a platform tax on every customer payment.</p></div>
-          <div class="story-score-layout">
-            <div class="story-score-result"><div><span>BUSINESS OWNERSHIP</span><small>CAREERFORGE AI</small></div><strong><i data-countup="100">100</i><em>%</em></strong><p><b>YOURS</b> Payments flow to your account. The product launches on your domain.</p><div><span>NO PLATFORM REVENUE FEE</span><p>Keep the upside you create and retain a portable path to the complete codebase.</p><small>OWNERSHIP FIRST&nbsp; NO LOCK-IN</small></div></div>
-            <div><div class="score-bars">{scoreFactors.map(([name, value]) => <div><span>{name}</span><i><b style={`width:${value}%`}></b></i><strong>{value}</strong></div>)}</div><div class="founder-os-actions"><span>✓ CUSTOM DOMAIN</span><span>✓ DIRECT PAYMENTS</span><span>✓ FULL CODE ACCESS</span></div><a class="story-fit-cta" href="/start"><span>→</span>START BUILDING</a></div>
-          </div>
-        </article>
-
-        <article class="story-card story-ecosystem reveal" id="ecosystem">
-          <div class="story-card-head"><div><p class="foundry-section-code">08 / BEYOND THE BUILD</p><h2>Launch the product.<br />Then grow the business.</h2></div><p>Rethinksoft continues after deployment with operating guidance, startup benefits, and practical customer acquisition support.</p></div>
-          <div class="ecosystem-grid"><a href="/opportunities"><span>01</span><h3>Product paths</h3><p>Start from researched products with build scope, pricing, customer, and launch direction.</p><b>VIEW PRODUCT PATHS ↗</b></a><a href="/deals"><span>02</span><h3>Rethink Deals</h3><p>Reduce operating costs with relevant AI, cloud, analytics, email, and developer benefits.</p><b>EXPLORE DEALS ↗</b></a><a href="/start"><span>03</span><h3>Founder OS</h3><p>Track goals, revenue, customer progress, launch readiness, and the next growth priority.</p><b>CREATE YOUR WORKSPACE ↗</b></a></div>
-        </article>
+    <section class="simple-feature section" id="discover"><div class="container simple-feature-grid reveal">
+      <div class="simple-feature-copy"><p class="simple-eyebrow">01 / CHOOSE</p><h2>Start with an idea people already understand.</h2><p>Browse clear product opportunities with the customer, business model, suggested price, and launch difficulty explained in everyday language.</p><a class="simple-link" href="/opportunities">EXPLORE PRODUCT IDEAS <span>↗</span></a></div>
+      <div class="simple-ui simple-picker" aria-label="Software opportunity picker preview">
+        <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Choose your software business</small></div>
+        <div class="picker-search">⌕ <span>What would you like to sell?</span></div>
+        <div class="picker-list">{featured.map((item, index) => <div class:list={{ active: index === 0 }}><span>{item.category.slice(0, 1)}</span><div><strong>{item.name}</strong><small>{item.summary}</small></div><b>{index === 0 ? 'SELECTED' : 'CHOOSE'}</b></div>)}</div>
       </div>
-    </div>
-  </section>
+    </div></section>
 
-  <section class="pilot-section section" id="philosophy"><div class="container reveal">
-    <div class="pilot-banner"><div><p class="foundry-section-code">BUSINESS-READY FROM DAY ONE</p><h2>Build in days.<br />Launch with confidence.<br /><em>Own the outcome.</em></h2></div><div class="pilot-details"><p>Rethinksoft brings the product, infrastructure, monetization, and growth path into one focused system for serious software entrepreneurs.</p><div><span><strong>Full stack</strong> application</span><span><strong>Integrated</strong> payments</span><span><strong>Custom</strong> deployment</span><span><strong>Complete</strong> ownership</span></div></div></div>
-    <div class="pilot-kpi"><span>THE RETHINKSOFT PROMISE</span><strong>Everything needed to move from software idea to operating business</strong></div>
-  </div></section>
+    <section class="simple-feature simple-feature-tint section" id="customize"><div class="container simple-feature-grid reverse reveal">
+      <div class="simple-feature-copy"><p class="simple-eyebrow">02 / PERSONALIZE</p><h2>Tell us how you want it to look and work.</h2><p>Use plain English to choose your brand, pricing, pages, and features. You always see what will be created before anything goes live.</p><a class="simple-link" href="/start">DESCRIBE YOUR BUSINESS <span>↗</span></a></div>
+      <div class="simple-ui simple-builder" aria-label="Plain English product builder preview">
+        <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Make it yours</small></div>
+        <div class="builder-preview"><div class="builder-brand"><span>RP</span><strong>ResumePilot</strong><b>Get started</b></div><h3>A better resume.<br />A faster job search.</h3><p>Personal AI guidance for every application.</p><div class="builder-cards"><i></i><i></i><i></i></div></div>
+        <div class="builder-prompt"><small>WHAT WOULD YOU LIKE TO CHANGE?</small><p>Use a warmer orange, charge $19 per month, and add a job tracker.</p><button type="button">APPLY CHANGES <span>↗</span></button></div>
+      </div>
+    </div></section>
 
-  <section class="faq-section section" id="faq"><div class="container reveal"><div class="foundry-section-head"><div><p class="foundry-section-code">09 / QUESTIONS</p><h2>Build without limits.<br />Launch without lock-in.</h2></div><p>Clear answers about the products you can launch, the tools you can use, payments, deployment, and ownership.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
+    <section class="simple-feature section" id="launch"><div class="container simple-feature-grid reveal">
+      <div class="simple-feature-copy"><p class="simple-eyebrow">03 / CONNECT AND LAUNCH</p><h2>Payments, hosting, and your domain in one place.</h2><p>Connect the accounts you already use. Rethinksoft shows you what is ready, what needs attention, and the exact next step.</p><a class="simple-link" href="/start">START YOUR SETUP <span>↗</span></a></div>
+      <div class="simple-ui simple-launch" aria-label="Launch checklist preview">
+        <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Launch checklist</small></div>
+        <div class="launch-score"><span><b>3</b> of 4 ready</span><i><b></b></i></div>
+        <div class="launch-list"><div><span>✓</span><p><strong>Your website</strong><small>Pages and mobile design are ready</small></p><b>READY</b></div><div><span>✓</span><p><strong>Payments</strong><small>Your Stripe account is connected</small></p><b>READY</b></div><div><span>✓</span><p><strong>Custom domain</strong><small>resumepilot.com is connected</small></p><b>READY</b></div><div class="waiting"><span>4</span><p><strong>Publish</strong><small>Review the final checklist and go live</small></p><button type="button">GO LIVE ↗</button></div></div>
+      </div>
+    </div></section>
+
+    <section class="simple-paths section"><div class="container reveal">
+      <div class="simple-section-head"><div><p class="simple-eyebrow">READY-MADE STARTING POINTS</p><h2>Pick a product.<br /><em>Make it your business.</em></h2></div><p>Each path explains what you are selling, who it is for, how much you could charge, and what it takes to launch.</p></div>
+      <div class="simple-path-grid">{featured.map((item, index) => <a href={`/start?opportunity=${item.slug}`}><span class={`path-icon path-icon-${index + 1}`}>{item.name.slice(0, 1)}</span><small>{item.category}</small><h3>{item.name}</h3><p>{item.summary}</p><div><b>READINESS {item.score}/100</b><strong>VIEW PRODUCT <i>↗</i></strong></div></a>)}</div>
+      <a class="simple-all-link" href="/opportunities">VIEW ALL PRODUCT IDEAS <span>↗</span></a>
+    </div></section>
+
+    <section class="simple-ownership section" id="ownership"><div class="container reveal">
+      <div><p class="simple-eyebrow">BUILT AROUND OWNERSHIP</p><h2>Your business stays yours.</h2><p>Use your brand, your domain, and your payment account. Keep the revenue you earn and retain access to the code behind your product.</p><a class="foundry-primary" href="/start">START A BUSINESS <span>↗</span></a></div>
+      <dl><div><dt>100%</dt><dd>of your revenue stays with you</dd></div><div><dt>1</dt><dd>clear workspace for your launch</dd></div><div><dt>0</dt><dd>coding knowledge required to begin</dd></div></dl>
+    </div></section>
+  </main>
+
+  <section class="faq-section simple-faq section" id="faq"><div class="container reveal"><div class="simple-section-head"><div><p class="simple-eyebrow">COMMON QUESTIONS</p><h2>Simple answers<br />before you start.</h2></div><p>What you need to know about building, launching, payments, and ownership.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
 
   <section class="foundry-apply" id="start"><div class="container apply-layout reveal"><div><p class="foundry-section-code">START YOUR SOFTWARE BUSINESS TODAY</p><h2>Your idea is ready.<br /><em>Make it real.</em></h2><p>Choose a proven product path or describe what you want to launch. Connect the business infrastructure and keep 100% of the revenue you create.</p></div><div class="final-action-stack"><a class="foundry-primary" href="/start">START BUILDING NOW <span>↗</span></a><a class="foundry-secondary" href="/opportunities">VIEW PRODUCT PATHS</a><p>Custom domain, integrated launch path, and full code access.</p></div></div></section>
 </BaseLayout>
