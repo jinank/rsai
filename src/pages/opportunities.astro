@@ -2,20 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { opportunities } from '../lib/opportunities';
 
-const title = 'Software Business Opportunities | Rethinksoft';
-const description = 'Explore researched software business opportunities with market, competition, build difficulty, risks, validation steps, and Rethink Opportunity Scores.';
+const title = 'Choose Your Software Business | Rethinksoft';
+const description = 'Choose a ready-to-launch software business, add your brand, connect payments, and start selling while Rethinksoft manages the technology.';
 const categories = [...new Set(opportunities.map((item) => item.category))].sort();
 ---
 <BaseLayout {title} {description} pageClass="hub-page pivot-page opportunities-page">
   <section class="pivot-hero compact">
     <div class="foundry-grid" aria-hidden="true"></div>
     <div class="container pivot-hero-inner">
-      <p class="foundry-kicker"><span class="foundry-kicker-mark">R</span><span>OPPORTUNITY DISCOVERY</span></p>
-      <h1>Find software<br /><em>worth building.</em></h1>
-      <p>Research practical software businesses before writing code. Compare the customer, market, competition, build difficulty, revenue potential, and first validation test.</p>
+      <p class="foundry-kicker"><span class="foundry-kicker-mark">R</span><span>READY-TO-LAUNCH SOFTWARE</span></p>
+      <h1>Choose the software.<br /><em>Build the business.</em></h1>
+      <p>Explore products you can brand, price, and sell. Rethinksoft manages the hosting, maintenance, and updates.</p>
       <div class="opportunity-toolbar">
         <label><span>⌕</span><input type="search" data-opportunity-search placeholder="Search markets, customers, or ideas" aria-label="Search opportunities" /></label>
-        <span><b data-opportunity-count>{opportunities.length}</b> researched opportunities</span>
+        <span><b data-opportunity-count>{opportunities.length}</b> software businesses</span>
       </div>
       <div class="opportunity-chips"><button class="active" type="button" data-opportunity-category="all">All</button>{categories.map((category) => <button type="button" data-opportunity-category={category.toLowerCase()}>{category}</button>)}</div>
     </div>
@@ -26,19 +26,19 @@ const categories = [...new Set(opportunities.map((item) => item.category))].sort
       <article class="opportunity-card reveal" data-opportunity-item data-search={`${item.name} ${item.category} ${item.audience} ${item.summary}`.toLowerCase()} data-category={item.category.toLowerCase()}>
         <div class="opportunity-rank">{String(index + 1).padStart(2, '0')}</div>
         <div class="opportunity-main">
-          <p class="foundry-section-code">{item.category} · {item.customerPrice}</p>
+          <p class="foundry-section-code">{item.category} · CUSTOMERS CAN PAY {item.customerPrice}</p>
           <h2>{item.name}</h2>
           <p>{item.summary}</p>
           <span>FOR {item.audience.toUpperCase()}</span>
         </div>
-        <div class="opportunity-score"><small>OPPORTUNITY SCORE</small><strong>{item.score}<em>/100</em></strong><span class:list={['score-status', item.score >= 84 && 'strong']}>{item.score >= 84 ? 'STRONG' : 'PROMISING'}</span></div>
+        <div class="opportunity-score"><small>BUSINESS READINESS</small><strong>{item.score}<em>/100</em></strong><span class:list={['score-status', item.score >= 84 && 'strong']}>{item.score >= 84 ? 'READY' : 'PROMISING'}</span></div>
         <dl class="opportunity-signals"><div><dt>MARKET</dt><dd>{item.market}</dd></div><div><dt>COMPETITION</dt><dd>{item.competition}</dd></div><div><dt>BUILD</dt><dd>{item.buildDifficulty}</dd></div><div><dt>REVENUE</dt><dd>{item.revenuePotential}</dd></div></dl>
-        <details class="opportunity-brief"><summary>VIEW VALIDATION BRIEF <i>+</i></summary><div><section><h3>Why this could work</h3><ul>{item.why.map((point) => <li>{point}</li>)}</ul></section><section><h3>Biggest risks</h3><ul>{item.risks.map((point) => <li>{point}</li>)}</ul></section><section><h3>Validate first</h3><ol>{item.validate.map((point) => <li>{point}</li>)}</ol></section></div></details>
-        <a class="opportunity-start" href={`/start?opportunity=${item.slug}`}><span>→</span> START THIS BUSINESS</a>
+        <details class="opportunity-brief"><summary>VIEW BUSINESS DETAILS <i>+</i></summary><div><section><h3>Why customers buy it</h3><ul>{item.why.map((point) => <li>{point}</li>)}</ul></section><section><h3>What to plan for</h3><ul>{item.risks.map((point) => <li>{point}</li>)}</ul></section><section><h3>Your first launch steps</h3><ol>{item.validate.map((point) => <li>{point}</li>)}</ol></section></div></details>
+        <a class="opportunity-start" href={`/start?opportunity=${item.slug}`}><span>→</span> CHOOSE THIS SOFTWARE</a>
       </article>
     ))}
     <p class="opportunity-empty" data-opportunity-empty hidden>No opportunities match that search yet.</p>
   </section>
 
-  <section class="pivot-final-cta reveal"><div class="container"><div><p class="foundry-section-code">ALREADY HAVE AN IDEA?</p><h2>Bring your own opportunity.<br /><em>Make the next step clear.</em></h2></div><a class="foundry-primary" href="/start">VALIDATE MY IDEA <span>↗</span></a></div></section>
+  <section class="pivot-final-cta reveal"><div class="container"><div><p class="foundry-section-code">READY TO START?</p><h2>Choose your product.<br /><em>Make it your business.</em></h2></div><a class="foundry-primary" href="/start">START YOUR SETUP <span>↗</span></a></div></section>
 </BaseLayout>

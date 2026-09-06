@@ -3,17 +3,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getOpportunity, opportunities } from '../lib/opportunities';
 
 const selected = getOpportunity(Astro.url.searchParams.get('opportunity') || '');
-const title = 'Start Your Software Business | Rethinksoft';
-const description = 'Create your software business profile and receive a focused Rethink Score, weekly goals, and growth recommendations.';
+const title = 'Set Up Your Software Business | Rethinksoft';
+const description = 'Choose your software, add your brand and business details, then prepare your Rethinksoft launch.';
 const categories = [...new Set(opportunities.map((item) => item.category))].sort();
 ---
 <BaseLayout {title} {description} pageClass="hub-page pivot-page start-page">
   <section class="pivot-hero compact">
     <div class="foundry-grid" aria-hidden="true"></div>
     <div class="container pivot-hero-inner">
-      <p class="foundry-kicker"><span class="foundry-kicker-mark">R</span><span>FOUNDER OS · BUSINESS SETUP</span></p>
-      <h1>Turn the idea into<br /><em>a focused business.</em></h1>
-      <p>Tell Rethinksoft what you are building, who it serves, and what progress matters next. You will leave with a private workspace, a starting score, and five practical actions.</p>
+      <p class="foundry-kicker"><span class="foundry-kicker-mark">R</span><span>SOFTWARE BUSINESS SETUP</span></p>
+      <h1>Make the software<br /><em>your business.</em></h1>
+      <p>Choose your product, tell us about your brand, and prepare everything needed to launch. No coding required.</p>
     </div>
   </section>
 
@@ -21,10 +21,10 @@ const categories = [...new Set(opportunities.map((item) => item.category))].sort
     <aside class="start-aside reveal">
       <p class="foundry-section-code">WHAT YOU GET</p>
       <ol>
-        <li><span>01</span><div><strong>Business profile</strong><p>One source of truth for the product, customer, stage, and outcome.</p></div></li>
-        <li><span>02</span><div><strong>Rethink Score V1</strong><p>A useful baseline across product, market, distribution, and execution.</p></div></li>
-        <li><span>03</span><div><strong>Weekly priorities</strong><p>Five focused actions instead of an endless startup checklist.</p></div></li>
-        <li><span>04</span><div><strong>Next milestone</strong><p>A measurable outcome that keeps building connected to customers.</p></div></li>
+        <li><span>01</span><div><strong>Your software</strong><p>A ready-to-launch product selected for your target customer.</p></div></li>
+        <li><span>02</span><div><strong>Your brand</strong><p>Your business name, positioning, price, colors, and domain.</p></div></li>
+        <li><span>03</span><div><strong>Managed technology</strong><p>Hosting, maintenance, updates, monitoring, and security.</p></div></li>
+        <li><span>04</span><div><strong>Launch plan</strong><p>A clear path to connect payments, publish, and find customers.</p></div></li>
       </ol>
       <p class="start-privacy">Your workspace is private to this browser. No public profile is created.</p>
     </aside>
