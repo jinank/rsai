@@ -30,12 +30,10 @@ const plans = [
   },
 ];
 const faqs = [
-  { q: 'What am I getting?', a: 'A ready-to-launch software product that you can brand, price, and sell as your own business.' },
-  { q: 'Do I need to code?', a: 'No. Rethinksoft manages the hosting, maintenance, updates, monitoring, and security.' },
-  { q: 'How do I get paid?', a: 'Connect your Stripe account through a secure authorization flow. Customer payments go directly to your business.' },
-  { q: 'Do I keep the revenue?', a: 'Yes. You keep 100% of the revenue your software business earns. Your annual plan covers the technology platform.' },
-  { q: 'How many products can I launch?', a: 'The Launch plan includes one software business. The Portfolio plan includes up to three.' },
-  { q: 'Can I use my own brand and domain?', a: 'Yes. Choose your business name, colors, pricing, and custom domain before you publish.' },
+  { q: 'What do I get?', a: 'A managed software product you can brand, price, and sell.' },
+  { q: 'Do I need to code?', a: 'No. We manage hosting, maintenance, updates, and security.' },
+  { q: 'How do I get paid?', a: 'Connect Stripe securely. Payments go directly to your business.' },
+  { q: 'Do I keep the revenue?', a: 'Yes. You keep 100% of your customer revenue.' },
 ];
 const jsonLd = [
   { '@context': 'https://schema.org', '@type': 'WebSite', name: 'Rethinksoft', url: siteUrl, potentialAction: { '@type': 'SearchAction', target: `${siteUrl}/opportunities?q={search_term_string}`, 'query-input': 'required name=search_term_string' } },
@@ -49,7 +47,7 @@ const jsonLd = [
     <div class="container foundry-hero-inner">
       <p class="foundry-kicker"><span class="foundry-kicker-mark" aria-hidden="true">R</span><span class="foundry-kicker-copy">YOUR SOFTWARE BUSINESS, READY TO LAUNCH</span></p>
       <h1>We build the software.<br /><em>You build the business.</em></h1>
-      <p class="foundry-lede">Choose from 50+ ready-to-launch software products. Add your brand, connect payments, and start selling.</p>
+      <p class="foundry-lede">Choose a product. Add your brand. Start selling.</p>
       <div class="foundry-actions"><a class="foundry-primary" href="/opportunities">CHOOSE YOUR SOFTWARE <span>↗</span></a><a class="foundry-secondary" href="#pricing">VIEW PLANS</a></div>
       <p class="hero-trust-line"><span>Hosting and updates included</span><i aria-hidden="true"></i><span>Keep 100% of your revenue</span></p>
       <div class="foundry-proof"><span><b>01</b> Pick</span><span><b>02</b> Brand</span><span><b>03</b> Connect</span><span><b>04</b> Sell</span></div>
@@ -60,35 +58,8 @@ const jsonLd = [
     <section class="simple-intro section" id="journey"><div class="container reveal">
       <p class="simple-eyebrow">HOW IT WORKS</p>
       <h2>Your software business<br /><em>in four steps.</em></h2>
-      <p class="simple-intro-copy">Rethinksoft runs the technology. You focus on finding customers.</p>
+      <p class="simple-intro-copy">We run the technology. You find customers.</p>
       <div class="simple-steps">{journey.map((step) => <article><span>{step.n}</span><div><h3>{step.name}</h3><p>{step.text}</p></div></article>)}</div>
-    </div></section>
-
-    <section class="simple-feature section" id="discover"><div class="container simple-feature-grid reveal">
-      <div class="simple-feature-copy"><p class="simple-eyebrow">01 / PICK</p><h2>Choose a business you can sell.</h2><p>Explore software products built around real customer needs and recurring revenue.</p><a class="simple-link" href="/opportunities">CHOOSE YOUR SOFTWARE <span>↗</span></a></div>
-      <div class="simple-ui simple-picker" aria-label="Software opportunity picker preview">
-        <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Choose your software business</small></div>
-        <div class="picker-search">⌕ <span>What would you like to sell?</span></div>
-        <div class="picker-list">{featured.map((item, index) => <div class:list={{ active: index === 0 }}><span>{item.category.slice(0, 1)}</span><div><strong>{item.name}</strong><small>{item.summary}</small></div><b>{index === 0 ? 'SELECTED' : 'CHOOSE'}</b></div>)}</div>
-      </div>
-    </div></section>
-
-    <section class="simple-feature simple-feature-tint section" id="customize"><div class="container simple-feature-grid reverse reveal">
-      <div class="simple-feature-copy"><p class="simple-eyebrow">02 / BRAND</p><h2>Make it look and feel like yours.</h2><p>Set the name, colors, price, and domain. No coding required.</p><a class="simple-link" href="/start">CREATE YOUR BRAND <span>↗</span></a></div>
-      <div class="simple-ui simple-builder" aria-label="Plain English product builder preview">
-        <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Make it yours</small></div>
-        <div class="builder-preview"><div class="builder-brand"><span>RP</span><strong>ResumePilot</strong><b>Get started</b></div><h3>A better resume.<br />A faster job search.</h3><p>Personal AI guidance for every application.</p><div class="builder-cards"><i></i><i></i><i></i></div></div>
-        <div class="builder-prompt"><small>WHAT WOULD YOU LIKE TO CHANGE?</small><p>Use a warmer orange, charge $19 per month, and add a job tracker.</p><button type="button">APPLY CHANGES <span>↗</span></button></div>
-      </div>
-    </div></section>
-
-    <section class="simple-feature section" id="launch"><div class="container simple-feature-grid reveal">
-      <div class="simple-feature-copy"><p class="simple-eyebrow">03 / CONNECT</p><h2>Connect payments. Start selling.</h2><p>Authorize Stripe securely, connect your domain, and publish. We handle the technology.</p><a class="simple-link" href="/start">START YOUR SETUP <span>↗</span></a></div>
-      <div class="simple-ui simple-launch" aria-label="Launch checklist preview">
-        <div class="simple-ui-bar"><span><i></i><i></i><i></i></span><small>Launch checklist</small></div>
-        <div class="launch-score"><span><b>3</b> of 4 ready</span><i><b></b></i></div>
-        <div class="launch-list"><div><span>✓</span><p><strong>Your website</strong><small>Pages and mobile design are ready</small></p><b>READY</b></div><div><span>✓</span><p><strong>Stripe Connect</strong><small>Your payment account is authorized</small></p><b>READY</b></div><div><span>✓</span><p><strong>Custom domain</strong><small>resumepilot.com is connected</small></p><b>READY</b></div><div class="waiting"><span>4</span><p><strong>Publish</strong><small>Review the final checklist and go live</small></p><button type="button">GO LIVE ↗</button></div></div>
-      </div>
     </div></section>
 
     <section class="home-app-showcase section"><div class="container reveal">
@@ -106,20 +77,16 @@ const jsonLd = [
     </div></section>
 
     <section class="managed-section section"><div class="container reveal">
-      <div class="simple-section-head"><div><p class="simple-eyebrow">MANAGED BY RETHINKSOFT</p><h2>We keep the software running.</h2></div><p>You build the brand and customer base. We manage the technical work behind it.</p></div>
-      <div class="managed-grid"><article><span>01</span><h3>Hosting</h3><p>Fast, reliable infrastructure for your website and application.</p></article><article><span>02</span><h3>Maintenance</h3><p>Ongoing fixes, monitoring, backups, and security management.</p></article><article><span>03</span><h3>Updates</h3><p>Product improvements that keep your software useful and current.</p></article><article><span>04</span><h3>Support</h3><p>Clear guidance when you need help launching or running the product.</p></article></div>
+      <div class="simple-section-head"><div><p class="simple-eyebrow">MANAGED BY RETHINKSOFT</p><h2>We keep it running.</h2></div><p>You focus on customers. We handle the software.</p></div>
+      <div class="managed-grid"><article><span>01</span><h3>Hosting</h3><p>Fast, reliable infrastructure.</p></article><article><span>02</span><h3>Maintenance</h3><p>Fixes, backups, and security.</p></article><article><span>03</span><h3>Updates</h3><p>Product improvements included.</p></article><article><span>04</span><h3>Support</h3><p>Help when you need it.</p></article></div>
     </div></section>
 
     <section class="pricing-section section" id="pricing"><div class="container reveal">
-      <div class="pricing-heading"><p class="simple-eyebrow">SIMPLE ANNUAL PLANS</p><h2>Choose your plan.<br /><em>Start your business.</em></h2><p>No development bill. No hosting puzzle. No revenue share.</p></div>
+      <div class="pricing-heading"><p class="simple-eyebrow">ANNUAL PLANS</p><h2>Choose your plan.</h2><p>No setup fee. No revenue share.</p></div>
       <div class="pricing-grid">{plans.map((plan) => <article class:list={{ featured: plan.featured }}><div class="pricing-top"><p>{plan.name}</p>{plan.featured && <span>BEST FOR GROWTH</span>}</div><div class="pricing-price"><strong>{plan.price}</strong><small>{plan.note}</small></div><p>{plan.description}</p><ul>{plan.features.map((feature) => <li><span>✓</span>{feature}</li>)}</ul><a href="/start"><span>→</span>{plan.cta}</a></article>)}</div>
       <p class="pricing-note">You keep 100% of your customer revenue.</p>
     </div></section>
 
-    <section class="simple-ownership section" id="ownership"><div class="container reveal">
-      <div><p class="simple-eyebrow">YOUR BUSINESS</p><h2>Your brand.<br />Your customers.<br />Your revenue.</h2><p>Rethinksoft provides and manages the software. You decide how to position, price, and grow the business.</p><a class="foundry-primary" href="/opportunities">CHOOSE YOUR SOFTWARE <span>↗</span></a></div>
-      <dl><div><dt>100%</dt><dd>of your customer revenue stays with you</dd></div><div><dt>50+</dt><dd>software businesses to choose from</dd></div><div><dt>0</dt><dd>coding knowledge required to launch</dd></div></dl>
-    </div></section>
   </main>
 
   <section class="faq-section simple-faq section" id="faq"><div class="container reveal"><div class="simple-section-head"><div><p class="simple-eyebrow">FAQ</p><h2>Questions, answered.</h2></div><p>Everything you need to start.</p></div><div class="foundry-faq">{faqs.map((item, index) => <details open={index === 0}><summary><span>0{index + 1}</span>{item.q}<i>+</i></summary><p>{item.a}</p></details>)}</div></div></section>
