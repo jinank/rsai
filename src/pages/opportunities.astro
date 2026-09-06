@@ -2,43 +2,51 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { opportunities } from '../lib/opportunities';
 
-const title = 'Choose Your Software Business | Rethinksoft';
-const description = 'Choose a ready-to-launch software business, add your brand, connect payments, and start selling while Rethinksoft manages the technology.';
+const title = 'Browse All Software Apps | Rethinksoft';
+const description = 'Browse ready-to-brand software businesses from Rethinksoft. Search by product, customer, or category and follow new app launches.';
 const categories = [...new Set(opportunities.map((item) => item.category))].sort();
+const palette = ['mint', 'peach', 'blue', 'lilac', 'sand', 'rose', 'sky', 'lime'];
 ---
-<BaseLayout {title} {description} pageClass="hub-page pivot-page opportunities-page">
-  <section class="pivot-hero compact">
+<BaseLayout {title} {description} pageClass="hub-page app-catalog-page">
+  <section class="catalog-hero">
     <div class="foundry-grid" aria-hidden="true"></div>
-    <div class="container pivot-hero-inner">
-      <p class="foundry-kicker"><span class="foundry-kicker-mark">R</span><span>READY-TO-LAUNCH SOFTWARE</span></p>
-      <h1>Choose the software.<br /><em>Build the business.</em></h1>
-      <p>Explore products you can brand, price, and sell. Rethinksoft manages the hosting, maintenance, and updates.</p>
-      <div class="opportunity-toolbar">
-        <label><span>⌕</span><input type="search" data-opportunity-search placeholder="Search markets, customers, or ideas" aria-label="Search opportunities" /></label>
-        <span><b data-opportunity-count>{opportunities.length}</b> software businesses</span>
-      </div>
-      <div class="opportunity-chips"><button class="active" type="button" data-opportunity-category="all">All</button>{categories.map((category) => <button type="button" data-opportunity-category={category.toLowerCase()}>{category}</button>)}</div>
+    <div class="container catalog-hero-inner">
+      <p class="catalog-kicker"><span>▦</span> SOFTWARE BUSINESS CATALOG</p>
+      <h1>Choose software.<br /><em>Make it your business.</em></h1>
+      <p>Explore products you can brand, price, and sell. Every app includes managed hosting, updates, and support from Rethinksoft.</p>
+      <div class="catalog-hero-actions"><a href="#all-apps">BROWSE ALL APPS <span>↓</span></a><a href="/#pricing">VIEW PLANS</a></div>
     </div>
   </section>
 
-  <section class="opportunity-list container" data-opportunity-list>
-    {opportunities.map((item, index) => (
-      <article class="opportunity-card reveal" data-opportunity-item data-search={`${item.name} ${item.category} ${item.audience} ${item.summary}`.toLowerCase()} data-category={item.category.toLowerCase()}>
-        <div class="opportunity-rank">{String(index + 1).padStart(2, '0')}</div>
-        <div class="opportunity-main">
-          <p class="foundry-section-code">{item.category} · CUSTOMERS CAN PAY {item.customerPrice}</p>
-          <h2>{item.name}</h2>
-          <p>{item.summary}</p>
-          <span>FOR {item.audience.toUpperCase()}</span>
-        </div>
-        <div class="opportunity-score"><small>BUSINESS READINESS</small><strong>{item.score}<em>/100</em></strong><span class:list={['score-status', item.score >= 84 && 'strong']}>{item.score >= 84 ? 'READY' : 'PROMISING'}</span></div>
-        <dl class="opportunity-signals"><div><dt>MARKET</dt><dd>{item.market}</dd></div><div><dt>COMPETITION</dt><dd>{item.competition}</dd></div><div><dt>BUILD</dt><dd>{item.buildDifficulty}</dd></div><div><dt>REVENUE</dt><dd>{item.revenuePotential}</dd></div></dl>
-        <details class="opportunity-brief"><summary>VIEW BUSINESS DETAILS <i>+</i></summary><div><section><h3>Why customers buy it</h3><ul>{item.why.map((point) => <li>{point}</li>)}</ul></section><section><h3>What to plan for</h3><ul>{item.risks.map((point) => <li>{point}</li>)}</ul></section><section><h3>Your first launch steps</h3><ol>{item.validate.map((point) => <li>{point}</li>)}</ol></section></div></details>
-        <a class="opportunity-start" href={`/start?opportunity=${item.slug}`}><span>→</span> CHOOSE THIS SOFTWARE</a>
-      </article>
-    ))}
-    <p class="opportunity-empty" data-opportunity-empty hidden>No opportunities match that search yet.</p>
+  <section class="catalog-shell container" id="all-apps">
+    <aside class="catalog-sidebar">
+      <label class="catalog-search"><span>⌕</span><input type="search" data-opportunity-search placeholder="Search apps" aria-label="Search software apps" /></label>
+      <nav aria-label="Filter software apps">
+        <p>BROWSE</p>
+        <button class="active" type="button" data-opportunity-category="all">All apps <span>{opportunities.length}</span></button>
+        {categories.map((category) => <button type="button" data-opportunity-category={category.toLowerCase()}>{category}<span>{opportunities.filter((item) => item.category === category).length}</span></button>)}
+      </nav>
+      <div class="catalog-sidebar-note"><span>50+</span><p>software businesses planned for the Rethinksoft fleet</p></div>
+    </aside>
+
+    <div class="catalog-results">
+      <div class="catalog-results-head"><div><p>ALL SOFTWARE</p><h2>Browse all apps</h2></div><span>Showing <b data-opportunity-count>{opportunities.length}</b> apps</span></div>
+      <div class="catalog-mobile-filters" aria-label="Filter software apps on mobile"><button class="active" type="button" data-opportunity-category="all">All</button>{categories.map((category) => <button type="button" data-opportunity-category={category.toLowerCase()}>{category}</button>)}</div>
+      <div class="catalog-grid" data-opportunity-list>
+        {opportunities.map((item, index) => (
+          <a class="catalog-card reveal" href={`/start?opportunity=${item.slug}`} data-opportunity-item data-search={`${item.name} ${item.category} ${item.audience} ${item.summary}`.toLowerCase()} data-category={item.category.toLowerCase()}>
+            <div class:list={['catalog-preview', `preview-${palette[index % palette.length]}`]}>
+              <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{item.name}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
+              <div class="catalog-tags"><span>{item.category}</span><span>Managed software</span></div>
+              <b class="coming-soon">COMING SOON</b>
+            </div>
+            <div class="catalog-card-copy"><h3>{item.name}</h3><p>{item.summary}</p><div><span>FOR {item.audience}</span><strong>VIEW APP <i>→</i></strong></div></div>
+          </a>
+        ))}
+      </div>
+      <p class="opportunity-empty" data-opportunity-empty hidden>No apps match your search.</p>
+    </div>
   </section>
 
-  <section class="pivot-final-cta reveal"><div class="container"><div><p class="foundry-section-code">READY TO START?</p><h2>Choose your product.<br /><em>Make it your business.</em></h2></div><a class="foundry-primary" href="/start">START YOUR SETUP <span>↗</span></a></div></section>
+  <section class="catalog-final"><div class="container"><div><p>CAN'T FIND YOUR SOFTWARE?</p><h2>Tell us what to<br />build next.</h2></div><a href="/start"><span>→</span> REQUEST AN APP</a></div></section>
 </BaseLayout>
