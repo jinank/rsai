@@ -6,6 +6,16 @@ const title = 'Browse All Software Apps | Rethinksoft';
 const description = 'Browse ready-to-brand software businesses from Rethinksoft. Search by product, customer, or category and follow new app launches.';
 const categories = [...new Set(opportunities.map((item) => item.category))].sort();
 const palette = ['mint', 'peach', 'blue', 'lilac', 'sand', 'rose', 'sky', 'lime'];
+const shortTitles: Record<string, string> = {
+  'ai-interview-coach': 'Interview AI',
+  'proposal-copilot': 'Proposal Copilot',
+  'local-review-ops': 'Review Ops',
+  'vertical-ai-receptionist': 'AI Receptionist',
+  'niche-job-board': 'Job Board',
+  'property-document-assistant': 'Property Docs',
+  'course-support-agent': 'Course Support',
+  'invoice-chase-assistant': 'Invoice Chase',
+};
 ---
 <BaseLayout {title} {description} pageClass="hub-page app-catalog-page">
   <section class="catalog-hero">
@@ -36,11 +46,11 @@ const palette = ['mint', 'peach', 'blue', 'lilac', 'sand', 'rose', 'sky', 'lime'
         {opportunities.map((item, index) => (
           <a class="catalog-card reveal" href={`/start?opportunity=${item.slug}`} data-opportunity-item data-search={`${item.name} ${item.category} ${item.audience} ${item.summary}`.toLowerCase()} data-category={item.category.toLowerCase()}>
             <div class:list={['catalog-preview', `preview-${palette[index % palette.length]}`]}>
-              <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{item.name}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
+              <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{shortTitles[item.slug]}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
               <div class="catalog-tags"><span>{item.category}</span><span>Managed software</span></div>
               <b class="coming-soon">COMING SOON</b>
             </div>
-            <div class="catalog-card-copy"><h3>{item.name}</h3><p>{item.summary}</p><div><span>FOR {item.audience}</span><strong>VIEW APP <i>→</i></strong></div></div>
+            <div class="catalog-card-copy"><h3>{shortTitles[item.slug]}</h3><p>{item.summary}</p><div><span>FOR {item.audience}</span><strong>VIEW APP <i>→</i></strong></div></div>
           </a>
         ))}
       </div>

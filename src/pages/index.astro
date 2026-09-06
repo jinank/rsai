@@ -6,6 +6,11 @@ const title = 'We Build the Software. You Build the Business. | Rethinksoft';
 const description = 'Choose from 50+ ready-to-launch software businesses. Add your brand, connect payments, and start selling while Rethinksoft manages the technology.';
 const siteUrl = Astro.site!.toString().replace(/\/$/, '');
 const featured = opportunities.slice(0, 3);
+const shortTitles: Record<string, string> = {
+  'ai-interview-coach': 'Interview AI',
+  'proposal-copilot': 'Proposal Copilot',
+  'local-review-ops': 'Review Ops',
+};
 const journey = [
   { n: '01', name: 'Pick', text: 'Choose a ready-to-launch software business.' },
   { n: '02', name: 'Brand', text: 'Add your name, colors, pricing, and domain.' },
@@ -92,10 +97,10 @@ const jsonLd = [
       <div class="home-app-grid">
         {featured.map((item, index) => <a class="home-app-card" href={`/start?opportunity=${item.slug}`}>
           <div class:list={['catalog-preview', ['preview-mint', 'preview-lilac', 'preview-rose'][index]]}>
-            <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{item.name}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
+            <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{shortTitles[item.slug]}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
             <div class="catalog-tags"><span>{item.category}</span><span>Managed software</span></div>
           </div>
-          <div class="home-app-copy"><div class="home-app-meta"><span>{item.category}</span><b><i></i> COMING SOON</b></div><h3>{item.name}</h3><p>{item.summary}</p><footer><span>{item.customerPrice}</span><strong>VIEW APP <i>→</i></strong></footer></div>
+          <div class="home-app-copy"><div class="home-app-meta"><span>{item.category}</span><b><i></i> COMING SOON</b></div><h3>{shortTitles[item.slug]}</h3><p>{item.summary}</p><footer><span>{item.customerPrice}</span><strong>VIEW APP <i>→</i></strong></footer></div>
         </a>)}
       </div>
     </div></section>
