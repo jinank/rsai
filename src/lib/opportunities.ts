@@ -1,6 +1,7 @@
 export type Opportunity = {
   slug: string;
   name: string;
+  displayName?: string;
   category: string;
   audience: string;
   summary: string;
@@ -13,9 +14,10 @@ export type Opportunity = {
   risks: string[];
   validate: string[];
   customerPrice: string;
+  status?: 'live' | 'coming-soon';
 };
 
-export const opportunities: Opportunity[] = [
+const comingSoonOpportunities: Opportunity[] = [
   {
     slug: 'ai-interview-coach', name: 'AI Interview Coach', category: 'Recruiting', audience: 'Job seekers, career coaches, and recruiting teams',
     summary: 'Role-specific mock interviews with structured feedback and measurable improvement.', score: 82, market: 'Strong', competition: 'Medium', buildDifficulty: 'Low', revenuePotential: 'High', customerPrice: '$19 to $49/mo',
@@ -73,6 +75,45 @@ export const opportunities: Opportunity[] = [
     validate: ['Interview 10 agency owners', 'Manually recover five overdue invoices', 'Test pricing tied to recovered cash'],
   },
 ];
+
+type LiveAppInput = Pick<Opportunity, 'slug' | 'name' | 'displayName' | 'category' | 'audience' | 'summary'>;
+
+const liveApp = (app: LiveAppInput): Opportunity => ({
+  ...app,
+  status: 'live',
+  score: 90,
+  market: 'Strong',
+  competition: 'Medium',
+  buildDifficulty: 'Medium',
+  revenuePotential: 'High',
+  customerPrice: 'Set your own price',
+  why: ['Built around a clear business workflow', 'Ready to brand for a focused customer', 'Managed by Rethinksoft'],
+  risks: ['Customer positioning still matters', 'Some integrations require setup', 'Growth depends on distribution'],
+  validate: ['Choose a target customer', 'Set your offer and price', 'Launch to your first ten prospects'],
+});
+
+const liveOpportunities: Opportunity[] = [
+  liveApp({ slug: 'attendly', name: 'Attendly Attendance Management System', displayName: 'Attendly', category: 'Business Operations', audience: 'HR teams, managers, and growing companies', summary: 'Track attendance, leave, and offline hours with role-based dashboards.' }),
+  liveApp({ slug: 'team-intranet', name: 'Team Intranet Employee Action Portal', displayName: 'Team Intranet', category: 'Portals', audience: 'Companies with distributed teams', summary: 'Turn company announcements into tracked employee actions.' }),
+  liveApp({ slug: 'vendor-verse', name: 'Vendor Verse Vendor Management Portal', displayName: 'Vendor Verse', category: 'Portals', audience: 'Procurement teams and vendor networks', summary: 'Manage purchase orders, invoices, payments, and compliance documents.' }),
+  liveApp({ slug: 'northstar', name: 'Northstar Customer Success Platform', displayName: 'Northstar', category: 'CRM', audience: 'Customer success and revenue teams', summary: 'Track account health, renewals, customer portfolios, and reports.' }),
+  liveApp({ slug: 'helmdesk', name: 'HelmDesk Logistics Support Desk', displayName: 'HelmDesk', category: 'Customer Support', audience: 'Last-mile delivery and logistics teams', summary: 'Connect every customer support ticket to the shipment behind it.' }),
+  liveApp({ slug: 'venus', name: 'Venus Partner Management Portal', displayName: 'Venus', category: 'Portals', audience: 'Partner and channel teams', summary: 'Track partner deals, resources, training, and payouts.' }),
+  liveApp({ slug: 'atlas-knowledge', name: 'Atlas Knowledge Base Platform', displayName: 'Atlas Knowledge', category: 'Knowledge Management', audience: 'Support and operations teams', summary: 'Govern publishing, review workflows, search, and knowledge gaps.' }),
+  liveApp({ slug: 'communa', name: 'Communa Online Community Platform', displayName: 'Communa', category: 'Community', audience: 'Brands, creators, and professional communities', summary: 'Run posts, Q&A, comments, moderation, and member reputation.' }),
+  liveApp({ slug: 'medicare', name: 'MediCare Healthcare Client Portal', displayName: 'MediCare', category: 'Healthcare', audience: 'Clinics and patient care teams', summary: 'Give patients one place for reports, prescriptions, appointments, and invoices.' }),
+  liveApp({ slug: 'sitepulse-pm', name: 'SitePulse PM Construction Field Ops', displayName: 'SitePulse PM', category: 'Project Management', audience: 'Construction firms and field teams', summary: 'Manage projects, site logs, issues, approvals, and punch lists.' }),
+  liveApp({ slug: 'opsdata-hub', name: 'OpsData Hub CSM Operations Analytics', displayName: 'OpsData Hub', category: 'Analytics', audience: 'Revenue and support operations teams', summary: 'Track pipeline, SLA health, and data quality in one workspace.' }),
+  liveApp({ slug: 'applicant-tracker', name: 'Applicant Tracker Hiring Pipeline ATS', displayName: 'Applicant Tracker', category: 'Recruiting', audience: 'Recruiting teams and staffing agencies', summary: 'Manage roles, candidates, interviews, pipelines, and scorecards.' }),
+  liveApp({ slug: 'depot', name: 'Depot Order Management Admin', displayName: 'Depot', category: 'Business Operations', audience: 'Retail and ecommerce operators', summary: 'Track orders, inventory, fulfillment, and returns across channels.' }),
+  liveApp({ slug: 'flowerp', name: 'FlowERP ERP Dashboard', displayName: 'FlowERP', category: 'Business Operations', audience: 'Manufacturing and distribution teams', summary: 'Run orders, inventory, finance, CRM, and operations from one system.' }),
+  liveApp({ slug: 'eventdesk', name: 'EventDesk Event Management System', displayName: 'EventDesk', category: 'Events', audience: 'Event operators and conference teams', summary: 'Manage ticketing, registration, check-in, sessions, partners, and reports.' }),
+  liveApp({ slug: 'employee-portal', name: 'Employee Portal HR Management System', displayName: 'Employee Portal', category: 'HR', audience: 'HR teams and growing employers', summary: 'Manage employee records, attendance, leave, payroll, and reports.' }),
+  liveApp({ slug: 'eduhub', name: 'EduHub Learning Management System', displayName: 'EduHub', category: 'Education', audience: 'Training companies and course operators', summary: 'Run courses, quizzes, assignments, grading, live classes, and certificates.' }),
+  liveApp({ slug: 'inventoryos', name: 'InventoryOS Inventory Management System', displayName: 'InventoryOS', category: 'Inventory', audience: 'Warehouse, retail, and distribution teams', summary: 'Track stock, purchases, and sales across multiple warehouses.' }),
+];
+
+export const opportunities: Opportunity[] = [...liveOpportunities, ...comingSoonOpportunities];
 
 export function getOpportunity(slug: string) {
   return opportunities.find((item) => item.slug === slug);

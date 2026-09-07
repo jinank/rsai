@@ -46,11 +46,11 @@ const shortTitles: Record<string, string> = {
         {opportunities.map((item, index) => (
           <a class="catalog-card reveal" href={`/start?opportunity=${item.slug}`} data-opportunity-item data-search={`${item.name} ${item.category} ${item.audience} ${item.summary}`.toLowerCase()} data-category={item.category.toLowerCase()}>
             <div class:list={['catalog-preview', `preview-${palette[index % palette.length]}`]}>
-              <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{shortTitles[item.slug]}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
+              <div class="preview-window"><div class="preview-bar"><i></i><i></i><i></i><span>{item.displayName || shortTitles[item.slug]}</span></div><div class="preview-body"><aside><b>{item.name.slice(0, 1)}</b><i></i><i></i><i></i></aside><main><div class="preview-title"><i></i><i></i></div><div class="preview-metrics"><span></span><span></span><span></span></div><div class="preview-chart"><i></i><i></i><i></i><i></i><i></i></div></main></div></div>
               <div class="catalog-tags"><span>{item.category}</span><span>Managed software</span></div>
-              <b class="coming-soon">COMING SOON</b>
+              <b class:list={['app-status', item.status === 'live' && 'live']}>{item.status === 'live' ? 'LIVE' : 'COMING SOON'}</b>
             </div>
-            <div class="catalog-card-copy"><h3>{shortTitles[item.slug]}</h3><p>{item.summary}</p><div><span>FOR {item.audience}</span><strong>VIEW APP <i>→</i></strong></div></div>
+            <div class="catalog-card-copy"><h3>{item.displayName || shortTitles[item.slug]}</h3><p>{item.summary}</p><div><span>FOR {item.audience}</span><strong>{item.status === 'live' ? 'EXPLORE' : 'VIEW APP'} <i>→</i></strong></div></div>
           </a>
         ))}
       </div>
